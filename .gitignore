@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/TheBeautyForum.Web/appsettings.json
+/TheBeautyForum.Web/appsettings.Development.json
+/TheBeautyForum.Web/appsettings.Production.json
+/TheBeautyForum.Web/appsettings.Production.json
