@@ -16,4 +16,10 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TheBeautyForum.Data\TheBeautyForum.Data.csproj" />
+    <ProjectReference Include="..\TheBeautyForum.Services\TheBeautyForum.Services.csproj" />
+    <ProjectReference Include="..\TheBeautyForum.Web\TheBeautyForum.Web.csproj" />
+  </ItemGroup>
+
 </Project>

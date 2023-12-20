@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TheBeautyForum.Data\TheBeautyForum.Data.csproj" />
+    <ProjectReference Include="..\TheBeautyForum.Web.ViewModels\TheBeautyForum.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

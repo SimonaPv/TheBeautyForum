@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TheBeautyForum.Services\TheBeautyForum.Services.csproj" />
+  </ItemGroup>
+
 </Project>
