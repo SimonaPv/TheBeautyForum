@@ -26,4 +26,8 @@
     <ProjectReference Include="..\TheBeautyForum.Web.ViewModels\TheBeautyForum.Web.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
