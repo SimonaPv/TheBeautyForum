@@ -8,7 +8,7 @@ namespace TheBeautyForum.Data.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(NAME_MAX_LENGTH)]
