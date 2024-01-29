@@ -28,6 +28,8 @@ namespace TheBeautyForum.Web.Data
 
         public DbSet<StudioCategory> StudioCategories { get; set; } = null!;
 
+        public DbSet<Image> Images { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var timeOnlyToTimeSpanConverter = new TimeOnlyToTimeSpanConverter();
@@ -115,6 +117,14 @@ namespace TheBeautyForum.Web.Data
             {
                 builder.HasOne(p => p.Publication)
                 .WithMany(l => l.Likes)
+                .HasForeignKey(p => p.PublicationId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Image>(builder =>
+            {
+                builder.HasOne(p => p.Publication)
+                .WithMany(i => i.Images)
                 .HasForeignKey(p => p.PublicationId)
                 .OnDelete(DeleteBehavior.Cascade);
             });

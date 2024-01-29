@@ -36,6 +36,8 @@ namespace TheBeautyForum.Data.Models
         [Required]
         public TimeOnly CloseTime { get; set; }
 
+        public string? StudioPictureUrl { get; set; }
+
         public User? User { get; set; }
 
         public ICollection<StudioCategory> StudioCategories { get; set; }

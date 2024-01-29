@@ -1,3 +1,4 @@
+using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Data.Models;
 using TheBeautyForum.Web.Data;
@@ -29,6 +30,10 @@ builder.Services
     .AddControllersWithViews();
 builder.WebHost.UseStaticWebAssets();
 
+ConfigureCloudinaryService(builder.Services, builder.Configuration);
+
+//builder.Services.AddResponseCaching();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -55,3 +60,18 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+static void ConfigureCloudinaryService(IServiceCollection services, IConfiguration configuration)
+{
+
+    var cloudName = configuration.GetValue<string>("AccountSettings:CloudName");
+    var apiKey = configuration.GetValue<string>("AccountSettings:ApiKey");
+    var apiSecret = configuration.GetValue<string>("AccountSettings:ApiSecret");
+
+    if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
+    {
+        throw new ArgumentException("Please specify your Cloudinary account Information");
+    }
+
+    services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
+}

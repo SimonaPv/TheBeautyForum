@@ -12,7 +12,7 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240117091013_CreateDatabase")]
+    [Migration("20240123071738_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,6 +209,28 @@ namespace TheBeautyForum.Data.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("TheBeautyForum.Data.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("PublicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UrlPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublicationId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("TheBeautyForum.Data.Models.Like", b =>
                 {
                     b.Property<Guid>("Id")
@@ -345,6 +367,9 @@ namespace TheBeautyForum.Data.Migrations
                     b.Property<TimeSpan>("OpenTime")
                         .HasColumnType("time");
 
+                    b.Property<string>("StudioPictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -422,6 +447,9 @@ namespace TheBeautyForum.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -543,6 +571,17 @@ namespace TheBeautyForum.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TheBeautyForum.Data.Models.Image", b =>
+                {
+                    b.HasOne("TheBeautyForum.Data.Models.Publication", "Publication")
+                        .WithMany("Images")
+                        .HasForeignKey("PublicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Publication");
+                });
+
             modelBuilder.Entity("TheBeautyForum.Data.Models.Like", b =>
                 {
                     b.HasOne("TheBeautyForum.Data.Models.Publication", "Publication")
@@ -640,6 +679,8 @@ namespace TheBeautyForum.Data.Migrations
             modelBuilder.Entity("TheBeautyForum.Data.Models.Publication", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Images");
 
                     b.Navigation("Likes");
                 });
