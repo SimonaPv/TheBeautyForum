@@ -11,12 +11,12 @@
 </head>
 <body>
     <header>
-        <div class="container-fluid p-0" style="background-color:#FEF1EF;">
+        <div class="container-fluid p-0">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand ml-lg-3">
+                <a href="#" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 text-primary"><span class="text-dark">The</span>Beauty<span class="text-dark">Forum</span></h1>
                 </a>
-                <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="collapse navbar-collapse justify-content-between" style="padding-left:12em;" id="navbarCollapse">
                     <div class="navbar-nav m-auto py-0">
                         <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a href="#" class="nav-item nav-link">About</a>
@@ -34,11 +34,26 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <div class="footer container-fluid position-relative bg-dark pt-4" style="margin-top: 0em;">
         <div class="container">
-            &copy; @DateTime.Now.Year - TheBeautyForum
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <h1 class="text-white">The<span class="text-primary">Beauty</span>Forum</h1>
+                <p>
+                    <i class="fa fa-map-marker-alt mr-2"></i>123 Street, Sofia, Bulgaria
+                    <i class="fa fa-phone-alt mr-2 pl-3"></i>+012 345 67890
+                    <i class="fa fa-envelope mr-2 pl-3"></i>thebeautyforum@mail.com
+                </p>
+            </a>
         </div>
-    </footer>
+    </div>
+    <div class="container-fluid bg-dark text-light border-top py-4" style="border-color: rgba(256, 256, 256, .15) !important;">
+        <div class="container">
+            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-light">&copy; <a href="#">TheBeautyForum</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

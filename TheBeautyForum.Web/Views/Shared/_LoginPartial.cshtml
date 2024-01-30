@@ -5,25 +5,25 @@
 
 <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 
-@*<ul class="navbar-nav">
-*@@if (SignInManager.IsSignedIn(User))
-{
-    @*<li class="navbar-nav m-auto py-0">
-        <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity?.Name!</a>
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @*<li class="navbar-nav m-auto py-0">
+    <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity?.Name!</a>
     </li>*@
-    <li class="navbar-nav m-auto py-0">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="navbar-nav m-auto py-0">
-        <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="navbar-nav m-auto py-0">
-        <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+        <li class="navbar-nav m-auto py-0" style="padding-left:25.8em;">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="navbar-nav m-auto" style="padding-left:20em;">
+            <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+        <li class="navbar-nav m-auto py-0">
+            <a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+    }
 </ul>
