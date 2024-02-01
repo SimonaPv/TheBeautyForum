@@ -10,9 +10,9 @@ namespace TheBeautyForum.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
+        //[Required]
+        //[ForeignKey(nameof(User))]
+        //public Guid UserId { get; set; }
 
         [Required]
         [StringLength(NAME_MAX_LENGTH)]
@@ -21,10 +21,6 @@ namespace TheBeautyForum.Data.Models
         [Required]
         [StringLength(DESCRIPTION_MAX_LENGTH)]
         public string Description { get; set; } = null!;
-
-        [Required]
-        [StringLength(IMAGE_MAX_LENGTH)]
-        public string Image { get; set; } = null!;
 
         [Required]
         [StringLength(LOCATION_MAX_LENGTH)]
@@ -38,7 +34,7 @@ namespace TheBeautyForum.Data.Models
 
         public string? StudioPictureUrl { get; set; }
 
-        public User? User { get; set; }
+        //public User? User { get; set; }
 
         public ICollection<StudioCategory> StudioCategories { get; set; }
             = new HashSet<StudioCategory>();

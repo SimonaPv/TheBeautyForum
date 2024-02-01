@@ -1,6 +1,7 @@
 using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Data.Models;
+using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services
     .AddControllersWithViews();
 builder.WebHost.UseStaticWebAssets();
 
+builder.Services.AddScoped<IImageService, ImageService>();
 ConfigureCloudinaryService(builder.Services, builder.Configuration);
 
 //builder.Services.AddResponseCaching();

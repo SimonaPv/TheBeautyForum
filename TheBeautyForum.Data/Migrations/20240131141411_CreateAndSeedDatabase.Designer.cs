@@ -12,8 +12,8 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240123071738_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20240131141411_CreateAndSeedDatabase")]
+    partial class CreateAndSeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,11 +211,9 @@ namespace TheBeautyForum.Data.Migrations
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PublicationId")
                         .HasColumnType("uniqueidentifier");
@@ -229,6 +227,38 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasIndex("PublicationId");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("dd2c855b-e8cb-43c8-8437-c8fbd54444a8"),
+                            PublicationId = new Guid("3dff0a05-d97b-44f5-9118-80a276adad91"),
+                            UrlPath = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/oaxk2efd2zcewio2tciv.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("e121ce4c-f437-4696-99fa-1859d1de6780"),
+                            PublicationId = new Guid("09d4bfa2-1b65-4085-ad6c-010c20427409"),
+                            UrlPath = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685965/bypcq7r5kqpgjbm8keka.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("120dbf97-04a7-4cf4-a4f9-aea8ffc3037f"),
+                            PublicationId = new Guid("368c82c4-7046-44ee-8315-149e4527bd47"),
+                            UrlPath = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/y7uikxn4ib53acmxt978.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("5b637ca8-0eaf-41d7-ae31-6f506bbcd812"),
+                            PublicationId = new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"),
+                            UrlPath = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685965/x2kx2oeyhz22ouwandcr.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("02fa054e-3efe-4923-b267-aca9ac769f81"),
+                            PublicationId = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            UrlPath = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/v9b0ghriku0s2pfsppaj.jpg"
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Like", b =>
@@ -263,11 +293,6 @@ namespace TheBeautyForum.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(2048)
-                        .HasColumnType("nvarchar(2048)");
-
                     b.Property<Guid>("StudioId")
                         .HasColumnType("uniqueidentifier");
 
@@ -281,6 +306,43 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Publications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3dff0a05-d97b-44f5-9118-80a276adad91"),
+                            Description = "Love my new nails!! #nailDay #newNails",
+                            StudioId = new Guid("bf2832b2-5b62-471b-9980-583753504ca6"),
+                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9")
+                        },
+                        new
+                        {
+                            Id = new Guid("09d4bfa2-1b65-4085-ad6c-010c20427409"),
+                            Description = "Me time.. #spaDay #SPA",
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283")
+                        },
+                        new
+                        {
+                            Id = new Guid("368c82c4-7046-44ee-8315-149e4527bd47"),
+                            Description = "A needed day OFF! #relax",
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d")
+                        },
+                        new
+                        {
+                            Id = new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"),
+                            Description = "Guess who's getting MARRIED!! #bride #love",
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            UserId = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f")
+                        },
+                        new
+                        {
+                            Id = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            Description = "Your curls can dream.. #curlyHair #healthy",
+                            StudioId = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            UserId = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b")
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Rating", b =>
@@ -349,11 +411,6 @@ namespace TheBeautyForum.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(2048)
-                        .HasColumnType("nvarchar(2048)");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(80)
@@ -370,14 +427,71 @@ namespace TheBeautyForum.Data.Migrations
                     b.Property<string>("StudioPictureUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Studios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "Dream haircuts can come true!",
+                            Location = "Varna, Bulgaria, ul. \"Pozitano\" 125, 1309 Zona B-19",
+                            Name = "Helita",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/cjb6es4kqpy6kukryk8r.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "Hairstyling and Haircutting",
+                            Location = "Stara Zagora, Bulgaria, ul. \"Ivan Vazov\" 13, Zagorka",
+                            Name = "Murphy",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("bf2832b2-5b62-471b-9980-583753504ca6"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "Ina Vasileva's Studio",
+                            Location = "Varna, Bulgaria, ul. \"Vejen St.\" 09",
+                            Name = "IN Beauty",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "Hair Care Studio",
+                            Location = "Sofia, Bulgaria, ul. \"Zograf\" 26",
+                            Name = "N-Stage",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "SPA Studio",
+                            Location = "Sofia, Bulgaria, ul. \"St. Georgi\" 26",
+                            Name = "Wellness Centre",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            CloseTime = new TimeSpan(0, 18, 0, 0, 0),
+                            Description = "Bali&Thai Massages",
+                            Location = "Sofia, Bulgaria, ul. \"Aksakov\" 11",
+                            Name = "Arsanta",
+                            OpenTime = new TimeSpan(0, 9, 0, 0, 0),
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg"
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.StudioCategory", b =>
@@ -472,6 +586,98 @@ namespace TheBeautyForum.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "83e12a3a-4371-4704-aa32-56da80456870",
+                            Email = "mariageorgieva@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Maria",
+                            LastName = "Georgieva",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
+                            NormalizedUserName = "MARIAGEORGIEVA@MAIL.COM",
+                            PhoneNumber = "0881111111",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/domw93xprf2dlxj3n7in.jpg",
+                            TwoFactorEnabled = false,
+                            UserName = "mariageorgieva@mail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "03ca03d6-d489-4e1e-b890-51c4d023ea6d",
+                            Email = "amayaivanova@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Amaya",
+                            LastName = "Ivanova",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AMAYAIVANOVA@MAIL.COM",
+                            NormalizedUserName = "AMAYAIVANOVA@MAIL.COM",
+                            PhoneNumber = "0882222222",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
+                            TwoFactorEnabled = false,
+                            UserName = "amayaivanova@mail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "757115da-f1e6-4b9e-a6bb-686935084fc5",
+                            Email = "aylintodorova@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Aylin",
+                            LastName = "Todorova",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AYLINTODOROVA@MAIL.COM",
+                            NormalizedUserName = "AYLINTODOROVA@MAIL.COM",
+                            PhoneNumber = "0883333333",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/qa7jgeb1ys6nfvhzhswl.jpg",
+                            TwoFactorEnabled = false,
+                            UserName = "aylintodorova@mail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c7d6a0a6-1ea1-4665-afa0-64e756ecacbb",
+                            Email = "deboramileva@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Debora",
+                            LastName = "Mileva",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DEBORAMILEVA@MAIL.COM",
+                            NormalizedUserName = "DEBORAMILEVA@MAIL.COM",
+                            PhoneNumber = "0884444444",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
+                            TwoFactorEnabled = false,
+                            UserName = "deboramileva@mail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "35bdf80f-770a-45f1-992b-73decc91c8fd",
+                            Email = "lisaborisova@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Lisa",
+                            LastName = "Borisova",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LISABORISOVA@MAIL.COM",
+                            NormalizedUserName = "LISABORISOVA@MAIL.COM",
+                            PhoneNumber = "0885555555",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg",
+                            TwoFactorEnabled = false,
+                            UserName = "lisaborisova@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -639,17 +845,6 @@ namespace TheBeautyForum.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TheBeautyForum.Data.Models.Studio", b =>
-                {
-                    b.HasOne("TheBeautyForum.Data.Models.User", "User")
-                        .WithMany("Studios")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("TheBeautyForum.Data.Models.StudioCategory", b =>
                 {
                     b.HasOne("TheBeautyForum.Data.Models.Category", "Category")
@@ -703,8 +898,6 @@ namespace TheBeautyForum.Data.Migrations
                     b.Navigation("Publications");
 
                     b.Navigation("Ratings");
-
-                    b.Navigation("Studios");
                 });
 #pragma warning restore 612, 618
         }

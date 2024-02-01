@@ -1,0 +1,105 @@
+﻿@using TheBeautyForum.Web.ViewModels.Image;
+@model List<ForumViewModel>
+@{
+    ViewData["Title"] = "Forum";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/post.css">
+</head>
+<body>
+    <div class="containerr">
+        <!------------------left-sidebar---------------------->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                @foreach (var s in Model[0].StudiosNames.OrderBy(x => x))
+                {
+                    <a>@s</a>
+                }
+                <a href="#">See More</a>
+            </div>
+        </div>
+        <!------------------main-content-------------------->
+        <div class="main-content">
+            <div class="write-post-containerr">
+                <div class="user-profile">
+                    <img src="~/images/profile-pic.png.png">
+                    <div>
+                        <p>Simona Palieva</p>
+                    </div>
+                </div>
+
+                <div class="post-input-containerr">
+                    <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, Simona?"></textarea>
+                    <div class="add-post-links">
+                        <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
+                            <i class="fa fa-solid fa-images mr-1"></i>Add Photo
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @foreach (var p in Model)
+            {
+                <div class="post-containerr">
+                    <div class="post-row">
+                        <div class="user-profile">
+                            <img src="@p.UserProfilePic" alt="image">
+                            <div>
+                                <p>@p.UserName</p>
+                                <span>December 18 2021, 19:35</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="post-text">
+                        @p.Description
+                    </p>
+                    <img src="@p.UrlPath" class="post-img">
+                    <div class="post-row">
+                        <div class="activity-icons">
+                            <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
+                                <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> @p.LikeCount
+
+                                <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> @p.CommentCount
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--------------------right-sidebar-------------------->
+        <div class="right-sidebar">
+            <div class="sidebar-title">
+                <h4>Advertisement</h4>
+                <a href="#">See all</a>
+            </div>
+            <p>discount 1</p>
+            <p>discount 2</p>
+            <p>discount 3</p>
+            <p>discount 4</p>
+            <p>discount 5</p>
+        </div>
+    </div>
+    <script>
+        function likeButton() {
+            let graylike = document.querySelector('.fa-heart');
+
+            if (graylike.style.color = "#626262") {
+                graylike.style.color = "#F9A392";
+            }
+            else {
+                graylike.style.color = "#626262";
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

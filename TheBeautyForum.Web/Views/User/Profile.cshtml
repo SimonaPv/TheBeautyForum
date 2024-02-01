@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/post.css">
+    <!-- <script src="<script src="https://kit.fontawesome.com/461000614e.js" crossorigin="anonymous"></script>"></script> -->
+</head>
+
+<body>
+    <!-----------------------profile page----------------------->
+    <div class="profile-container">
+        <div class="profile-details" style="margin-top: 1.5em;">
+            <div class="pd-left">
+                <div class="pd-row">
+                    <img src="~/images/profile-pic.png.png" class="pd-image">
+                    <div style="padding-top:1em;">
+                        <h2>Simona Palieva</h2>
+                        <h7>simonapalieva@gmail.com</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="info-col">
+                <div class="profile-intro">
+                    <div class="total-box">
+                        <h3>Photos</h3>
+                        <a href="">All Photos</a>
+                    </div>
+                    <div class="photo-box">
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-col">
+                <div style="margin-right: 10em;">
+                    <div class="write-post-containerr">
+                        <div class="user-profile">
+                            <img src="~/images/profile-pic.png.png">
+                            <div>
+                                <p>Simona Palieva</p>
+                            </div>
+                        </div>
+
+                        <div class="post-input-containerr">
+                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, Simona?"></textarea>
+                            <div class="add-post-links">
+                                <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
+                                    <i class="fa fa-solid fa-images mr-1"></i>Add Photo
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-containerr">
+                        <div class="post-row">
+                            <div class="user-profile">
+                                <img src="~/images/profile-pic.png.png" alt="image">
+                                <div>
+                                    <p>Simona Palieva</p>
+                                    <span>December 18 2021, 19:35</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="post-text">
+                            Description
+                        </p>
+                        <img src="~/images/manicure.jpg" class="post-img">
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <p style="font-size: 18px; margin: 0.5em 1em 0 1em;">
+                                    <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
+
+                                    <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
+                <div class="profile-intro">
+                    <div class="sidebar-title">
+                        <h4>Appointments</h4>
+                        <a href="#">See All</a>
+                    </div>
+                    <div class="event">
+                        <div class="left-event">
+                            <h3>18</h3>
+                            <span>March</span>
+                        </div>
+                        <div class="right-event">
+                            <h4>Social Media</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Tech Park</p>
+                            <a href="#">More Info</a>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="left-event">
+                            <h3>22</h3>
+                            <span>June</span>
+                        </div>
+                        <div class="right-event">
+                            <h4>Mobile Marketing</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
+                            <a href="#">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function likeButton() {
+            let graylike = document.querySelector('.fa-heart');
+
+            if (graylike.style.color = "#626262") {
+                graylike.style.color = "#F9A392";
+            }
+            else {
+                graylike.style.color = "#626262";
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/mains.js"></script>
+</body>
+</html>

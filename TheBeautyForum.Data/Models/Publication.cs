@@ -22,10 +22,6 @@ namespace TheBeautyForum.Data.Models
         [StringLength(DESCRIPTION_MAX_LENGTH)]
         public string? Description { get; set; }
 
-        [Required]
-        [StringLength(IMAGE_MAX_LENGTH)]
-        public string Image { get; set; } = null!;
-
         public User? User { get; set; }
 
         public Studio? Studio { get; set; }

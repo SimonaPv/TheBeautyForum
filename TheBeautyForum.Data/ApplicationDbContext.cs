@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Data;
+using TheBeautyForum.Data.Configurations;
 using TheBeautyForum.Data.Models;
 
 namespace TheBeautyForum.Web.Data
@@ -60,10 +61,10 @@ namespace TheBeautyForum.Web.Data
                 builder.Property(p => p.CloseTime)
                  .HasConversion(timeOnlyToTimeSpanConverter);
 
-                builder.HasOne(u => u.User)
-                    .WithMany(s => s.Studios)
-                    .HasForeignKey(fk => fk.UserId)
-                    .OnDelete(DeleteBehavior.NoAction);
+                //builder.HasOne(u => u.User)
+                //    .WithMany(s => s.Studios)
+                //    .HasForeignKey(fk => fk.UserId)
+                //    .OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<Rating>(builder =>
@@ -128,6 +129,11 @@ namespace TheBeautyForum.Web.Data
                 .HasForeignKey(p => p.PublicationId)
                 .OnDelete(DeleteBehavior.Cascade);
             });
+
+            modelBuilder.ApplyConfiguration(new ImageConfiguration());
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
+            modelBuilder.ApplyConfiguration(new StudioConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

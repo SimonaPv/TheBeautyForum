@@ -1,16 +1,17 @@
 html {
-  font-size: 14px;
+    background-color: #efefef;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 15px;
-  }
+    html {
+        font-size: 15px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {

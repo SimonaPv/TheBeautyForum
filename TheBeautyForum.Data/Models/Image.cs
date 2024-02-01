@@ -11,13 +11,13 @@ namespace TheBeautyForum.Data.Models
     public class Image
     {
         [Key]
-        public int Id { get; set; }
-
-        [Required]
-        public string? UrlPath { get; set; }
+        public Guid Id { get; set; }
 
         [ForeignKey(nameof(Publication))]
         public Guid PublicationId { get; set; }
+
+        [Required]
+        public string? UrlPath { get; set; }
 
         public Publication? Publication { get; set; }
     }
