@@ -369,11 +369,37 @@ namespace TheBeautyForum.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "35bdf80f-770a-45f1-992b-73decc91c8fd", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISABORISOVA@MAIL.COM", null, "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg", null, false, "lisaborisova@mail.com" },
-                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "757115da-f1e6-4b9e-a6bb-686935084fc5", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLINTODOROVA@MAIL.COM", null, "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/qa7jgeb1ys6nfvhzhswl.jpg", null, false, "aylintodorova@mail.com" },
-                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "03ca03d6-d489-4e1e-b890-51c4d023ea6d", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYAIVANOVA@MAIL.COM", null, "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", null, false, "amayaivanova@mail.com" },
-                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "c7d6a0a6-1ea1-4665-afa0-64e756ecacbb", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORAMILEVA@MAIL.COM", null, "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", null, false, "deboramileva@mail.com" },
-                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "83e12a3a-4371-4704-aa32-56da80456870", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIAGEORGIEVA@MAIL.COM", null, "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/domw93xprf2dlxj3n7in.jpg", null, false, "mariageorgieva@mail.com" }
+                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "ff076685-c2dc-4444-a2d9-6617a49875ed", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISA", "AQAAAAEAACcQAAAAEKL5v6JXo7agnpGmXF1QkDeYV9zKYIzLo1NqTbMmQhqs8XV5GeZpOPh3s056sNepDQ==", "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg", null, false, "Lisa" },
+                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "03441a2d-062e-4794-bd6e-606ad44a25b7", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLIN", "AQAAAAEAACcQAAAAEOkXvRHEG3qzJ3j+S+O8UNBnlmHSp7Lo/ho6E8Xbq5UrRQ2AKIdex0sK6udPSZRoog==", "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/qa7jgeb1ys6nfvhzhswl.jpg", null, false, "Aylin" },
+                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "d65fea67-c68a-4b47-9aca-b1d172c9a326", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYA", "AQAAAAEAACcQAAAAEI3ijqk191W+i1/2LjM3IWRZRzeqGGsF+2nPNonY/rofg3Mp8450kMp5GmVafuZQVA==", "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", null, false, "Amaya" },
+                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "4ebd773b-34e7-426c-a5b7-6a2852799a94", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORA", "AQAAAAEAACcQAAAAEG/uD8x7vbyS9RcE98+unsKxeU3Lm6FaoM9foVNbbdR5FAhKel2P1cHuPPY/pXx6yQ==", "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", null, false, "Debora" },
+                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "c6bc8946-7588-4a59-b6a2-09b26e4a4801", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIA", "AQAAAAEAACcQAAAAELQChvjiGQLvVDA6fjurEfdUw8fxGZ1OrAl7iD44CO8sDq+pJZqFNcqKo1b8EXPoDw==", "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/domw93xprf2dlxj3n7in.jpg", null, false, "Maria" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), "Haircare" },
+                    { new Guid("1c39f073-d448-4e8b-9079-369aab2d816b"), "Facial therapy" },
+                    { new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea"), "Pedicure" },
+                    { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), "Haircut" },
+                    { new Guid("42334109-d996-4339-b78c-4ba73fcdd824"), "Stone massage" },
+                    { new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"), "Manicure" },
+                    { new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"), "Full body massage" },
+                    { new Guid("57edeb42-3369-4c8c-b2d2-8c6c0ac49cfc"), "Facial cleansing" },
+                    { new Guid("6f3f3c4a-9213-48a9-a112-362e10188983"), "Aromatherapy massage" },
+                    { new Guid("766f75cf-899f-491e-9c5a-6ff5949159a1"), "Facial stone therapy" },
+                    { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), "Hairstyle" },
+                    { new Guid("93474d31-0c93-4d01-9130-3b967b09a74a"), "Reiki" },
+                    { new Guid("acc8a306-8a0b-4ede-8a03-f1ab6e90eed4"), "Microblading" },
+                    { new Guid("b9b9950e-5ad6-4f44-87b0-e8811e9a59e2"), "Bali massage" },
+                    { new Guid("d079d974-8e76-4b0c-8c41-291ecd9042b1"), "Anti-age therapy" },
+                    { new Guid("d5cbb5ce-65e7-4a6a-a03c-fd13fcf304de"), "Microneedling" },
+                    { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), "Hair coloring" },
+                    { new Guid("f63198ba-741e-42ca-b112-f08c0e193bbb"), "Thai massage" },
+                    { new Guid("f74035eb-e32d-4ddf-b381-8a757c7d5152"), "Full SPA" }
                 });
 
             migrationBuilder.InsertData(
@@ -390,6 +416,19 @@ namespace TheBeautyForum.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Appointments",
+                columns: new[] { "Id", "CategoryId", "Description", "EndDate", "StartDate", "StudioId", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("0b561660-608b-4e07-80bc-96c168ff11ac"), new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), "I want a hairstyle for my birthday.", new DateTime(2024, 4, 22, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 22, 12, 30, 0, 0, DateTimeKind.Unspecified), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"), new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9") },
+                    { new Guid("1790311d-5712-44a9-abbd-3bfc47802419"), new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"), "Monthly manicure appointment.", new DateTime(2024, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 22, 14, 0, 0, 0, DateTimeKind.Unspecified), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"), new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9") },
+                    { new Guid("79e4af3b-6bcf-4476-8705-2457836a1968"), new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"), "I need a relaxing massage.", new DateTime(2024, 4, 24, 17, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 24, 16, 0, 0, 0, DateTimeKind.Unspecified), new Guid("df44a062-9586-4815-8126-99c240433b22"), new Guid("3bea7392-a556-4a99-86c2-8cb244868283") },
+                    { new Guid("8180ba4e-0941-4b06-abfa-e36a25ddb881"), new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), "I need care for bleached hair.", new DateTime(2024, 4, 20, 16, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 20, 15, 0, 0, 0, DateTimeKind.Unspecified), new Guid("df44a062-9586-4815-8126-99c240433b22"), new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d") },
+                    { new Guid("9b76ada8-1c16-4f05-b308-1c4ff3de137f"), new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), "I want platinum blond.", new DateTime(2024, 4, 20, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 18, 12, 30, 0, 0, DateTimeKind.Unspecified), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"), new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d") },
+                    { new Guid("f1a43f31-6d82-442b-8f89-941f7b6da3ec"), new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), "I want slight balayage.", new DateTime(2024, 4, 20, 13, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 4, 20, 12, 30, 0, 0, DateTimeKind.Unspecified), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"), new Guid("3bea7392-a556-4a99-86c2-8cb244868283") }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "Description", "StudioId", "UserId" },
                 values: new object[,]
@@ -399,6 +438,34 @@ namespace TheBeautyForum.Data.Migrations
                     { new Guid("368c82c4-7046-44ee-8315-149e4527bd47"), "A needed day OFF! #relax", new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"), new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d") },
                     { new Guid("3dff0a05-d97b-44f5-9118-80a276adad91"), "Love my new nails!! #nailDay #newNails", new Guid("bf2832b2-5b62-471b-9980-583753504ca6"), new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9") },
                     { new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"), "Your curls can dream.. #curlyHair #healthy", new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"), new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "StudioCategories",
+                columns: new[] { "CategoryId", "StudioId" },
+                values: new object[,]
+                {
+                    { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
+                    { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
+                    { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
+                    { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
+                    { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
+                    { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
+                    { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
+                    { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
+                    { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
+                    { new Guid("93474d31-0c93-4d01-9130-3b967b09a74a"), new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca") },
+                    { new Guid("b9b9950e-5ad6-4f44-87b0-e8811e9a59e2"), new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca") },
+                    { new Guid("f63198ba-741e-42ca-b112-f08c0e193bbb"), new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca") },
+                    { new Guid("42334109-d996-4339-b78c-4ba73fcdd824"), new Guid("df44a062-9586-4815-8126-99c240433b22") },
+                    { new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"), new Guid("df44a062-9586-4815-8126-99c240433b22") },
+                    { new Guid("6f3f3c4a-9213-48a9-a112-362e10188983"), new Guid("df44a062-9586-4815-8126-99c240433b22") },
+                    { new Guid("f74035eb-e32d-4ddf-b381-8a757c7d5152"), new Guid("df44a062-9586-4815-8126-99c240433b22") }
                 });
 
             migrationBuilder.InsertData(

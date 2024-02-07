@@ -12,8 +12,8 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240131141411_CreateAndSeedDatabase")]
-    partial class CreateAndSeedDatabase
+    [Migration("20240207091249_UpdateSecurityStamp")]
+    partial class UpdateSecurityStamp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,68 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0b561660-608b-4e07-80bc-96c168ff11ac"),
+                            CategoryId = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"),
+                            Description = "I want a hairstyle for my birthday.",
+                            EndDate = new DateTime(2024, 4, 22, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 22, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9")
+                        },
+                        new
+                        {
+                            Id = new Guid("1790311d-5712-44a9-abbd-3bfc47802419"),
+                            CategoryId = new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"),
+                            Description = "Monthly manicure appointment.",
+                            EndDate = new DateTime(2024, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 22, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9")
+                        },
+                        new
+                        {
+                            Id = new Guid("f1a43f31-6d82-442b-8f89-941f7b6da3ec"),
+                            CategoryId = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"),
+                            Description = "I want slight balayage.",
+                            EndDate = new DateTime(2024, 4, 20, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 20, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283")
+                        },
+                        new
+                        {
+                            Id = new Guid("79e4af3b-6bcf-4476-8705-2457836a1968"),
+                            CategoryId = new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"),
+                            Description = "I need a relaxing massage.",
+                            EndDate = new DateTime(2024, 4, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 24, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283")
+                        },
+                        new
+                        {
+                            Id = new Guid("9b76ada8-1c16-4f05-b308-1c4ff3de137f"),
+                            CategoryId = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"),
+                            Description = "I want platinum blond.",
+                            EndDate = new DateTime(2024, 4, 20, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 18, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d")
+                        },
+                        new
+                        {
+                            Id = new Guid("8180ba4e-0941-4b06-abfa-e36a25ddb881"),
+                            CategoryId = new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"),
+                            Description = "I need care for bleached hair.",
+                            EndDate = new DateTime(2024, 4, 20, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 20, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d")
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Category", b =>
@@ -181,6 +243,103 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"),
+                            Name = "Hairstyle"
+                        },
+                        new
+                        {
+                            Id = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"),
+                            Name = "Haircut"
+                        },
+                        new
+                        {
+                            Id = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"),
+                            Name = "Hair coloring"
+                        },
+                        new
+                        {
+                            Id = new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"),
+                            Name = "Haircare"
+                        },
+                        new
+                        {
+                            Id = new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"),
+                            Name = "Manicure"
+                        },
+                        new
+                        {
+                            Id = new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea"),
+                            Name = "Pedicure"
+                        },
+                        new
+                        {
+                            Id = new Guid("f74035eb-e32d-4ddf-b381-8a757c7d5152"),
+                            Name = "Full SPA"
+                        },
+                        new
+                        {
+                            Id = new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"),
+                            Name = "Full body massage"
+                        },
+                        new
+                        {
+                            Id = new Guid("42334109-d996-4339-b78c-4ba73fcdd824"),
+                            Name = "Stone massage"
+                        },
+                        new
+                        {
+                            Id = new Guid("6f3f3c4a-9213-48a9-a112-362e10188983"),
+                            Name = "Aromatherapy massage"
+                        },
+                        new
+                        {
+                            Id = new Guid("93474d31-0c93-4d01-9130-3b967b09a74a"),
+                            Name = "Reiki"
+                        },
+                        new
+                        {
+                            Id = new Guid("f63198ba-741e-42ca-b112-f08c0e193bbb"),
+                            Name = "Thai massage"
+                        },
+                        new
+                        {
+                            Id = new Guid("b9b9950e-5ad6-4f44-87b0-e8811e9a59e2"),
+                            Name = "Bali massage"
+                        },
+                        new
+                        {
+                            Id = new Guid("766f75cf-899f-491e-9c5a-6ff5949159a1"),
+                            Name = "Facial stone therapy"
+                        },
+                        new
+                        {
+                            Id = new Guid("1c39f073-d448-4e8b-9079-369aab2d816b"),
+                            Name = "Facial therapy"
+                        },
+                        new
+                        {
+                            Id = new Guid("57edeb42-3369-4c8c-b2d2-8c6c0ac49cfc"),
+                            Name = "Facial cleansing"
+                        },
+                        new
+                        {
+                            Id = new Guid("d079d974-8e76-4b0c-8c41-291ecd9042b1"),
+                            Name = "Anti-age therapy"
+                        },
+                        new
+                        {
+                            Id = new Guid("d5cbb5ce-65e7-4a6a-a03c-fd13fcf304de"),
+                            Name = "Microneedling"
+                        },
+                        new
+                        {
+                            Id = new Guid("acc8a306-8a0b-4ede-8a03-f1ab6e90eed4"),
+                            Name = "Microblading"
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Comment", b =>
@@ -507,6 +666,113 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("StudioCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            CategoryId = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            CategoryId = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            CategoryId = new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                            CategoryId = new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                            CategoryId = new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            CategoryId = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            CategoryId = new Guid("db7effe2-16bb-4539-9dec-0bda384b859f")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            CategoryId = new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                            CategoryId = new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            CategoryId = new Guid("f74035eb-e32d-4ddf-b381-8a757c7d5152")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            CategoryId = new Guid("569a4a94-57b0-48d3-930c-0d3ca92f7eb8")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            CategoryId = new Guid("42334109-d996-4339-b78c-4ba73fcdd824")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
+                            CategoryId = new Guid("6f3f3c4a-9213-48a9-a112-362e10188983")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            CategoryId = new Guid("93474d31-0c93-4d01-9130-3b967b09a74a")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            CategoryId = new Guid("f63198ba-741e-42ca-b112-f08c0e193bbb")
+                        },
+                        new
+                        {
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            CategoryId = new Guid("b9b9950e-5ad6-4f44-87b0-e8811e9a59e2")
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.User", b =>
@@ -592,91 +858,101 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "83e12a3a-4371-4704-aa32-56da80456870",
+                            ConcurrencyStamp = "17548072-0938-4493-a7fd-02bcc55257d1",
                             Email = "mariageorgieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Maria",
                             LastName = "Georgieva",
                             LockoutEnabled = false,
                             NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
-                            NormalizedUserName = "MARIAGEORGIEVA@MAIL.COM",
+                            NormalizedUserName = "MARIA",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPPeK+oueos3rYF68NMKIVhMTH0dfoHMiowtEwlyhy16H9U7xA9hee5TJiHrl/AEhA==",
                             PhoneNumber = "0881111111",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/domw93xprf2dlxj3n7in.jpg",
+                            SecurityStamp = "ca7c8e19-8b16-403d-858b-0b85a4d896ca",
                             TwoFactorEnabled = false,
-                            UserName = "mariageorgieva@mail.com"
+                            UserName = "Maria"
                         },
                         new
                         {
                             Id = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "03ca03d6-d489-4e1e-b890-51c4d023ea6d",
+                            ConcurrencyStamp = "cf14f41a-7446-479e-b026-f32d4ecec5fc",
                             Email = "amayaivanova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Amaya",
                             LastName = "Ivanova",
                             LockoutEnabled = false,
                             NormalizedEmail = "AMAYAIVANOVA@MAIL.COM",
-                            NormalizedUserName = "AMAYAIVANOVA@MAIL.COM",
+                            NormalizedUserName = "AMAYA",
+                            PasswordHash = "AQAAAAEAACcQAAAAENwBkLiYk/Igsd6LczGQqhXdkb/v/mGISnpsElV4q5NqIafturUA2+PUJv+lG4cuYw==",
                             PhoneNumber = "0882222222",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
+                            SecurityStamp = "27cfe125-4232-4b48-bf8f-70063f2642f0",
                             TwoFactorEnabled = false,
-                            UserName = "amayaivanova@mail.com"
+                            UserName = "Amaya"
                         },
                         new
                         {
                             Id = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "757115da-f1e6-4b9e-a6bb-686935084fc5",
+                            ConcurrencyStamp = "66c3b92f-abbd-4fff-a539-02f1a65ff86f",
                             Email = "aylintodorova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Aylin",
                             LastName = "Todorova",
                             LockoutEnabled = false,
                             NormalizedEmail = "AYLINTODOROVA@MAIL.COM",
-                            NormalizedUserName = "AYLINTODOROVA@MAIL.COM",
+                            NormalizedUserName = "AYLIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK4g8lHj4nV+0eOfoOY8oA5Tj68cgqcKcg9a1jgR+qiXi8oOe9rtuXisFZpS1BiJBw==",
                             PhoneNumber = "0883333333",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/qa7jgeb1ys6nfvhzhswl.jpg",
+                            SecurityStamp = "faef0528-06af-4d15-89d2-5e4fb091b719",
                             TwoFactorEnabled = false,
-                            UserName = "aylintodorova@mail.com"
+                            UserName = "Aylin"
                         },
                         new
                         {
                             Id = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7d6a0a6-1ea1-4665-afa0-64e756ecacbb",
+                            ConcurrencyStamp = "d14a92b2-abd8-4f91-9f51-dfe47d6e96ff",
                             Email = "deboramileva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Debora",
                             LastName = "Mileva",
                             LockoutEnabled = false,
                             NormalizedEmail = "DEBORAMILEVA@MAIL.COM",
-                            NormalizedUserName = "DEBORAMILEVA@MAIL.COM",
+                            NormalizedUserName = "DEBORA",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEqg3Op+GGzahsCSkdWYuVhfx6QZQopaNdyd4OIB4bHYA1lms3XFqFr6IHHMuwEjoA==",
                             PhoneNumber = "0884444444",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
+                            SecurityStamp = "cbc0c242-049b-4a0e-9c1a-50323aaf43a1",
                             TwoFactorEnabled = false,
-                            UserName = "deboramileva@mail.com"
+                            UserName = "Debora"
                         },
                         new
                         {
                             Id = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "35bdf80f-770a-45f1-992b-73decc91c8fd",
+                            ConcurrencyStamp = "3308d64c-c31a-4ffa-a727-ceb0b1fa90d4",
                             Email = "lisaborisova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Lisa",
                             LastName = "Borisova",
                             LockoutEnabled = false,
                             NormalizedEmail = "LISABORISOVA@MAIL.COM",
-                            NormalizedUserName = "LISABORISOVA@MAIL.COM",
+                            NormalizedUserName = "LISA",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAmKOcMEiL+0oXYJFw7ADUSATjiHM1yohqzkNBVQXy0GhCU8MuaTIYHF3eEuM2NIcg==",
                             PhoneNumber = "0885555555",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg",
+                            SecurityStamp = "b5f3d0e3-7c2e-446f-8962-0c0858c8575c",
                             TwoFactorEnabled = false,
-                            UserName = "lisaborisova@mail.com"
+                            UserName = "Lisa"
                         });
                 });
 
