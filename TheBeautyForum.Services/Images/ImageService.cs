@@ -25,7 +25,7 @@ namespace TheBeautyForum.Services.Images
                 .Select(p => new ForumViewModel()
                 {
                     PublicationId = p.PublicationId,
-                    UrlPath = p.UrlPath,
+                    Images = p.Publication.Images.Select(i => i.UrlPath).ToList(),
                     Description = p.Publication.Description,
                     UserId = p.Publication.UserId,
                     StudioId = p.Publication.StudioId,

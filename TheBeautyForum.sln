@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Web", "TheBeautyForum.Web\TheBeautyForum.Web.csproj", "{80D1B2F8-DB8D-45B9-8F32-D18BABE87144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheBeautyForum.Web", "TheBeautyForum.Web\TheBeautyForum.Web.csproj", "{80D1B2F8-DB8D-45B9-8F32-D18BABE87144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Data", "TheBeautyForum.Data\TheBeautyForum.Data.csproj", "{DED22B2D-9BC9-4F5E-9B68-C7D429F0AAEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheBeautyForum.Data", "TheBeautyForum.Data\TheBeautyForum.Data.csproj", "{DED22B2D-9BC9-4F5E-9B68-C7D429F0AAEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Web.Infrastructure", "TheBeautyForum.Web.Infrastructure\TheBeautyForum.Web.Infrastructure.csproj", "{7A12DEE9-786C-4056-B694-E2AE125C93E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheBeautyForum.Services", "TheBeautyForum.Services\TheBeautyForum.Services.csproj", "{A5053693-D230-4B26-BDE1-2670929C59F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Services", "TheBeautyForum.Services\TheBeautyForum.Services.csproj", "{A5053693-D230-4B26-BDE1-2670929C59F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheBeautyForum.Web.ViewModels", "TheBeautyForum.Web.ViewModels\TheBeautyForum.Web.ViewModels.csproj", "{D6CC21BD-99BC-4D2D-83EB-65137A56E2B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Web.ViewModels", "TheBeautyForum.Web.ViewModels\TheBeautyForum.Web.ViewModels.csproj", "{D6CC21BD-99BC-4D2D-83EB-65137A56E2B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBeautyForum.Tests", "TheBeautyForum.Tests\TheBeautyForum.Tests.csproj", "{71E2139C-0154-4835-AA41-BD044706290D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheBeautyForum.Tests", "TheBeautyForum.Tests\TheBeautyForum.Tests.csproj", "{71E2139C-0154-4835-AA41-BD044706290D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{DED22B2D-9BC9-4F5E-9B68-C7D429F0AAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DED22B2D-9BC9-4F5E-9B68-C7D429F0AAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DED22B2D-9BC9-4F5E-9B68-C7D429F0AAEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A12DEE9-786C-4056-B694-E2AE125C93E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A12DEE9-786C-4056-B694-E2AE125C93E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A12DEE9-786C-4056-B694-E2AE125C93E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A12DEE9-786C-4056-B694-E2AE125C93E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5053693-D230-4B26-BDE1-2670929C59F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5053693-D230-4B26-BDE1-2670929C59F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5053693-D230-4B26-BDE1-2670929C59F3}.Release|Any CPU.ActiveCfg = Release|Any CPU

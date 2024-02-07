@@ -10,8 +10,4 @@
     <ProjectReference Include="..\TheBeautyForum.Data\TheBeautyForum.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="User\" />
-  </ItemGroup>
-
 </Project>

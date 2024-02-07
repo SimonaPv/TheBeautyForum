@@ -16,8 +16,6 @@ namespace TheBeautyForum.Web.ViewModels.Image
 
         public Guid StudioId { get; set; }
 
-        public string? UrlPath { get; set; }
-
         public string? UserProfilePic { get; set; }
 
         public string? UserName { get; set; }
@@ -30,5 +28,8 @@ namespace TheBeautyForum.Web.ViewModels.Image
 
         public ICollection<string> StudiosNames { get; set; }
             = new List<string>();
+
+        public ICollection<string> Images { get; set; }
+           = new HashSet<string>();
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TheBeautyForum.Web.ViewModels.User;
+@model ProfileViewModel
+@{
     ViewData["Title"] = "Profile";
 }
 
@@ -32,10 +34,10 @@
         <div class="profile-details" style="margin-top: 1.5em;">
             <div class="pd-left">
                 <div class="pd-row">
-                    <img src="~/images/profile-pic.png.png" class="pd-image">
+                    <img src="@Model.User?.ProfilePictureUrl" class="pd-image">
                     <div style="padding-top:1em;">
-                        <h2>Simona Palieva</h2>
-                        <h7>simonapalieva@gmail.com</h7>
+                        <h2>@Model.User?.FirstName @Model.User?.LastName</h2>
+                        <h7>@Model.User?.Email</h7>
                     </div>
                 </div>
             </div>
@@ -48,12 +50,10 @@
                         <a href="">All Photos</a>
                     </div>
                     <div class="photo-box">
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
-                        <div> <img src="~/images/haircut.jpg" alt=""></div>
+                       @* @foreach(var p in Model.User)
+                        {
+                            <div> <img src="@p." alt=""></div>
+                        }*@
                     </div>
                 </div>
             </div>

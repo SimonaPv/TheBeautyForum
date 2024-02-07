@@ -62,7 +62,10 @@
                     <p class="post-text">
                         @p.Description
                     </p>
-                    <img src="@p.UrlPath" class="post-img">
+                    @foreach(var i in p.Images)
+                    {
+                        <img src="@i" class="post-img">
+                    }
                     <div class="post-row">
                         <div class="activity-icons">
                             <p style="font-size: 18px; margin: 0.5em 1em 0 1em">

@@ -362,9 +362,9 @@ body {
     #dark-btn.dark-btn-on {
         padding-left: 23px;
         background: #0a0a0a;
-    }
+    }*/
 /*--------------Profile Page----------------*/
-.profile-containerr {
+/*.profile-containerr {
     padding: 20px 15%;
     color: #626262;
 }
@@ -390,7 +390,6 @@ body {
 }
 
 .pd-image {
-    width: 100px;
     margin-right: 20px;
     border-radius: 6px;
 }

@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TheBeautyForum.Data\TheBeautyForum.Data.csproj" />
     <ProjectReference Include="..\TheBeautyForum.Services\TheBeautyForum.Services.csproj" />
-    <ProjectReference Include="..\TheBeautyForum.Web.Infrastructure\TheBeautyForum.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\TheBeautyForum.Web.ViewModels\TheBeautyForum.Web.ViewModels.csproj" />
   </ItemGroup>
 
