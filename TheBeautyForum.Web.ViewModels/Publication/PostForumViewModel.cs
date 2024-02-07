@@ -17,5 +17,8 @@ namespace TheBeautyForum.Web.ViewModels.Publication
         public Guid StudioId { get; set; }
 
         public string? Description { get; set; }
+
+        public ICollection<string> ImageUrls { get; set; }
+            = new HashSet<string>();
     }
 }

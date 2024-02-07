@@ -31,40 +31,54 @@ namespace TheBeautyForum.Services.Users
             var profile = new ProfileViewModel()
             {
                 UserId = model.Id,
-                //Images = model.Publications.Select(x => x.Images.Select(y => y.UrlPath).ToList()).ToList(),
                 User = new UserViewModel()
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     ProfilePictureUrl = model.ProfilePictureUrl,
                     Email = model.Email,
-                    Appointments = model.Appointments.Select(a => new AppointmentViewModel()
-                    {
-                        Id = a.Id,
-                        UserId = a.UserId,
-                        StudioId = a.StudioId,
-                        StartDate = a.StartDate,
-                        EndDate = a.EndDate,
-                        Description = a.Description,
-                        CategoryName = a.Category?.Name,
-                        StudioName = a.Studio?.Name
-                    }).ToList(),
-                    Ratings = model.Ratings.Select(r => new RatingViewModel()
-                    {
-                        Id = r.Id,
-                        UserId = r.UserId,
-                        StudioId = r.StudioId,
-                        Value = r.Value
-                    }).ToList(),
-                    Publications = model.Publications.Select(p => new Web.ViewModels.Publication.PostForumViewModel()
-                    {
-                        Id = p.Id,
-                        UserId = p.UserId,
-                        StudioId = p.StudioId,
-                        Description = p.Description
-                    }).ToList()
-                }
+                    Ratings = model.Ratings
+                        .Select(r => new RatingViewModel()
+                        {
+                            Id = r.Id,
+                            UserId = r.UserId,
+                            StudioId = r.StudioId,
+                            Value = r.Value
+                        })
+                        .ToList(),
+                    Publications = model.Publications
+                        .Select(p => new Web.ViewModels.Publication.PostForumViewModel()
+                        {
+                            Id = p.Id,
+                            UserId = p.UserId,
+                            StudioId = p.StudioId,
+                            Description = p.Description,
+                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList()
+                        })
+                        .ToList()
+                },
+                Images = await _dbContext.Images
+                    .Where(x => x.Publication!.UserId == userId)
+                    .Select(x => x.UrlPath!)
+                    .ToListAsync()
             };
+
+            profile.User.Appointments = await _dbContext.Appointments
+                .Include(c => c.Category)
+                .Include(s => s.Studio)
+                .Where(u => u.UserId == userId)
+                .Select(a => new AppointmentViewModel()
+                {
+                    Id = a.Id,
+                    UserId = a.UserId,
+                    StudioId = a.StudioId,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                    Description = a.Description,
+                    CategoryName = a.Category!.Name,
+                    StudioName = a.Studio!.Name
+                })
+                .ToListAsync();
 
             return profile;
         }

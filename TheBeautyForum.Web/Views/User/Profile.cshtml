@@ -1,4 +1,5 @@
-﻿@using TheBeautyForum.Web.ViewModels.User;
+﻿@using System.Globalization;
+@using TheBeautyForum.Web.ViewModels.User;
 @model ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
@@ -50,10 +51,10 @@
                         <a href="">All Photos</a>
                     </div>
                     <div class="photo-box">
-                       @* @foreach(var p in Model.User)
+                        @foreach (var p in Model.Images)
                         {
-                            <div> <img src="@p." alt=""></div>
-                        }*@
+                            <div> <img src="@p" alt=""></div>
+                        }
                     </div>
                 </div>
             </div>
@@ -61,14 +62,14 @@
                 <div style="margin-right: 10em;">
                     <div class="write-post-containerr">
                         <div class="user-profile">
-                            <img src="~/images/profile-pic.png.png">
+                            <img src="@Model.User?.ProfilePictureUrl">
                             <div>
-                                <p>Simona Palieva</p>
+                                <p>@Model.User?.FirstName @Model.User?.LastName</p>
                             </div>
                         </div>
 
                         <div class="post-input-containerr">
-                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, Simona?"></textarea>
+                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.User?.FirstName?"></textarea>
                             <div class="add-post-links">
                                 <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
                                     <i class="fa fa-solid fa-images mr-1"></i>Add Photo
@@ -76,31 +77,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="post-containerr">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <img src="~/images/profile-pic.png.png" alt="image">
-                                <div>
-                                    <p>Simona Palieva</p>
-                                    <span>December 18 2021, 19:35</span>
+                    @foreach (var p in Model.User!.Publications)
+                    {
+                        <div class="post-containerr">
+                            <div class="post-row">
+                                <div class="user-profile">
+                                    <img src="@Model.User?.ProfilePictureUrl" alt="image">
+                                    <div>
+                                        <p>@Model.User?.FirstName @Model.User?.LastName</p>
+                                        <span>December 18 2021, 19:35</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="post-text">
+                                @p.Description
+                            </p>
+                            @foreach (var i in p.ImageUrls)
+                            {
+                                <img src="@i" class="post-img">
+                            }
+                            <div class="post-row">
+                                <div class="activity-icons">
+                                    <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
+                                        <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
+
+                                        <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0
+                                    </p>
                                 </div>
                             </div>
                         </div>
-
-                        <p class="post-text">
-                            Description
-                        </p>
-                        <img src="~/images/manicure.jpg" class="post-img">
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <p style="font-size: 18px; margin: 0.5em 1em 0 1em;">
-                                    <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
-
-                                    <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
             <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
@@ -109,28 +116,20 @@
                         <h4>Appointments</h4>
                         <a href="#">See All</a>
                     </div>
-                    <div class="event">
-                        <div class="left-event">
-                            <h3>18</h3>
-                            <span>March</span>
+                    @foreach(var a in Model.User.Appointments)
+                    {
+                        <div class="event">
+                            <div class="left-event">
+                                <h3>@a.StartDate.Day</h3>
+                                <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                            </div>
+                            <div class="right-event">
+                                <h4>@a.Description</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> @a.StudioName</p>
+                                <a href="#">More Info</a>
+                            </div>
                         </div>
-                        <div class="right-event">
-                            <h4>Social Media</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> Tech Park</p>
-                            <a href="#">More Info</a>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="left-event">
-                            <h3>22</h3>
-                            <span>June</span>
-                        </div>
-                        <div class="right-event">
-                            <h4>Mobile Marketing</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
-                            <a href="#">More Info</a>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
