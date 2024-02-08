@@ -9,6 +9,6 @@ namespace TheBeautyForum.Services.Images
 {
     public interface IImageService
     {
-        Task<List<ForumViewModel>> ForumAsync();
+        Task<List<ForumViewModel>> ForumAsync(Guid userId);
     }
 }

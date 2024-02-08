@@ -31,13 +31,11 @@ namespace TheBeautyForum.Services.Users
             var profile = new ProfileViewModel()
             {
                 UserId = model.Id,
-                User = new UserViewModel()
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    ProfilePictureUrl = model.ProfilePictureUrl,
-                    Email = model.Email,
-                    Ratings = model.Ratings
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ProfilePictureUrl = model.ProfilePictureUrl,
+                Email = model.Email,
+                Ratings = model.Ratings
                         .Select(r => new RatingViewModel()
                         {
                             Id = r.Id,
@@ -46,24 +44,22 @@ namespace TheBeautyForum.Services.Users
                             Value = r.Value
                         })
                         .ToList(),
-                    Publications = model.Publications
+                Publications = model.Publications
                         .Select(p => new Web.ViewModels.Publication.PostForumViewModel()
                         {
                             Id = p.Id,
                             UserId = p.UserId,
                             StudioId = p.StudioId,
                             Description = p.Description,
-                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList()
+                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList(),
+                            DatePosted = p.DatePosted
                         })
-                        .ToList()
-                },
+                        .ToList(),
                 Images = await _dbContext.Images
                     .Where(x => x.Publication!.UserId == userId)
                     .Select(x => x.UrlPath!)
-                    .ToListAsync()
-            };
-
-            profile.User.Appointments = await _dbContext.Appointments
+                    .ToListAsync(),
+                Appointments = await _dbContext.Appointments
                 .Include(c => c.Category)
                 .Include(s => s.Studio)
                 .Where(u => u.UserId == userId)
@@ -78,7 +74,8 @@ namespace TheBeautyForum.Services.Users
                     CategoryName = a.Category!.Name,
                     StudioName = a.Studio!.Name
                 })
-                .ToListAsync();
+                .ToListAsync()
+            };
 
             return profile;
         }
