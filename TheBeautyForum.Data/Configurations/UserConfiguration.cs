@@ -32,7 +32,7 @@ namespace TheBeautyForum.Data.Configurations
                 FirstName = "Maria",
                 LastName = "Georgieva",
                 PhoneNumber = "0881111111",
-                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/domw93xprf2dlxj3n7in.jpg",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg",
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
@@ -64,7 +64,7 @@ namespace TheBeautyForum.Data.Configurations
                 FirstName = "Aylin",
                 LastName = "Todorova",
                 PhoneNumber = "0883333333",
-                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/qa7jgeb1ys6nfvhzhswl.jpg",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg",
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");

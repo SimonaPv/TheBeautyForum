@@ -22,6 +22,8 @@ namespace TheBeautyForum.Data.Models
         [StringLength(DESCRIPTION_MAX_LENGTH)]
         public string? Description { get; set; }
 
+        public DateTime DatePosted { get; set; }
+
         public User? User { get; set; }
 
         public Studio? Studio { get; set; }
