@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using TheBeautyForum.Data.Models;
+using TheBeautyForum.Services.Images;
 using static TheBeautyForum.Data.DataConstants.User;
 
 namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
@@ -24,13 +25,15 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IImageService _imageService;
 
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IImageService imageService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -38,6 +41,7 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _imageService = imageService;
         }
 
         /// <summary>
@@ -102,6 +106,8 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             [Display(Name = "Last name")]
             [StringLength(LAST_NAME_MAX_LENGTH)]
             public string LastName { get; set; }
+
+            public IFormFile? ProfilePicture { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -114,6 +120,7 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -123,7 +130,11 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.FirstName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                user.ProfilePictureUrl = await this._imageService.UploadImage(Input.ProfilePicture, "images", user);
+                //await _userManager.UpdateAsync(user);
 
                 if (result.Succeeded)
                 {

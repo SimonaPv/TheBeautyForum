@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using TheBeautyForum.Data.Models;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Image;
 
@@ -11,11 +10,15 @@ namespace TheBeautyForum.Services.Images
 {
     public class ImageService : IImageService
     {
+        private readonly Cloudinary _cloudinary;
         private readonly ApplicationDbContext _dbContext;
 
-        public ImageService(ApplicationDbContext dbContext)
+        public ImageService(
+            ApplicationDbContext dbContext, 
+            Cloudinary cloudinary)
         {
             this._dbContext = dbContext;
+            this._cloudinary = cloudinary;
         }
 
         public async Task<List<ForumViewModel>> ForumAsync(Guid userId)
@@ -49,6 +52,57 @@ namespace TheBeautyForum.Services.Images
                 }).ToListAsync();
 
             return model;
+        }
+
+        public async Task<Image> UploadImage(IFormFile imageFile, string nameFolder, Guid postId)
+        {
+            using var stream = imageFile.OpenReadStream();
+            var image = new Image();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(image.Id.ToString(), stream),
+                Folder = nameFolder,
+            };
+
+            var result = await this._cloudinary.UploadAsync(uploadParams);
+
+            if (result.Error != null)
+            {
+                throw new InvalidOperationException(result.Error.Message);
+            }
+
+            image.UrlPath = result.Url.ToString();
+            image.PublicationId = postId;
+
+            await this._dbContext.AddAsync(image);
+            await this._dbContext.SaveChangesAsync();
+
+            return image;
+        }
+
+        public async Task<string> UploadImage(IFormFile imageFile, string nameFolder, User user)
+        {
+            using var stream = imageFile.OpenReadStream();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(user.Id.ToString(), stream),
+                Folder = nameFolder,
+            };
+
+            var result = await this._cloudinary.UploadAsync(uploadParams);
+            if (result.Error != null)
+            {
+                throw new InvalidOperationException(result.Error.Message);
+            }
+
+            user.ProfilePictureUrl = result.Url.ToString();
+
+            this._dbContext.Update(user);
+            await this._dbContext.SaveChangesAsync();
+
+            return user.ProfilePictureUrl;
         }
     }
 }

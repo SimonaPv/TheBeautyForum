@@ -17,7 +17,7 @@ namespace TheBeautyForum.Data.Models
         public Guid PublicationId { get; set; }
 
         [Required]
-        public string? UrlPath { get; set; }
+        public string UrlPath { get; set; } = null!;
 
         public Publication? Publication { get; set; }
     }
