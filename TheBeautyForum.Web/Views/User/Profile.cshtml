@@ -35,10 +35,10 @@
         <div class="profile-details" style="margin-top: 1.5em;">
             <div class="pd-left">
                 <div class="pd-row">
-                    <img src="@Model.User?.ProfilePictureUrl" class="pd-image">
+                    <img src="@Model.ProfilePictureUrl" class="pd-image">
                     <div style="padding-top:1em;">
-                        <h2>@Model.User?.FirstName @Model.User?.LastName</h2>
-                        <h7>@Model.User?.Email</h7>
+                        <h2>@Model.FirstName @Model.LastName</h2>
+                        <h7>@Model.Email</h7>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,6 @@
                 <div class="profile-intro">
                     <div class="total-box">
                         <h3>Photos</h3>
-                        <a href="">All Photos</a>
                     </div>
                     <div class="photo-box">
                         @foreach (var p in Model.Images)
@@ -62,14 +61,14 @@
                 <div style="margin-right: 10em;">
                     <div class="write-post-containerr">
                         <div class="user-profile">
-                            <img src="@Model.User?.ProfilePictureUrl">
+                            <img src="@Model.ProfilePictureUrl">
                             <div>
-                                <p>@Model.User?.FirstName @Model.User?.LastName</p>
+                                <p>@Model.FirstName @Model.LastName</p>
                             </div>
                         </div>
 
                         <div class="post-input-containerr">
-                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.User?.FirstName?"></textarea>
+                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.FirstName?"></textarea>
                             <div class="add-post-links">
                                 <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
                                     <i class="fa fa-solid fa-images mr-1"></i>Add Photo
@@ -77,15 +76,15 @@
                             </div>
                         </div>
                     </div>
-                    @foreach (var p in Model.User!.Publications)
+                    @foreach (var p in Model.Publications)
                     {
                         <div class="post-containerr">
                             <div class="post-row">
                                 <div class="user-profile">
-                                    <img src="@Model.User?.ProfilePictureUrl" alt="image">
+                                    <img src="@Model.ProfilePictureUrl" alt="image">
                                     <div>
-                                        <p>@Model.User?.FirstName @Model.User?.LastName</p>
-                                        <span>December 18 2021, 19:35</span>
+                                        <p>@Model.FirstName @Model.LastName</p>
+                                        <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                                     </div>
                                 </div>
                             </div>
@@ -113,10 +112,9 @@
             <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
                 <div class="profile-intro">
                     <div class="sidebar-title">
-                        <h4>Appointments</h4>
-                        <a href="#">See All</a>
+                        <h4 style="font-size: 20px;">Appointments</h4>
                     </div>
-                    @foreach(var a in Model.User.Appointments)
+                    @foreach (var a in Model.Appointments)
                     {
                         <div class="event">
                             <div class="left-event">
@@ -124,9 +122,8 @@
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                             </div>
                             <div class="right-event">
-                                <h4>@a.Description</h4>
-                                <p><i class="fas fa-map-marker-alt"></i> @a.StudioName</p>
-                                <a href="#">More Info</a>
+                                <h4 style="font-size: 15px;">@a.Description</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> @a.StudioName at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)</p>
                             </div>
                         </div>
                     }

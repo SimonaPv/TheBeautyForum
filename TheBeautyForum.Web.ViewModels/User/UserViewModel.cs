@@ -14,12 +14,8 @@ namespace TheBeautyForum.Web.ViewModels.User
 {
     public class UserViewModel
     {
-        [Required]
-        [StringLength(FIRST_NAME_MAX_LENGTH)]
         public string FirstName { get; set; } = null!;
 
-        [Required]
-        [StringLength(LAST_NAME_MAX_LENGTH)]
         public string LastName { get; set; } = null!;
 
         public string? ProfilePictureUrl { get; set; }

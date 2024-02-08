@@ -16,8 +16,6 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 
         public Guid StudioId { get; set; }
 
-        //public Guid CategoryId { get; set; }
-
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

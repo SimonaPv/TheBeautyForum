@@ -12,11 +12,17 @@ namespace TheBeautyForum.Web.ViewModels.Image
     {
         public Guid PublicationId { get; set; }
 
-        public Guid UserId { get; set; }
+        public string? UserFirstName { get; set; }
+
+        public string? UserLastName { get; set; }
+
+        public string? UserProfilePic { get; set; }
+
+        public Guid PostUserId { get; set; }
 
         public Guid StudioId { get; set; }
 
-        public string? UserProfilePic { get; set; }
+        public string? PostUserProfilePic { get; set; }
 
         public string? UserName { get; set; }
 
@@ -25,6 +31,8 @@ namespace TheBeautyForum.Web.ViewModels.Image
         public int LikeCount { get; set; }
 
         public int CommentCount { get; set; }
+
+        public DateTime DatePosted { get; set; }
 
         public ICollection<string> StudiosNames { get; set; }
             = new List<string>();
