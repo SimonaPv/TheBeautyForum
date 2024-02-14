@@ -32,12 +32,12 @@
                 <h3>Sign In</h3>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-holder">
-                    <input asp-for="Input.Email" class="form-control" placeholder="e-mail" autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <input asp-for="Input.Email" class="form-control" placeholder="e-mail" autocomplete="username" aria-required="true" />
                 </div>
                 <div class="form-holder">
-                <input asp-for="Input.Password" class="form-control" placeholder="password" autocomplete="current-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <input asp-for="Input.Password" class="form-control" placeholder="password" autocomplete="current-password" aria-required="true" />
                 </div>
                 <div class="form-login">
                 <button id="login-submit" type="submit"><b>Sign in</b></button>
