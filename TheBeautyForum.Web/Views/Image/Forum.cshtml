@@ -20,12 +20,19 @@
     <div class="containerr">
         <!------------------left-sidebar---------------------->
         <div class="left-sidebar">
+            <div class="topnav">
+                <div class="search-container" style="border-top-left-radius: 6px;">
+                    <form>
+                        <input class="bar" type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
             <div class="imp-links">
                 @foreach (var s in Model[0].StudiosNames.OrderBy(x => x))
                 {
                     <a>@s</a>
                 }
-                <a href="#">See More</a>
             </div>
         </div>
         <!------------------main-content-------------------->
@@ -54,7 +61,7 @@
                         <div class="user-profile">
                             <img src="@p.PostUserProfilePic" alt="image">
                             <div>
-                                <p>@p.UserName</p>
+                                <p>@p.UserName <span>at @p.StudioName</span></p>
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                             </div>
                         </div>
@@ -63,7 +70,7 @@
                     <p class="post-text">
                         @p.Description
                     </p>
-                    @foreach(var i in p.Images)
+                    @foreach (var i in p.Images)
                     {
                         <img src="@i" class="post-img">
                     }
@@ -83,7 +90,6 @@
         <div class="right-sidebar">
             <div class="sidebar-title">
                 <h4>Advertisement</h4>
-                <a href="#">See all</a>
             </div>
             <p>discount 1</p>
             <p>discount 2</p>

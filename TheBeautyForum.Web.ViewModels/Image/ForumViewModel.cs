@@ -26,6 +26,8 @@ namespace TheBeautyForum.Web.ViewModels.Image
 
         public string? UserName { get; set; }
 
+        public string? StudioName { get; set; }
+
         public string? Description { get; set; }
 
         public int LikeCount { get; set; }

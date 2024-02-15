@@ -48,6 +48,7 @@ namespace TheBeautyForum.Services.Images
                     CommentCount = p.Publication.Comments.Count,
                     UserName = $"{p.Publication.User!.FirstName} {p.Publication.User.LastName}",
                     PostUserProfilePic = p.Publication.User.ProfilePictureUrl,
+                    StudioName = p.Publication.Studio.Name,
                     StudiosNames = _dbContext.Studios.Select(x => x.Name).ToList()
                 }).ToListAsync();
 
