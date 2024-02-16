@@ -38,7 +38,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 ConfigureCloudinaryService(builder.Services, builder.Configuration);
 
-//builder.Services.AddResponseCaching();
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 

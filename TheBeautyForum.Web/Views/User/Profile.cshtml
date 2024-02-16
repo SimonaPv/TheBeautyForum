@@ -117,12 +117,18 @@
                     @foreach (var a in Model.Appointments)
                     {
                         <div class="event">
-                            <div class="left-event">
+                            <div class="left-event" style="width: 65px;">
                                 <h3>@a.StartDate.Day</h3>
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                             </div>
                             <div class="right-event">
-                                <h4 style="font-size: 15px;">@a.Description</h4>
+                                @*@if(a.Description!.Length > 23){
+                                    <h4 style="font-size: 15px;">@a.Description.Substring(0, 22)...</h4>
+                                }
+                                else
+                                {*@
+                                    <h4 style="font-size: 15px;">@a.Description</h4>
+                                @*}*@
                                 <p><i class="fas fa-map-marker-alt"></i> @a.StudioName at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)</p>
                             </div>
                         </div>
