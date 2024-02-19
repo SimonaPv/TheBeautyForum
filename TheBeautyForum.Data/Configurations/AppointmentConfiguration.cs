@@ -16,7 +16,7 @@ namespace TheBeautyForum.Data.Configurations
         {
             var data = new HashSet<Appointment>();
 
-            //user1 start
+            #region User1
             var app = new Appointment()
             {
                 Id = Guid.Parse("0b561660-608b-4e07-80bc-96c168ff11ac"),
@@ -40,7 +40,7 @@ namespace TheBeautyForum.Data.Configurations
                 Description = "Monthly manicure appointment."
             };
             data.Add(app);
-            //user1 end
+            #endregion
 
             //user2 start
             app = new Appointment()

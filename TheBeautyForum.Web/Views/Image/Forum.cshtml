@@ -15,6 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/post.css">
+
 </head>
 <body>
     <div class="containerr">
@@ -29,9 +30,9 @@
                 </div>
             </div>
             <div class="imp-links">
-                @foreach (var s in Model[0].StudiosNames.OrderBy(x => x))
+                @foreach (var s in Model[0].Studios.OrderBy(x => x.StudioName))
                 {
-                    <a>@s</a>
+                    <a asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId" style="transition: color 0.1s ease;">@s.StudioName</a>
                 }
             </div>
         </div>
@@ -89,13 +90,12 @@
         <!--------------------right-sidebar-------------------->
         <div class="right-sidebar">
             <div class="sidebar-title">
-                <h4>Advertisement</h4>
+                <h4>Publikacii za opredelen salon</h4>
             </div>
-            <p>discount 1</p>
-            <p>discount 2</p>
-            <p>discount 3</p>
-            <p>discount 4</p>
-            <p>discount 5</p>
+            @foreach (var s in Model[0].Studios.OrderBy(x => x.StudioName))
+            {
+                <p style="transition: color 0.1s ease; padding-left: 0.7em;">@s.StudioName</p>
+            }
         </div>
     </div>
     <script>
@@ -110,6 +110,11 @@
             }
         }
     </script>
+    <style>
+        .imp-links a:hover {
+            color: #F9A392;
+        }
+    </style>
     <script src="script.js"></script>
 </body>
 </html>

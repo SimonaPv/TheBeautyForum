@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Data.Models;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Image;
+using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Images
 {
@@ -49,7 +50,11 @@ namespace TheBeautyForum.Services.Images
                     UserName = $"{p.Publication.User!.FirstName} {p.Publication.User.LastName}",
                     PostUserProfilePic = p.Publication.User.ProfilePictureUrl,
                     StudioName = p.Publication.Studio.Name,
-                    StudiosNames = _dbContext.Studios.Select(x => x.Name).ToList()
+                    Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
+                    {
+                        StudioId = x.Id,
+                        StudioName = x.Name
+                    }).ToList()
                 }).ToListAsync();
 
             return model;
