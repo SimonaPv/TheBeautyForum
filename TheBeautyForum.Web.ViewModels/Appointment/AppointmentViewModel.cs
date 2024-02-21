@@ -25,5 +25,7 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
         public string? CategoryName { get; set; }
 
         public string? StudioName { get; set; }
+
+        public string? UserName { get; set; }
     }
 }

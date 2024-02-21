@@ -18,6 +18,8 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public DateTime DatePosted { get; set; }
 
+        public string? StudioName { get; set; }
+
         public string? Description { get; set; }
 
         public ICollection<string> ImageUrls { get; set; }
