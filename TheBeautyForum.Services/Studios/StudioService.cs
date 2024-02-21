@@ -66,7 +66,7 @@ namespace TheBeautyForum.Services.Studios
                     {
                         Id = a.Id,
                         UserId = a.UserId,
-                        //add user name
+                        UserName = $"{a.User!.FirstName}",
                         StudioId = a.StudioId,
                         StartDate = a.StartDate,
                         EndDate = a.EndDate,

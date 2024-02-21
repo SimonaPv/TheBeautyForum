@@ -4,6 +4,8 @@ namespace TheBeautyForum.Services.Users
 {
     public interface IUserService
     {
-        Task<ProfileViewModel> ShowProfileAsync(Guid userId);
+        Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId);
+
+        Task<ProfileViewModel> ShowUserProfileAsync(Guid userId);
     }
 }
