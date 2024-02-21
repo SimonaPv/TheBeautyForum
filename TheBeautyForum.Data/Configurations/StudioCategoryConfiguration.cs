@@ -83,14 +83,14 @@ namespace TheBeautyForum.Data.Configurations
             //IN Beauty start
             stuCat = new StudioCategory()
             {
-                StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                StudioId = Guid.Parse("bf2832b2-5b62-471b-9980-583753504ca6"),
                 CategoryId = Guid.Parse("4ebb7e23-2a49-4451-8c96-b5c6de99900e")
             };
             data.Add(stuCat);
 
             stuCat = new StudioCategory()
             {
-                StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                StudioId = Guid.Parse("bf2832b2-5b62-471b-9980-583753504ca6"),
                 CategoryId = Guid.Parse("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea")
             };
             data.Add(stuCat);

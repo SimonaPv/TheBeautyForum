@@ -66,7 +66,7 @@ namespace TheBeautyForum.Data.Configurations
             studio = new Studio()
             {
                 Id = Guid.Parse("df44a062-9586-4815-8126-99c240433b22"),
-                Name = "Wellness Centre",
+                Name = "Wellness Center",
                 Description = "SPA Studio",
                 Location = "Sofia, Bulgaria, ul. \"St. Georgi\" 26",
                 OpenTime = TimeOnly.Parse("9:00:00"),
