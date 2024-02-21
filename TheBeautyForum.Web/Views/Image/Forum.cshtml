@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="~/css/post.css">
 
@@ -20,7 +20,7 @@
 <body>
     <div class="containerr">
         <!------------------left-sidebar---------------------->
-        <div class="left-sidebar">
+        <div class="left-sidebar" style="padding-top: 0em;">
             <div class="topnav">
                 <div class="search-container" style="border-top-left-radius: 6px;">
                     <form>
@@ -62,7 +62,9 @@
                         <div class="user-profile">
                             <img src="@p.PostUserProfilePic" alt="image">
                             <div>
-                                <p>@p.UserName <span>at @p.StudioName</span></p>
+                                <p>
+                                    <a asp-controller="User" asp-action="UserProfile" asp-route-id="@p.PostUserId" style="color: #626262; font-size: 15px">@p.UserName </a><span>at <a asp-controller="Studio" asp-action="Profile" asp-route-id="@p.StudioId" style="color: #9A9A9A; font-size: 13px"> @p.StudioName</a></span>
+                                </p>
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                             </div>
                         </div>

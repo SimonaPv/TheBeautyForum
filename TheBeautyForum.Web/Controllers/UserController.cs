@@ -15,12 +15,32 @@ namespace TheBeautyForum.Web.Controllers
             this._userService = userService;
         }
 
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> LoggedProfile()
         {
             var model = await _userService
-                .ShowProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                .ShowLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return View(model);
+        }
+
+        public async Task<IActionResult> UserProfile(
+            [FromRoute]
+            Guid id)
+        {
+            if (id == Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                var model = await _userService
+                    .ShowLoggedProfileAsync(id);
+
+                return RedirectToAction("LoggedProfile", model);
+            }
+            else
+            {
+                var model = await _userService
+                    .ShowUserProfileAsync(id);
+
+                return View(model);
+            }
         }
     }
 }

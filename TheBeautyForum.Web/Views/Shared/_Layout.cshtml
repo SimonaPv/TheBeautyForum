@@ -15,14 +15,14 @@
     <header>
         <div class="container-fluid p-0">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-                <a href="#" class="navbar-brand ml-lg-3">
+                <a asp-area="" asp-controller="Image" asp-action="Forum" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 text-primary"><span class="text-dark">The</span>Beauty<span class="text-dark">Forum</span></h1>
                 </a>
                 <div class="collapse navbar-collapse justify-content-between" style="padding-left:12em;" id="navbarCollapse">
                     <div class="navbar-nav m-auto py-0">
                         <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-item nav-link" asp-area="" asp-controller="Image" asp-action="Forum">Forum</a>
-                        <a class="nav-item nav-link" asp-area="" asp-controller="User" asp-action="Profile">Profile</a>
+                        <a class="nav-item nav-link" asp-area="" asp-controller="User" asp-action="LoggedProfile">Profile</a>
                         <a href="#" class="nav-item nav-link">Services</a>
                         <partial name="_LoginPartial" />
                     </div>

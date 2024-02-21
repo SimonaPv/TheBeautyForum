@@ -26,7 +26,7 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/post.css">
-    <!-- <script src="<script src="https://kit.fontawesome.com/461000614e.js" crossorigin="anonymous"></script>"></script> -->
+    <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,9 +34,9 @@
     <div class="profile-container">
         <div class="profile-details" style="margin-top: 1.5em;">
             <div class="pd-left">
-                <div class="pd-row">
+                <div class="pd-row" style="display: flex; flex-direction: row; align-items: center;">
                     <img src="@Model.ProfilePictureUrl" class="pd-image">
-                    <div style="padding-top:1em;">
+                    <div style="padding-top:0em;">
                         <h2>@Model.FirstName @Model.LastName</h2>
                         <h7>@Model.Email</h7>
                     </div>
@@ -83,7 +83,15 @@
                                 <div class="user-profile">
                                     <img src="@Model.ProfilePictureUrl" alt="image">
                                     <div>
-                                        <p>@Model.FirstName @Model.LastName</p>
+                                        <p>
+                                            @Model.FirstName @Model.LastName
+                                            <span>
+                                                at
+                                                <a asp-controller="Studio" asp-action="Profile" asp-route-id="@p.StudioId" style="color: #9A9A9A; font-size: 13px">
+                                                    @p.StudioName
+                                                </a>
+                                            </span>
+                                        </p>
                                         <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                                     </div>
                                 </div>
@@ -109,27 +117,19 @@
                 </div>
             </div>
             <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
-                <div class="profile-intro">
-                    <div class="sidebar-title">
-                        <h4 style="font-size: 20px;">Appointments</h4>
+                <div class="profile-intro" style="padding-bottom: 0px;">
+                    <div class="sidebar-title" style="margin-bottom: 0.3em;">
+                        <h4 style="font-size: 20px;">Visited studios</h4>
                     </div>
-                    @foreach (var a in Model.Appointments)
+                    @foreach (var a in Model.FavoriteStudios.OrderBy(x => x.StudioName))
                     {
                         <div class="event">
-                            <div class="left-event" style="width: 55px;">
-                                <h3>@a.StartDate.Day</h3>
-                                <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
-                            </div>
+                            <img style="width: 55px; border-radius: 6px;" src="@a.ProfilePicUrl">
                             <div class="right-event">
-                                @if (a.Description!.Length > 47)
-                                {
-                                    <h4>@a.Description.Substring(0, 47)...</h4>
-                                }
-                                else
-                                {
-                                    <h4>@a.Description</h4>
-                                }
-                                <p><i class="fas fa-map-marker-alt"></i> @a.StudioName at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)</p>
+                                <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color: #626262;">
+                                    <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="font-size: 15px; color:#626262"><i class="fas fa-map-marker-alt"></i> @a.StudioName</a>
+                                </p>
+                                <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;"><i class="fa fa-solid fa-check"></i> @a.StudioDescription</p>
                             </div>
                         </div>
                     }
