@@ -59,23 +59,6 @@
             </div>
             <div class="post-col">
                 <div style="margin-right: 10em;">
-                    <div class="write-post-containerr">
-                        <div class="user-profile">
-                            <img src="@Model.ProfilePictureUrl">
-                            <div>
-                                <p>@Model.FirstName @Model.LastName</p>
-                            </div>
-                        </div>
-
-                        <div class="post-input-containerr">
-                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.FirstName?"></textarea>
-                            <div class="add-post-links">
-                                <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
-                                    <i class="fa fa-solid fa-images mr-1"></i>Add Photo
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                     @foreach (var p in Model.Publications)
                     {
                         <div class="post-containerr">
