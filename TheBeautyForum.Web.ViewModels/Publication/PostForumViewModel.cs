@@ -22,7 +22,6 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public string? Description { get; set; }
 
-        public ICollection<string> ImageUrls { get; set; }
-            = new HashSet<string>();
+        public string? ImageUrl { get; set; }
     }
 }

@@ -122,14 +122,6 @@ namespace TheBeautyForum.Web.Data
                 .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<Image>(builder =>
-            {
-                builder.HasOne(p => p.Publication)
-                .WithMany(i => i.Images)
-                .HasForeignKey(p => p.PublicationId)
-                .OnDelete(DeleteBehavior.Cascade);
-            });
-
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new PostConfiguration());
             modelBuilder.ApplyConfiguration(new StudioConfiguration());

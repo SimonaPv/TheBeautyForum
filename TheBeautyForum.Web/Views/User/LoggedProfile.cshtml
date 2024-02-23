@@ -53,9 +53,9 @@
                         <h3>Photos</h3>
                     </div>
                     <div class="photo-box">
-                        @foreach (var p in Model.Images)
+                        @foreach (var i in Model.Images)
                         {
-                            <div> <img src="@p" alt=""></div>
+                            <div> <img src="@i" alt=""></div>
                         }
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    @foreach (var p in Model.Publications)
+                    @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
                     {
                         <div class="post-containerr">
                             <div class="post-row">
@@ -98,7 +98,7 @@
                                                     @p.StudioName
                                                 </a>
                                             </span>
-                                        </p>                                        
+                                        </p>
                                         <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                                     </div>
                                 </div>
@@ -106,10 +106,7 @@
                             <p class="post-text">
                                 @p.Description
                             </p>
-                            @foreach (var i in p.ImageUrls)
-                            {
-                                <img src="@i" class="post-img">
-                            }
+                            <img src="@p.ImageUrl" class="post-img">
                             <div class="post-row">
                                 <div class="activity-icons">
                                     <p style="font-size: 18px; margin: 0.5em 1em 0 1em">

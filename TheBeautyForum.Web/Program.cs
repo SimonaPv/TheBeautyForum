@@ -39,7 +39,7 @@ builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IStudioService, StudioService>();
-//builder.Services.AddScoped<IPublicationService, PublicationService>();
+builder.Services.AddScoped<IPublicationService, PublicationService>();
 ConfigureCloudinaryService(builder.Services, builder.Configuration);
 
 builder.Services.AddResponseCaching();

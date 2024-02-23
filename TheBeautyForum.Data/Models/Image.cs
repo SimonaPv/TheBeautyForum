@@ -13,6 +13,7 @@ namespace TheBeautyForum.Data.Models
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [ForeignKey(nameof(Publication))]
         public Guid PublicationId { get; set; }
 

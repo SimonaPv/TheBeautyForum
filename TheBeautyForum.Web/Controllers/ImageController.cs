@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheBeautyForum.Services.Images;
+using TheBeautyForum.Services.Publication;
+using TheBeautyForum.Web.ViewModels.Publication;
 
 namespace TheBeautyForum.Web.Controllers
 {
@@ -9,10 +11,13 @@ namespace TheBeautyForum.Web.Controllers
     public class ImageController : Controller
     {
         private readonly IImageService _imageService;
+        private readonly IPublicationService _publicationService;
 
-        public ImageController(IImageService imageService)
+        public ImageController(IImageService imageService, IPublicationService publicationService)
         {
             this._imageService = imageService;
+            this._publicationService = publicationService;
+
         }
 
         public async Task<IActionResult> Forum()
@@ -20,6 +25,14 @@ namespace TheBeautyForum.Web.Controllers
             var model = await _imageService.ForumAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreatePublicationViewModel model)
+        {
+            await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+            return RedirectToAction("Forum");
         }
     }
 }

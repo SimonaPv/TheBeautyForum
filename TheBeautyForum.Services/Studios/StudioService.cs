@@ -46,7 +46,7 @@ namespace TheBeautyForum.Services.Studios
                             UserId = p.UserId,
                             StudioId = p.StudioId,
                             Description = p.Description,
-                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList(),
+                            ImageUrl = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).FirstOrDefault(),
                             DatePosted = p.DatePosted
                         })
                         .ToList(),

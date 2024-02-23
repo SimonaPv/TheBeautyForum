@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheBeautyForum.Web.ViewModels.Studio;
+using TheBeautyForum.Web.ViewModels.Publication;
 
 namespace TheBeautyForum.Web.ViewModels.Image
 {
@@ -31,16 +32,17 @@ namespace TheBeautyForum.Web.ViewModels.Image
 
         public string? Description { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         public int LikeCount { get; set; }
 
         public int CommentCount { get; set; }
 
         public DateTime DatePosted { get; set; }
 
+        public CreatePublicationViewModel? Post { get; set; } 
+
         public ICollection<StudioForumViewModel> Studios { get; set; }
             = new List<StudioForumViewModel>();
-
-        public ICollection<string> Images { get; set; }
-           = new HashSet<string>();
     }
 }

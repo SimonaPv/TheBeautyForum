@@ -227,7 +227,7 @@ namespace TheBeautyForum.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StudioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -370,11 +370,11 @@ namespace TheBeautyForum.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "a655532d-6563-4fbf-a795-d26d0f5081b0", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISA", "AQAAAAEAACcQAAAAEOhqZGbYBbMXLMQATq4wkfkGcwRPxdvYAoeUwmn0NvCZM8I8fg5XJ1bqrCb/xBHArA==", "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg", "27d25d25-3c68-49b1-b7e7-c5788b40a492", false, "Lisa" },
-                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "debae5f3-2900-464b-9dcb-d0048dc1b7a7", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLIN", "AQAAAAEAACcQAAAAEOizfPsU1c2QCsC0/8VfHL9V9//TV7eS61SFdeFCDW/QzKYg5HUco/DAsQvD/p5cXw==", "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg", "b12c3cf7-62d9-46e0-81da-497980d9cf5f", false, "Aylin" },
-                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "91d658db-839b-4ec8-9330-6890cccce472", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYA", "AQAAAAEAACcQAAAAEDT7v8nL2KkVYk6s5OaanQhPI6JnsQ9XKyrVdhD2U1WF4lS2XoTB763OPUZJHY04rQ==", "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", "e8ceaf6a-d628-4731-a1f7-806be7c2ca0f", false, "Amaya" },
-                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "4abaa570-fc96-45d0-8905-c3fea0f01aff", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORA", "AQAAAAEAACcQAAAAED8nEFkTu+A/p1Sxmwz50yHTq71+TQFhkYMte2TDxuKJ+O+gIDWCkJbVLRzs+GHozg==", "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", "0ded07d0-4f09-4060-a50d-2a3ed4bfafeb", false, "Debora" },
-                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "bd199325-83f9-45e3-ac44-d0bac487a975", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIA", "AQAAAAEAACcQAAAAELmN9UsfpxNKd4bOcirexF2QXd4LWvMx37SvgRES2ge37IgRk6iW2xFxpGaB9NmRsA==", "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg", "022b8f97-924a-4222-94d3-5057571761fd", false, "Maria" }
+                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "83b8f9e9-4c6d-4b1a-8f1a-bda7a8d11ae7", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISA", "AQAAAAEAACcQAAAAEMvb0/DhXrpI8TIchUtutKLEbxKyGMNQWGNw0BaBMt29Fwn2KZzK/DalyWD0n5dksg==", "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg", "f3681791-722b-4bcf-bbed-1f890bf8d5e9", false, "Lisa" },
+                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "33fe422a-198d-4163-9089-65a3bf8bbf49", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLIN", "AQAAAAEAACcQAAAAEEStvx7xRhs/GdwzJ/ViV5Ixm3Nr0Yk3m2K1032AYLljA5SlAFvXvOEjBG8eAvSioA==", "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg", "3871ee6e-476a-4912-815e-84217c3aa6d1", false, "Aylin" },
+                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "37e068f4-35f7-4c95-b1c5-f92374a98bcf", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYA", "AQAAAAEAACcQAAAAEM+IU2JDm8gb+iY5mCl8pk8TMquF7O4Oyu7+FXdX+Lfn7g9Za3+5cOaUi1Xj+ArBHw==", "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", "7019a63e-f48e-499c-8c07-3efa59388e3e", false, "Amaya" },
+                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "f2a23b72-e1ad-4a56-bb0e-08f341b8d8d1", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORA", "AQAAAAEAACcQAAAAEK+SspUUfWtytdqlDtpwTSEji1ZwzsggmnnoruWUfMOI/OSV8DwA7WIExHo/FV5EkQ==", "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", "52c50efb-803a-4f84-b6e8-f7c2cc4630f8", false, "Debora" },
+                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "614bbc93-4ca9-4208-81bc-48bfb95bbbeb", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIA", "AQAAAAEAACcQAAAAEDu3kRsDIHG2yg+0G91YJHAB4GH92Gr9w9hW3eaSqXi+MsVnb80ayd/hfd83VpGZiQ==", "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg", "fa5347b3-09f2-4adb-8633-9d4e876d576d", false, "Maria" }
                 });
 
             migrationBuilder.InsertData(
@@ -413,7 +413,7 @@ namespace TheBeautyForum.Data.Migrations
                     { new Guid("bf2832b2-5b62-471b-9980-583753504ca6"), new TimeSpan(0, 18, 0, 0, 0), "Ina Vasileva's Studio", "Varna, Bulgaria, ul. \"Vejen St.\" 09", "IN Beauty", new TimeSpan(0, 9, 0, 0, 0), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg" },
                     { new Guid("c7998d5b-0017-4924-8544-49b4a276afe1"), new TimeSpan(0, 18, 0, 0, 0), "Hair Care Studio", "Sofia, Bulgaria, ul. \"Zograf\" 26", "N-Stage", new TimeSpan(0, 9, 0, 0, 0), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg" },
                     { new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"), new TimeSpan(0, 18, 0, 0, 0), "Bali&Thai Massages", "Sofia, Bulgaria, ul. \"Aksakov\" 11", "Arsanta", new TimeSpan(0, 9, 0, 0, 0), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg" },
-                    { new Guid("df44a062-9586-4815-8126-99c240433b22"), new TimeSpan(0, 18, 0, 0, 0), "SPA Studio", "Sofia, Bulgaria, ul. \"St. Georgi\" 26", "Wellness Centre", new TimeSpan(0, 9, 0, 0, 0), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg" }
+                    { new Guid("df44a062-9586-4815-8126-99c240433b22"), new TimeSpan(0, 18, 0, 0, 0), "SPA Studio", "Sofia, Bulgaria, ul. \"St. Georgi\" 26", "Wellness Center", new TimeSpan(0, 9, 0, 0, 0), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -447,15 +447,15 @@ namespace TheBeautyForum.Data.Migrations
                 values: new object[,]
                 {
                     { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
-                    { new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
                     { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
-                    { new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
                     { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
                     { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), new Guid("0d753e1d-c98b-47c7-b260-0377048c529a") },
                     { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
                     { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
                     { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
                     { new Guid("db7effe2-16bb-4539-9dec-0bda384b859f"), new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254") },
+                    { new Guid("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea"), new Guid("bf2832b2-5b62-471b-9980-583753504ca6") },
+                    { new Guid("4ebb7e23-2a49-4451-8c96-b5c6de99900e"), new Guid("bf2832b2-5b62-471b-9980-583753504ca6") },
                     { new Guid("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
                     { new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
                     { new Guid("8859c909-f5cf-4f72-ba53-5a9e6dfac34d"), new Guid("c7998d5b-0017-4924-8544-49b4a276afe1") },
@@ -548,7 +548,8 @@ namespace TheBeautyForum.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Images_PublicationId",
                 table: "Images",
-                column: "PublicationId");
+                column: "PublicationId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Likes_PublicationId",

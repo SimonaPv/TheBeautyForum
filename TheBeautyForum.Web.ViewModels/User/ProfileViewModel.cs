@@ -17,9 +17,6 @@ namespace TheBeautyForum.Web.ViewModels.User
 
         public string? Email { get; set; }
 
-        public ICollection<string> Images { get; set; }
-           = new HashSet<string>();
-
         public ICollection<StudioUserViewModel> FavoriteStudios { get; set; }
             = new HashSet<StudioUserViewModel>();
 
@@ -31,5 +28,8 @@ namespace TheBeautyForum.Web.ViewModels.User
 
         public ICollection<PostForumViewModel> Publications { get; set; }
             = new HashSet<PostForumViewModel>();
+
+        public ICollection<string> Images { get; set; }
+            = new HashSet<string>();
     }
 }

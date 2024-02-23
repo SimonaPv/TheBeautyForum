@@ -18,7 +18,10 @@ namespace TheBeautyForum.Data.Models
         [ForeignKey(nameof(Studio))]
         public Guid StudioId { get; set; }
 
-        [Required]
+        //[Required]
+        //[ForeignKey(nameof(Image))]
+        //public Guid ImageId { get; set; }
+
         [StringLength(DESCRIPTION_MAX_LENGTH)]
         public string? Description { get; set; }
 
@@ -28,13 +31,12 @@ namespace TheBeautyForum.Data.Models
 
         public Studio? Studio { get; set; }
 
+        public Image? Image { get; set; }
+
         public ICollection<Comment> Comments { get; set; }
            = new HashSet<Comment>();
 
         public ICollection<Like> Likes { get; set; }
            = new HashSet<Like>();
-
-        public ICollection<Image> Images { get; set; }
-           = new HashSet<Image>();
     }
 }

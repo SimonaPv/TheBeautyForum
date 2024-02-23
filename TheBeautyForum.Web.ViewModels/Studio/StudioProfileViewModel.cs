@@ -31,11 +31,11 @@ namespace TheBeautyForum.Web.ViewModels.Studio
         [Required]
         public TimeOnly CloseTime { get; set; }
 
-        public ICollection<string> CategoryNames { get; set; }
+        public ICollection<string> Images { get; set; } 
             = new HashSet<string>();
 
-        public ICollection<string> Images { get; set; }
-           = new HashSet<string>();
+        public ICollection<string> CategoryNames { get; set; }
+            = new HashSet<string>();
 
         public ICollection<AppointmentViewModel> Appointments { get; set; }
             = new HashSet<AppointmentViewModel>();

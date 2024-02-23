@@ -47,6 +47,7 @@ namespace TheBeautyForum.Services.Users
                         .ToList(),
                 Publications = await _dbContext.Publications
                         .Include(x => x.Studio)
+                        .Include(x => x.Image)
                         .Where(x => x.UserId == userId)
                         .Select(p => new Web.ViewModels.Publication.PostForumViewModel()
                         {
@@ -55,7 +56,7 @@ namespace TheBeautyForum.Services.Users
                             StudioId = p.StudioId,
                             StudioName = p.Studio.Name,
                             Description = p.Description,
-                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList(),
+                            ImageUrl = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath).First(),
                             DatePosted = p.DatePosted
                         })
                         .ToListAsync(),
@@ -97,7 +98,9 @@ namespace TheBeautyForum.Services.Users
                 throw new ArgumentNullException(nameof(model));
             }
 
+            #region FavStudios
             var pubs = await _dbContext.Publications
+               .Include(x => x.Image)
                .Where(x => x.UserId == userId)
                .Select(x => new StudioUserViewModel()
                {
@@ -118,6 +121,7 @@ namespace TheBeautyForum.Services.Users
                 }).ToListAsync();
 
             pubs.AddRange(apps);
+            #endregion
 
             var profile = new ProfileViewModel()
             {
@@ -137,6 +141,7 @@ namespace TheBeautyForum.Services.Users
                         .ToList(),
                 Publications = await _dbContext.Publications
                         .Include(x => x.Studio)
+                        .Include(x => x.Image)
                         .Where(x => x.UserId == userId)
                         .Select(p => new Web.ViewModels.Publication.PostForumViewModel()
                         {
@@ -145,7 +150,7 @@ namespace TheBeautyForum.Services.Users
                             StudioId = p.StudioId,
                             StudioName = p.Studio.Name,
                             Description = p.Description,
-                            ImageUrls = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).ToList(),
+                            ImageUrl = p.Image.UrlPath,
                             DatePosted = p.DatePosted
                         })
                         .ToListAsync(),

@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    @foreach (var p in Model.Publications)
+                    @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
                     {
                         <div class="post-containerr">
                             <div class="post-row">
@@ -94,10 +94,7 @@
                             <p class="post-text">
                                 @p.Description
                             </p>
-                            @foreach (var i in p.ImageUrls)
-                            {
-                                <img src="@i" class="post-img">
-                            }
+                            <img src="@p.ImageUrl" class="post-img">
                             <div class="post-row">
                                 <div class="activity-icons">
                                     <p style="font-size: 18px; margin: 0.5em 1em 0 1em">

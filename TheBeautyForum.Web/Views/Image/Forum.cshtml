@@ -38,27 +38,9 @@
         </div>
         <!------------------main-content-------------------->
         <div class="main-content">
-            <div class="write-post-containerr">
-                <div class="user-profile">
-                    <img src="@Model[0].UserProfilePic">
-                    <div>
-                        <p>@Model[0].UserFirstName @Model[0].UserLastName</p>
-                    </div>
-                </div>
 
-                <div class="post-input-containerr">
-                    <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model[0].UserFirstName?"></textarea>
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="padding-top: 0em;">
-                            <button type="button" class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Add photo</button>
-                        </div>
+            <partial name="_CreatePostPartial" model="@Model[0].Post"/>
 
-                        <div style="padding-top: 0em;">
-                            <button type="button" class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-right: 1em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Post</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @foreach (var p in Model.OrderByDescending(x => x.DatePosted))
             {
                 <div class="post-containerr">
@@ -77,10 +59,7 @@
                     <p class="post-text">
                         @p.Description
                     </p>
-                    @foreach (var i in p.Images)
-                    {
-                        <img src="@i" class="post-img">
-                    }
+                    <img src="@p.ImageUrl" class="post-img">
                     <div class="post-row">
                         <div class="activity-icons">
                             <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
