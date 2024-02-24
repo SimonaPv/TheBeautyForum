@@ -62,27 +62,9 @@
             </div>
             <div class="post-col">
                 <div style="margin-right: 10em;">
-                    <div class="write-post-containerr">
-                        <div class="user-profile">
-                            <img src="@Model.ProfilePictureUrl">
-                            <div>
-                                <p>@Model.FirstName @Model.LastName</p>
-                            </div>
-                        </div>
 
-                        <div class="post-input-containerr">
-                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.FirstName?"></textarea>
-                            <div style="display: flex; justify-content: space-between;">
-                                <div style="padding-top: 0em;">
-                                    <button type="button" class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Add photo</button>
-                                </div>
+                    <partial name="_CreatePostPartial" model="@Model.Post" />
 
-                                <div style="padding-top: 0em;">
-                                    <button type="button" class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-right: 1em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Post</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
                     {
                         <div class="post-containerr">
@@ -103,13 +85,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="post-text">
-                                @p.Description
-                            </p>
-                            <img src="@p.ImageUrl" class="post-img">
+                            @if (p.ImageUrl == null)
+                            {
+                                <p class="post-text" style="margin-bottom: 0px">
+                                    @p.Description
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="post-text">
+                                    @p.Description
+                                </p>
+                                <img src="@p.ImageUrl" class="post-img">
+                            }
                             <div class="post-row">
                                 <div class="activity-icons">
-                                    <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
+                                    <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
                                         <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
 
                                         <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0

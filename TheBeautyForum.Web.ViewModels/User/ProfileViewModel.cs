@@ -17,6 +17,8 @@ namespace TheBeautyForum.Web.ViewModels.User
 
         public string? Email { get; set; }
 
+        public CreatePublicationViewModel? Post { get; set; }
+
         public ICollection<StudioUserViewModel> FavoriteStudios { get; set; }
             = new HashSet<StudioUserViewModel>();
 

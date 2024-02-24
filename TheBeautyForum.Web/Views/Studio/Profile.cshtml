@@ -62,23 +62,7 @@
             </div>
             <div class="post-col">
                 <div style="margin-right: 10em;">
-                    <div class="write-post-containerr">
-                        <div class="user-profile">
-                            <img src="@Model.ProfilePictureUrl">
-                            <div>
-                                <p>@Model.Name</p>
-                            </div>
-                        </div>
-
-                        <div class="post-input-containerr">
-                            <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.Name?"></textarea>
-                            <div class="add-post-links">
-                                <p style="font-size: 15px; margin-bottom: 0; cursor: pointer">
-                                    <i class="fa fa-solid fa-images mr-1"></i>Add Photo
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <partial name="_CreatePostPartial" model="@Model.Post" />
                     @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
                     {
                         <div class="post-containerr">
@@ -91,13 +75,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="post-text">
-                                @p.Description
-                            </p>
-                            <img src="@p.ImageUrl" class="post-img">
+                            @if (p.ImageUrl == null)
+                            {
+                                <p class="post-text" style="margin-bottom: 0px">
+                                    @p.Description
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="post-text">
+                                    @p.Description
+                                </p>
+                                <img src="@p.ImageUrl" class="post-img">
+                            }
                             <div class="post-row">
                                 <div class="activity-icons">
-                                    <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
+                                    <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
                                         <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
 
                                         <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0

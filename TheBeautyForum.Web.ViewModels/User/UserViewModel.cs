@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBeautyForum.Data.Models;
-using TheBeautyForum.Web.ViewModels.Appointment;
+﻿using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Rating;
-using static TheBeautyForum.Data.DataConstants.User;
 
 namespace TheBeautyForum.Web.ViewModels.User
 {

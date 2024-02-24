@@ -1,5 +1,6 @@
-﻿@using System.Globalization;
-@using TheBeautyForum.Web.ViewModels.Image;
+﻿@using TheBeautyForum.Web.ViewModels.Publication;
+@using System.Globalization;
+
 @model List<ForumViewModel>
 @{
     ViewData["Title"] = "Forum";
@@ -56,13 +57,22 @@
                         </div>
                     </div>
 
-                    <p class="post-text">
-                        @p.Description
-                    </p>
-                    <img src="@p.ImageUrl" class="post-img">
+                    @if (p.ImageUrl == null)
+                    {
+                        <p class="post-text" style="margin-bottom: 0px">
+                            @p.Description
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="post-text">
+                            @p.Description
+                        </p>
+                        <img src="@p.ImageUrl" class="post-img">
+                    }
                     <div class="post-row">
                         <div class="activity-icons">
-                            <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
+                            <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
                                 <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> @p.LikeCount
 
                                 <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> @p.CommentCount

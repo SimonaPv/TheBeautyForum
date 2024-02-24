@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBeautyForum.Web.ViewModels.Image;
-using TheBeautyForum.Web.ViewModels.Studio;
-using TheBeautyForum.Web.ViewModels.User;
+﻿using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Studios
 {

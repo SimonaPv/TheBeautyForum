@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static TheBeautyForum.Data.DataConstants.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
 

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBeautyForum.Web.ViewModels.Studio;
-using TheBeautyForum.Web.ViewModels.Publication;
+﻿using TheBeautyForum.Web.ViewModels.Studio;
 
-namespace TheBeautyForum.Web.ViewModels.Image
+namespace TheBeautyForum.Web.ViewModels.Publication
 {
     public class ForumViewModel
     {
@@ -40,7 +32,7 @@ namespace TheBeautyForum.Web.ViewModels.Image
 
         public DateTime DatePosted { get; set; }
 
-        public CreatePublicationViewModel? Post { get; set; } 
+        public CreatePublicationViewModel? Post { get; set; }
 
         public ICollection<StudioForumViewModel> Studios { get; set; }
             = new List<StudioForumViewModel>();

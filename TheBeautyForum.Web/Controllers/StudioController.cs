@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp;
 using TheBeautyForum.Services.Studios;
 
 namespace TheBeautyForum.Web.Controllers

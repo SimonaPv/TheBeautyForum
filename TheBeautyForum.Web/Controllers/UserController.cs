@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using TheBeautyForum.Services.Publication;
 using TheBeautyForum.Services.Users;
 
 namespace TheBeautyForum.Web.Controllers
@@ -10,7 +11,9 @@ namespace TheBeautyForum.Web.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(
+            IUserService userService,
+            IPublicationService publicationService)
         {
             this._userService = userService;
         }

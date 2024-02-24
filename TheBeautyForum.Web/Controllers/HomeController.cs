@@ -21,7 +21,7 @@ namespace TheBeautyForum.Web.Controllers
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Forum", "Image");
+                return RedirectToAction("Forum", "Publication");
             }
 
             var model = await _homeService.HomeAsync();

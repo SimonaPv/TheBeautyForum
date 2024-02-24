@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Appointment;
+using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Studios
@@ -74,7 +75,18 @@ namespace TheBeautyForum.Services.Studios
                         CategoryName = a.Category!.Name,
                         StudioName = a.Studio!.Name
                     })
-                    .ToListAsync()
+                    .ToListAsync(),
+                Post = new CreatePublicationViewModel()
+                {
+                    Studios = _dbContext.Studios
+                            .Select(s => new StudioPostViewModel()
+                            {
+                                Id = s.Id,
+                                StudioName = s.Name
+                            }).ToList(),
+                    UserFirstName = model.Name,
+                    UserProfilePic = model.StudioPictureUrl
+                }
             };
 
             return profile;

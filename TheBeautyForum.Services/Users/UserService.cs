@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Appointment;
+using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Rating;
 using TheBeautyForum.Web.ViewModels.Studio;
 using TheBeautyForum.Web.ViewModels.User;
@@ -18,25 +19,25 @@ namespace TheBeautyForum.Services.Users
 
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
         {
-            var model = await _dbContext.Users
+            var user = await _dbContext.Users
                 .Include(a => a.Appointments)
                 .Include(r => r.Ratings)
                 .Include(p => p.Publications)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
-            if (model == null)
+            if (user == null)
             {
-                throw new ArgumentNullException(nameof(model));
+                throw new ArgumentNullException(nameof(user));
             }
 
             var profile = new ProfileViewModel()
             {
-                UserId = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                ProfilePictureUrl = model.ProfilePictureUrl,
-                Email = model.Email,
-                Ratings = model.Ratings
+                UserId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                Email = user.Email,
+                Ratings = user.Ratings
                         .Select(r => new RatingViewModel()
                         {
                             Id = r.Id,
@@ -79,7 +80,19 @@ namespace TheBeautyForum.Services.Users
                     CategoryName = a.Category!.Name,
                     StudioName = a.Studio!.Name
                 })
-                .ToListAsync()
+                .ToListAsync(),
+                Post = new CreatePublicationViewModel()
+                {
+                    Studios = _dbContext.Studios
+                            .Select(s => new StudioPostViewModel()
+                            {
+                                Id = s.Id,
+                                StudioName = s.Name
+                            }).ToList(),
+                    UserFirstName = user.FirstName,
+                    UserLastName = user.LastName,
+                    UserProfilePic = user.ProfilePictureUrl
+                }
             };
 
             return profile;
@@ -87,18 +100,17 @@ namespace TheBeautyForum.Services.Users
 
         public async Task<ProfileViewModel> ShowUserProfileAsync(Guid userId)
         {
-            var model = await _dbContext.Users
+            var user = await _dbContext.Users
                 .Include(a => a.Appointments)
                 .Include(r => r.Ratings)
                 .Include(p => p.Publications)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
-            if (model == null)
+            if (user == null)
             {
-                throw new ArgumentNullException(nameof(model));
+                throw new ArgumentNullException(nameof(user));
             }
 
-            #region FavStudios
             var pubs = await _dbContext.Publications
                .Include(x => x.Image)
                .Where(x => x.UserId == userId)
@@ -121,16 +133,15 @@ namespace TheBeautyForum.Services.Users
                 }).ToListAsync();
 
             pubs.AddRange(apps);
-            #endregion
 
             var profile = new ProfileViewModel()
             {
-                UserId = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                ProfilePictureUrl = model.ProfilePictureUrl,
-                Email = model.Email,
-                Ratings = model.Ratings
+                UserId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                Email = user.Email,
+                Ratings = user.Ratings
                         .Select(r => new RatingViewModel()
                         {
                             Id = r.Id,

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBeautyForum.Data.Models;
+﻿using System.ComponentModel.DataAnnotations;
 using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Publication;
-using TheBeautyForum.Web.ViewModels.Rating;
 
 namespace TheBeautyForum.Web.ViewModels.Studio
 {
@@ -30,6 +23,8 @@ namespace TheBeautyForum.Web.ViewModels.Studio
 
         [Required]
         public TimeOnly CloseTime { get; set; }
+
+        public CreatePublicationViewModel? Post { get; set; }
 
         public ICollection<string> Images { get; set; } 
             = new HashSet<string>();
