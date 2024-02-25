@@ -1,7 +1,7 @@
 ﻿@using TheBeautyForum.Web.ViewModels.Publication;
 @model CreatePublicationViewModel
 
-<form asp-controller="Publication" asp-action="Create" method="post">
+<form asp-controller="Publication" asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="write-post-containerr">
         <div class="user-profile">
             <img src="@Model.UserProfilePic">
@@ -12,7 +12,7 @@
                         at
                         <select asp-for="@Model.StudioId" style="color: #9A9A9A; font-size: 13px; border: none; margin-left: -3px;">
                             <option value="" selected disabled hidden>CLICK TO SELECT STUDIO</option>
-                            @foreach (var s in Model.Studios)
+                            @foreach (var s in Model.Studios.OrderBy(x => x.StudioName))
                             {
                                 <option value="@s.Id">@s.StudioName</option>
                             }
@@ -22,22 +22,46 @@
                 </p>
             </div>
         </div>
-
         <div class="post-input-containerr">
             <textarea rows="1" style="padding-bottom: 0.7em;" placeholder="What's on your mind, @Model.UserFirstName?" asp-for="@Model.Description">
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <span asp-validation-for="Description" class="text-danger"></span>
             </textarea>
-            <div style="display: flex; justify-content: space-between;">
-                <div style="padding-top: 0em;">
-                    <button type="button" class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Add photo</button>
+            <div style="display: flex; justify-content: space-between; ">
+                <div style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; width: 200px">
+                    <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                    <input type="file" asp-for="@Model.Image" style="width: 175px" accept="image/gif, image/jpeg, image/png, image/jpg" aria-required="true"  />
                 </div>
-
+                <div>
+                    <img alt="Uploaded Image" accept="image/gif, image/jpeg, image/png, image/jpg" style="display:none;">
+                </div>
                 <div style="padding-top: 0em;">
-                    <button class="btn btn-light" type="submit" style="font-size: 13px; margin-top: 0.5em; margin-right: 1em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">
-                        Post
-                    </button>
+                    <input class="btn btn-light" type="submit" value="Post" style="font-size: 13px; margin-top: 0.5em; margin-right: 1em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em" />
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+<style>
+    input[type="file"]::file-selector-button {
+        width: 80px;
+        color: transparent;
+        border: none;
+        margin-right: 0px;
+    }
+
+    input[type="file"]::after {
+        position: absolute;
+        padding-left: 0.5em;
+        padding-top: 0.09em;
+        pointer-events: none;
+        left: 525px;
+        content: "Upload pic: "
+   }
+
+    input[type="file"]::file-selector-button {
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #FEF1EF;
+    }
+</style>

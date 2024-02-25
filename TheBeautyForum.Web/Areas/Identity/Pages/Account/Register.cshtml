@@ -68,6 +68,29 @@
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script src="~/js/main.js"></script>
 
+<style>
+    input[type="file"]::file-selector-button {
+        width: 142px;
+        color: transparent;
+        border-radius: 4px;
+        margin-right: 1px;
+    }
+
+    input[type="file"]::after {
+        position: absolute;
+        padding-left: 0.5em;
+        pointer-events: none;
+        left: 40px;
+        content: "Upload profile pic: ";
+    }
+
+    input[type="file"]::file-selector-button {
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #f7f7f7;
+    }
+</style>
+
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TheBeautyForum.Data.Models;
+using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
@@ -9,10 +9,14 @@ namespace TheBeautyForum.Services.Publication
     public class PublicationService : IPublicationService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IImageService _imageService;
 
-        public PublicationService(ApplicationDbContext dbContext)
+        public PublicationService(
+            ApplicationDbContext dbContext,
+            IImageService imageService)
         {
             this._dbContext = dbContext;
+            this._imageService = imageService;
         }
 
         public async Task<List<ForumViewModel>> ForumAsync(Guid userId)
@@ -25,7 +29,7 @@ namespace TheBeautyForum.Services.Publication
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var postWithoutImage = await _dbContext.Publications
+            var model = await _dbContext.Publications
                 .Include(x => x.Image)
                 .Include(x => x.Studio)
                 .Select(p => new ForumViewModel()
@@ -63,7 +67,7 @@ namespace TheBeautyForum.Services.Publication
                     }
                 }).ToListAsync();
 
-            return postWithoutImage;
+            return model;
         }
 
         public async Task CreatePublicationAsync(CreatePublicationViewModel model, Guid userId)
@@ -82,26 +86,13 @@ namespace TheBeautyForum.Services.Publication
                 DatePosted = DateTime.Now,
             };
 
-            var image = new Image();
-
-            if (model.ImageUrl != null)
-            {
-                image = new Image()
-                {
-                    Id = Guid.NewGuid(),
-                    UrlPath = model.ImageUrl,
-                    PublicationId = post.Id
-                };
-            }
-
-            if (image.UrlPath != null)
-            {
-                post.Image = image;
-                await _dbContext.Images.AddAsync(image);
-            }
-
             await _dbContext.Publications.AddAsync(post);
             await _dbContext.SaveChangesAsync();
+
+            if (model.Image != null)
+            {
+                await this._imageService.UploadImage(model.Image, "images", post.Id);
+            }
         }
 
         public async Task<CreatePublicationViewModel> LoadAllStudiosAsync(Guid userId)

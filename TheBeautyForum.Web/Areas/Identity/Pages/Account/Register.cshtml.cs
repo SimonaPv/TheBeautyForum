@@ -134,7 +134,6 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 user.ProfilePictureUrl = await this._imageService.UploadImage(Input.ProfilePicture, "images", user);
-                //await _userManager.UpdateAsync(user);
 
                 if (result.Succeeded)
                 {

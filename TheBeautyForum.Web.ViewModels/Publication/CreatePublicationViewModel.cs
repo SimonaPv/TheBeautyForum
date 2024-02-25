@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static TheBeautyForum.Data.DataConstants.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
+using Microsoft.AspNetCore.Http;
 
 namespace TheBeautyForum.Web.ViewModels.Publication
 {
@@ -11,7 +12,7 @@ namespace TheBeautyForum.Web.ViewModels.Publication
         [StringLength(DESCRIPTION_MAX_LENGTH, MinimumLength = DESCRIPTION_MIN_LENGTH)]
         public string? Description { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public IFormFile? Image { get; set; }
 
         public string? UserFirstName { get; set; }
 

@@ -86,27 +86,6 @@ abbr[data-original-title] {
     text-decoration-skip-ink: none;
 }
 
-input[type="file"]::file-selector-button {
-    width: 142px;
-    color: transparent;
-    border-radius: 4px;
-    margin-right: 1px;
-}
-
-input[type="file"]::after {
-    position: absolute;
-    padding-left: 0.5em;
-    pointer-events: none;
-    left: 40px;
-    content: "Upload profile pic: ";
-}
-
-input[type="file"]::file-selector-button {
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #f7f7f7;
-}
-
 address {
     margin-bottom: 1rem;
     font-style: normal;
