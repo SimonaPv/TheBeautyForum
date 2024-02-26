@@ -7,6 +7,7 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 {
     public class CreatePublicationViewModel
     {
+        [Required]
         public Guid StudioId { get; set; }
 
         [StringLength(DESCRIPTION_MAX_LENGTH, MinimumLength = DESCRIPTION_MIN_LENGTH)]

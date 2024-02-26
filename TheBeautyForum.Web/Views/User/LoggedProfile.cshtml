@@ -69,7 +69,7 @@
                     {
                         <div class="post-containerr">
                             <div class="post-row">
-                                <div class="user-profile">
+                                <div class="user-profile" style="display: flex; justify-content:space-between">
                                     <img src="@Model.ProfilePictureUrl" alt="image">
                                     <div>
                                         <p>
@@ -82,6 +82,13 @@
                                             </span>
                                         </p>
                                         <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
+                                    </div>
+                                </div>
+                                <div class="dropdown" style="float:right;">
+                                    <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Edit</a>
+                                        <a href="#">Delete</a>
                                     </div>
                                 </div>
                             </div>

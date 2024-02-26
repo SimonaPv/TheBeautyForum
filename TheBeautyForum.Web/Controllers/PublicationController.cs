@@ -26,8 +26,12 @@ namespace TheBeautyForum.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePublicationViewModel model)
         {
-            await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Forum", model);
+            }
 
+            await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
             return RedirectToAction("Forum", "Publication");
         }
     }
