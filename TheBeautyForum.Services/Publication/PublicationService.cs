@@ -63,7 +63,8 @@ namespace TheBeautyForum.Services.Publication
                             }).ToList(),
                         UserFirstName = user.FirstName,
                         UserLastName = user.LastName,
-                        UserProfilePic = user.ProfilePictureUrl
+                        UserProfilePic = user.ProfilePictureUrl,
+                        ActionUrl = "Forum"
                     }
                 }).ToListAsync();
 

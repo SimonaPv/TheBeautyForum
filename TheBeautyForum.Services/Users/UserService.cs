@@ -91,7 +91,8 @@ namespace TheBeautyForum.Services.Users
                             }).ToList(),
                     UserFirstName = user.FirstName,
                     UserLastName = user.LastName,
-                    UserProfilePic = user.ProfilePictureUrl
+                    UserProfilePic = user.ProfilePictureUrl,
+                    ActionUrl = "LoggedProfile",
                 }
             };
 

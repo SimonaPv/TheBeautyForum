@@ -40,7 +40,9 @@
         <!------------------main-content-------------------->
         <div class="main-content">
 
-            <partial name="_CreatePostPartial" model="@Model[0].Post"/>
+            <div>
+                <partial name="_CreatePostPartial" model="@Model[0].Post" />
+            </div>
 
             @foreach (var p in Model.OrderByDescending(x => x.DatePosted))
             {

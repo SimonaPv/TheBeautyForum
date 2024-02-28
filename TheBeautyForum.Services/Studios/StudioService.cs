@@ -85,7 +85,8 @@ namespace TheBeautyForum.Services.Studios
                                 StudioName = s.Name
                             }).ToList(),
                     UserFirstName = model.Name,
-                    UserProfilePic = model.StudioPictureUrl
+                    UserProfilePic = model.StudioPictureUrl,
+                    ActionUrl = "StudioProfile"
                 }
             };
 

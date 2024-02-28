@@ -28,11 +28,34 @@ namespace TheBeautyForum.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Forum", model);
+                if (model.ActionUrl == "Forum")
+                {
+                    return RedirectToAction("Forum", "Publication", model);
+                }
+                else if (model.ActionUrl == "LoggedProfile")
+                {
+                    return RedirectToAction("LoggedProfile", "User", model);
+                }
+                else
+                {
+                    return RedirectToAction("Profile", "Studio", model);
+                }
             }
 
             await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-            return RedirectToAction("Forum", "Publication");
+
+            if (model.ActionUrl == "Forum")
+            {
+                return RedirectToAction("Forum", "Publication", model);
+            }
+            else if (model.ActionUrl == "LoggedProfile")
+            {
+                return RedirectToAction("LoggedProfile", "User", model);
+            }
+            else
+            {
+                return RedirectToAction("Profile", "Studio", model);
+            }
         }
     }
 }

@@ -18,9 +18,9 @@ namespace TheBeautyForum.Services.Home
             var model = new HomeViewModel();
 
             model.StudiosCount = await _dbContext.Studios
-                .CountAsync();
+                .CountAsync() + 100;
             model.UsersCount = await _dbContext.Users
-                .CountAsync();
+                .CountAsync()+200;
 
             return model;
         }
