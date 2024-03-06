@@ -23,6 +23,8 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public string? ActionUrl { get; set; }
 
+        public DateTime? DatePosted { get; set; }
+
         public ICollection<StudioPostViewModel> Studios { get; set; }
             = new HashSet<StudioPostViewModel>();
     }

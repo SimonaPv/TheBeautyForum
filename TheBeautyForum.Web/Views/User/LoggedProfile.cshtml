@@ -62,7 +62,7 @@
             </div>
             <div class="post-col">
                 <div style="margin-right: 10em;">
-                    
+
                     <partial name="_CreatePostPartial" model="@Model.Post" />
 
                     @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
@@ -87,8 +87,8 @@
                                 <div class="dropdown" style="float:right;">
                                     <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                     <div class="dropdown-content">
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
+                                        @*                                        <a asp-controller="Publication" asp-action="Edit" asp-route-id="@p.Id" formaction="post">Edit</a>*@
+                                        <a asp-controller="Publication" asp-action="Delete" asp-route-id="@p.Id" onclick="return confirm('Are you sure you want to delete this publication?')">Delete</a>
                                     </div>
                                 </div>
                             </div>

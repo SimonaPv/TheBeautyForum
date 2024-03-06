@@ -57,5 +57,30 @@ namespace TheBeautyForum.Web.Controllers
                 return RedirectToAction("Profile", "Studio", model);
             }
         }
+
+        public async Task<IActionResult> Delete(
+            [FromRoute]
+            Guid id)
+        {
+            await _publicationService.DeletePublicationAsync(id);
+
+            return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Edit(
+        //    [FromRoute]
+        //    Guid id)
+        //{
+        //    var model = await _publicationService.GetPostAsync(id);
+
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(CreatePublicationViewModel model)
+        //{
+        //    return View();
+        //}
     }
 }

@@ -91,7 +91,7 @@ namespace TheBeautyForum.Data.Configurations
                 FirstName = "Lisa",
                 LastName = "Borisova",
                 PhoneNumber = "0885555555",
-                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg",
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");

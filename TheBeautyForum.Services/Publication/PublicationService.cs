@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Publication;
@@ -121,5 +122,66 @@ namespace TheBeautyForum.Services.Publication
 
             return model;
         }
+
+        public async Task DeletePublicationAsync(Guid postId)
+        {
+            var model = await _dbContext.Publications.FindAsync(postId);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            _dbContext.Publications.Remove(model);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<CreatePublicationViewModel> GetPostAsync(Guid postId)
+        {
+            var model = await _dbContext.Publications
+                .Include(x => x.User)
+                .Include(x => x.Studio)
+                .FirstOrDefaultAsync(x => x.Id == postId);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var post = new CreatePublicationViewModel()
+            {
+                ActionUrl = "Forum",
+                Description = model.Description,
+                DatePosted = DateTime.Now,
+                StudioId = model.StudioId,
+                UserFirstName = model.User.FirstName,
+                UserLastName = model.User.LastName,
+                UserProfilePic = model.User.ProfilePictureUrl
+            };
+
+            return post;
+        }
+
+        //public async Task EditPublicationAsync(Guid postId, CreatePublicationViewModel model)
+        //{
+        //    var post = await _dbContext.Publications.FindAsync(postId);
+
+        //    if (post == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(post));
+        //    }
+
+        //    post.StudioId = model.StudioId;
+        //    post.Description = model.Description;
+
+        //    await _dbContext.SaveChangesAsync();
+
+        //    if (model.Image != null)
+        //    {
+        //        await this._imageService.UploadImage(model.Image, "images", post.Id);
+        //    }
+
+        //    await _dbContext.SaveChangesAsync();
+        //}
     }
 }
