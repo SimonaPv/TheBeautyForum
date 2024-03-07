@@ -22,7 +22,6 @@ namespace TheBeautyForum.Services.Studios
                 .Include(x => x.Publications)
                 .Include(x => x.Appointments)
                 .Include(x => x.StudioCategories)
-                .Include(x => x.StudioCategories)
                 .FirstOrDefaultAsync(s => s.Id == studioId);
 
             if (model == null)
@@ -40,17 +39,21 @@ namespace TheBeautyForum.Services.Studios
                 Description = model.Description,
                 OpenTime = model.OpenTime,
                 CloseTime = model.CloseTime,
-                Publications = model.Publications
-                        .Select(p => new Web.ViewModels.Publication.PostForumViewModel()
+                Publications = await _dbContext.Publications
+                        .Where(x => x.StudioId == model.Id)
+                        .Select(p => new PostForumViewModel()
                         {
                             Id = p.Id,
                             UserId = p.UserId,
                             StudioId = p.StudioId,
                             Description = p.Description,
                             ImageUrl = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath!).FirstOrDefault(),
-                            DatePosted = p.DatePosted
+                            DatePosted = p.DatePosted,
+                            UserName = $"{p.User.FirstName} {p.User.LastName}",
+                            ProfilePicUrl = p.User.ProfilePictureUrl,
+                            StudioName = p.Studio.Name
                         })
-                        .ToList(),
+                        .ToListAsync(),
                 CategoryNames = await _dbContext.StudioCategories
                     .Where(x => x.StudioId == studioId)
                     .Select(x => x.Category!.Name)
@@ -76,18 +79,18 @@ namespace TheBeautyForum.Services.Studios
                         StudioName = a.Studio!.Name
                     })
                     .ToListAsync(),
-                Post = new CreatePublicationViewModel()
-                {
-                    Studios = _dbContext.Studios
-                            .Select(s => new StudioPostViewModel()
-                            {
-                                Id = s.Id,
-                                StudioName = s.Name
-                            }).ToList(),
-                    UserFirstName = model.Name,
-                    UserProfilePic = model.StudioPictureUrl,
-                    ActionUrl = "StudioProfile"
-                }
+                //Post = new CreatePublicationViewModel()
+                //{
+                //    Studios = _dbContext.Studios
+                //            .Select(s => new StudioPostViewModel()
+                //            {
+                //                Id = s.Id,
+                //                StudioName = s.Name
+                //            }).ToList(),
+                //    UserFirstName = model.Name,
+                //    UserProfilePic = model.StudioPictureUrl,
+                //    ActionUrl = "StudioProfile"
+                //}
             };
 
             return profile;

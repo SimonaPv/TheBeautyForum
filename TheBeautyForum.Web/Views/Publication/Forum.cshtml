@@ -1,4 +1,5 @@
-﻿@using TheBeautyForum.Web.ViewModels.Publication;
+﻿@using System.Security.Claims;
+@using TheBeautyForum.Web.ViewModels.Publication;
 @using System.Globalization;
 
 @model List<ForumViewModel>
@@ -57,6 +58,19 @@
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(p.DatePosted.Month) @p.DatePosted.Day @p.DatePosted.Year, @p.DatePosted.ToString("HH:mm", CultureInfo.InvariantCulture)</span>
                             </div>
                         </div>
+                        @if (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) == p.PostUserId)
+                        {
+                            <div class="dropdown" style="float:right;">
+                                <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <div class="dropdown-content">
+                                    <div>
+                                        <div onclick="return confirm('Are you sure you want to delete this publication?')">
+                                            @Html.ActionLink("Delete", "Delete", "Publication", new { PublicationId = p.PublicationId, ViewUrl = "Forum" }, null)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
 
                     @if (p.ImageUrl == null)

@@ -12,7 +12,7 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240226065139_CreateAndSeedDatabase")]
+    [Migration("20240306074223_CreateAndSeedDatabase")]
     partial class CreateAndSeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -866,7 +866,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "814c44d5-53ce-49dd-885b-0c14430d88ec",
+                            ConcurrencyStamp = "db2f8d78-39e5-45b8-994d-b809c04124c5",
                             Email = "mariageorgieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Maria",
@@ -874,11 +874,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
                             NormalizedUserName = "MARIA",
-                            PasswordHash = "AQAAAAEAACcQAAAAENjvBU/EYlFRFhwgAgW02vzGPi068pp4w+fcKBZiV4+VciyCAllmbVWx58myc0XJfg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJxk7ksDqNov/QSbqM5R+bRXtPGMdT2lSITCt52rvWH3BGsW5CPy08R6ibYlm15A6Q==",
                             PhoneNumber = "0881111111",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg",
-                            SecurityStamp = "19e01ae7-c20d-4ac1-b78f-240ad7cefcb4",
+                            SecurityStamp = "f0be51c0-eaaf-4257-8dc3-4a3c6a6044a9",
                             TwoFactorEnabled = false,
                             UserName = "Maria"
                         },
@@ -886,7 +886,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "87403ed3-5b34-4099-aa5a-cc68b9f54c15",
+                            ConcurrencyStamp = "864ee9b5-8252-4b3f-a53d-e2598513b1e3",
                             Email = "amayaivanova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Amaya",
@@ -894,11 +894,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "AMAYAIVANOVA@MAIL.COM",
                             NormalizedUserName = "AMAYA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBbltTYcRrfqo//DgkjMDvnpMuovCgXgKYDu5XUIX8y7CDQL/+4LBC0zL/Oy5+PBTQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELc/hqZln3J4KEyp/kGEZ1IndcceM9M3irj8Vq8O1gS9BrDuiyaeSvaQTYKJc/VrYw==",
                             PhoneNumber = "0882222222",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
-                            SecurityStamp = "2176b97e-17bb-4e9b-8268-27662d7fa67f",
+                            SecurityStamp = "af533b36-b4d9-428c-884d-6e296c8910b4",
                             TwoFactorEnabled = false,
                             UserName = "Amaya"
                         },
@@ -906,7 +906,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7161347-1dc3-4dcc-9706-e06bb8595e6a",
+                            ConcurrencyStamp = "cbeb7687-b412-47c3-8cf2-7cdde3fec0b2",
                             Email = "aylintodorova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Aylin",
@@ -914,11 +914,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "AYLINTODOROVA@MAIL.COM",
                             NormalizedUserName = "AYLIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELYa4Sy/EWoE0E6rijp/cb/6gfwiz+my8UstyDDuM+jFzceR+pbyWATXOeCSekAdFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBrPR1CMiya5cU2yKnl5CfrnUUWPdRieI07oIddwpJ84cQegCB1HrcAoeZ/aVU+Zag==",
                             PhoneNumber = "0883333333",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg",
-                            SecurityStamp = "1082f78f-233e-4b63-ad87-83d2ae49176a",
+                            SecurityStamp = "55764138-8262-44eb-8064-8e8eabba1de1",
                             TwoFactorEnabled = false,
                             UserName = "Aylin"
                         },
@@ -926,7 +926,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1cf83508-5d14-40b2-8309-4fb5e8ddc818",
+                            ConcurrencyStamp = "6e0c0ff8-34d3-4334-8b09-e7f6d110a2d8",
                             Email = "deboramileva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Debora",
@@ -934,11 +934,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DEBORAMILEVA@MAIL.COM",
                             NormalizedUserName = "DEBORA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKFiOXA1XHKDg8Sbs8Ncx0RF2tG5GaX1YET0oIfZAiDW3Mi3wkAD3P/+gG3M1mqIbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKnfcR+9V+8H88fzbGBA+BjU1Tl8+Pa2V0sc9UQjMSzcSPq6uAesBjb/X+FiR+zXpQ==",
                             PhoneNumber = "0884444444",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
-                            SecurityStamp = "a0353450-0643-46ae-ae9a-c151b35e245d",
+                            SecurityStamp = "be749d30-ed7d-44c4-90b0-08f0454e3bf7",
                             TwoFactorEnabled = false,
                             UserName = "Debora"
                         },
@@ -946,7 +946,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c9451331-38f9-484a-bc4c-2b600caca4f5",
+                            ConcurrencyStamp = "9371c7cf-3047-4e2b-b4b8-95c30a339f07",
                             Email = "lisaborisova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Lisa",
@@ -954,11 +954,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "LISABORISOVA@MAIL.COM",
                             NormalizedUserName = "LISA",
-                            PasswordHash = "AQAAAAEAACcQAAAAELXldBhekHPxJKHJo8UY8E8jywJsn1gJ6zSso4nR5ErOm0U27Tk31JE/VQjWKvAEYg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJwaMmqomH5MKMvlFmQSyLLSPbEY1vpfWRbm2v2Qd0IVtnd/hc8okgsAt63lOl14Ww==",
                             PhoneNumber = "0885555555",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/tgcfanokk6wo33rpsurj.jpg",
-                            SecurityStamp = "d8a5737d-5f86-4533-b801-e8467d0b23a3",
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg",
+                            SecurityStamp = "6c78eacc-c936-43f0-ad0d-c20db63e0b8a",
                             TwoFactorEnabled = false,
                             UserName = "Lisa"
                         });

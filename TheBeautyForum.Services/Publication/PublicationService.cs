@@ -48,6 +48,7 @@ namespace TheBeautyForum.Services.Publication
                     CommentCount = p.Comments.Count,
                     UserName = $"{p.User!.FirstName} {p.User.LastName}",
                     PostUserProfilePic = p.User.ProfilePictureUrl,
+                    ViewUrl = "",
                     StudioName = p.Studio.Name,
                     Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
                     {

@@ -59,12 +59,22 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         public async Task<IActionResult> Delete(
-            [FromRoute]
-            Guid id)
+            Guid publicationId, string viewUrl, Guid? studioId = null)
         {
-            await _publicationService.DeletePublicationAsync(id);
+            await _publicationService.DeletePublicationAsync(publicationId);
 
-            return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+            if (viewUrl == "Forum")
+            {
+                return RedirectToAction("Forum", "Publication");
+            }
+            else if (viewUrl == "StudioProfile")
+            {
+                return RedirectToAction("Profile", "Studio", new { id = studioId });
+            }
+            else
+            {
+                return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+            }
         }
 
         //[HttpGet]

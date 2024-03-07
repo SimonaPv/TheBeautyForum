@@ -26,6 +26,8 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public string? ImageUrl { get; set; }
 
+        public string? ViewUrl { get; set; }
+
         public int LikeCount { get; set; }
 
         public int CommentCount { get; set; }
