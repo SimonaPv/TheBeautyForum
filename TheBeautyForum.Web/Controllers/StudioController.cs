@@ -12,6 +12,11 @@ namespace TheBeautyForum.Web.Controllers
             _studioService = studioService;
         }
 
+        public async Task<IActionResult> All()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Profile(
             [FromRoute]
             Guid id)

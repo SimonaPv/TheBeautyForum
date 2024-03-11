@@ -21,9 +21,11 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public string? UserProfilePic { get; set; }
 
-        public string? ActionUrl { get; set; }
+        public string? ViewUrl { get; set; }
 
         public DateTime? DatePosted { get; set; }
+
+        public StudioProfileViewModel? Studio { get; set; }
 
         public ICollection<StudioPostViewModel> Studios { get; set; }
             = new HashSet<StudioPostViewModel>();

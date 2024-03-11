@@ -129,6 +129,7 @@ namespace TheBeautyForum.Web.Data
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new StudioCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new RatingConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

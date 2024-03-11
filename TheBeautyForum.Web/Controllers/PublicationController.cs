@@ -26,13 +26,31 @@ namespace TheBeautyForum.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePublicationViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (model.Image != null && model.Image.Length > 10485760)
             {
-                if (model.ActionUrl == "Forum")
+                ModelState.AddModelError(nameof(model.Image), "your file size exceeds the maximum allowed file size");
+
+                if (model.ViewUrl == "Forum")
                 {
                     return RedirectToAction("Forum", "Publication", model);
                 }
-                else if (model.ActionUrl == "LoggedProfile")
+                else if (model.ViewUrl == "LoggedProfile")
+                {
+                    return RedirectToAction("LoggedProfile", "User", model);
+                }
+                else
+                {
+                    return RedirectToAction("Profile", "Studio", model);
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                if (model.ViewUrl == "Forum")
+                {
+                    return RedirectToAction("Forum", "Publication", model);
+                }
+                else if (model.ViewUrl == "LoggedProfile")
                 {
                     return RedirectToAction("LoggedProfile", "User", model);
                 }
@@ -44,11 +62,11 @@ namespace TheBeautyForum.Web.Controllers
 
             await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            if (model.ActionUrl == "Forum")
+            if (model.ViewUrl == "Forum")
             {
                 return RedirectToAction("Forum", "Publication", model);
             }
-            else if (model.ActionUrl == "LoggedProfile")
+            else if (model.ViewUrl == "LoggedProfile")
             {
                 return RedirectToAction("LoggedProfile", "User", model);
             }

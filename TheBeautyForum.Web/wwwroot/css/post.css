@@ -25,6 +25,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 20px 5%;
+    padding-right: 3.2em;
 }
 
 .left-sidebar {

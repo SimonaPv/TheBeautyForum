@@ -26,16 +26,20 @@
             <div class="topnav">
                 <div class="search-container" style="border-top-left-radius: 6px;">
                     <form>
-                        <input class="bar" type="text" placeholder="Search.." name="search">
+                        <input class="bar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search studio.." name="search">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             </div>
             <div class="imp-links">
-                @foreach (var s in Model[0].Studios.OrderBy(x => x.StudioName))
-                {
-                    <a asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId" style="transition: color 0.1s ease;">@s.StudioName</a>
-                }
+                <ul id="myUL" style="padding-left:0px">
+                    @foreach (var s in Model[0].Studios.OrderBy(x => x.StudioName))
+                    {
+                        <li style="list-style-type:none;">
+                            <a asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId" style="transition: color 0.1s ease;">@s.StudioName</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
         <!------------------main-content-------------------->
@@ -100,12 +104,20 @@
         </div>
         <!--------------------right-sidebar-------------------->
         <div class="right-sidebar">
-            <div class="sidebar-title">
-                <h4>Publikacii za opredelen salon</h4>
+            <div class="sidebar-title" style="margin-bottom:0.5em">
+                <h4>Top 3 rated studios</h4>
             </div>
-            @foreach (var s in Model[0].Studios.OrderBy(x => x.StudioName))
+            @foreach (var s in Model[0].Studios.OrderByDescending(x => x.StudioRating).Take(3))
             {
-                <p style="transition: color 0.1s ease; padding-left: 0.7em;">@s.StudioName</p>
+                <div class="event">
+                    <img style="width: 55px; border-radius: 6px;" src="@s.StudioProfilePic">
+                    <div class="right-event">
+                        <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color: #626262;">
+                            <a asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId" style="font-size: 15px; color:#626262"><i class="fas fa-map-marker-alt"></i> @s.StudioName</a>
+                        </p>
+                        <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;"><i class="fa fa-solid fa-check"></i> @s.StudioDescription</p>
+                    </div>
+                </div>
             }
         </div>
     </div>
@@ -118,6 +130,23 @@
             }
             else {
                 graylike.style.color = "#626262";
+            }
+        }
+
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
             }
         }
     </script>

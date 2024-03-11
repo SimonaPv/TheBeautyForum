@@ -8,14 +8,17 @@ namespace TheBeautyForum.Web.ViewModels.Studio
     {
         public Guid StudioId { get; set; }
 
+        [Required]
         public string Name { get; set; } = null!;
 
         public string? ProfilePictureUrl { get; set; }
 
         public int? RatingSum { get; set; }
 
+        [Required]
         public string Location { get; set; } = null!;
 
+        [Required]
         public string Description { get; set; } = null!;
 
         [Required]

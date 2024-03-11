@@ -92,7 +92,7 @@ namespace TheBeautyForum.Services.Users
                     UserFirstName = user.FirstName,
                     UserLastName = user.LastName,
                     UserProfilePic = user.ProfilePictureUrl,
-                    ActionUrl = "LoggedProfile",
+                    ViewUrl = "LoggedProfile",
                 }
             };
 

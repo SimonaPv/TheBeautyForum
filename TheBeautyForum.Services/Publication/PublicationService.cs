@@ -53,7 +53,10 @@ namespace TheBeautyForum.Services.Publication
                     Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
                     {
                         StudioId = x.Id,
-                        StudioName = x.Name
+                        StudioName = x.Name,
+                        StudioRating = x.Ratings.Average(x => x.Value),
+                        StudioDescription = x.Description,
+                        StudioProfilePic = x.StudioPictureUrl
                     }).ToList(),
                     Post = new CreatePublicationViewModel()
                     {
@@ -66,7 +69,7 @@ namespace TheBeautyForum.Services.Publication
                         UserFirstName = user.FirstName,
                         UserLastName = user.LastName,
                         UserProfilePic = user.ProfilePictureUrl,
-                        ActionUrl = "Forum"
+                        ViewUrl = "Forum"
                     }
                 }).ToListAsync();
 
@@ -151,7 +154,7 @@ namespace TheBeautyForum.Services.Publication
 
             var post = new CreatePublicationViewModel()
             {
-                ActionUrl = "Forum",
+                ViewUrl = "Forum",
                 Description = model.Description,
                 DatePosted = DateTime.Now,
                 StudioId = model.StudioId,

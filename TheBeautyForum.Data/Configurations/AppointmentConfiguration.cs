@@ -42,7 +42,7 @@ namespace TheBeautyForum.Data.Configurations
             data.Add(app);
             #endregion
 
-            //user2 start
+            #region User2
             app = new Appointment()
             {
                 Id = Guid.Parse("f1a43f31-6d82-442b-8f89-941f7b6da3ec"),
@@ -66,9 +66,9 @@ namespace TheBeautyForum.Data.Configurations
                 Description = "I need a relaxing massage."
             };
             data.Add(app);
-            //user2 end
+            #endregion
 
-            //user3 start
+            #region User3
             app = new Appointment()
             {
                 Id = Guid.Parse("9b76ada8-1c16-4f05-b308-1c4ff3de137f"),
@@ -92,7 +92,7 @@ namespace TheBeautyForum.Data.Configurations
                 Description = "I need care for bleached hair."
             };
             data.Add(app);
-            //user3 end
+            #endregion
 
             return data;
         }

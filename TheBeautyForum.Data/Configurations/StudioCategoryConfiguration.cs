@@ -15,7 +15,7 @@ namespace TheBeautyForum.Data.Configurations
         {
             var data = new HashSet<StudioCategory>();
 
-            //Helita start
+            #region Helita
             var stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
@@ -43,9 +43,9 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
             };
             data.Add(stuCat);
-            //Helita end
+            #endregion
 
-            //Murphy start
+            #region Murphy
             stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
@@ -73,9 +73,9 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
             };
             data.Add(stuCat);
-            //Murphy end
+            #endregion
 
-            //IN Beauty start
+            #region IN Beauty 
             stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("bf2832b2-5b62-471b-9980-583753504ca6"),
@@ -89,9 +89,9 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("2da87f9f-d52a-4d4b-a8c6-37200c4cfeea")
             };
             data.Add(stuCat);
-            //IN beauty end
+            #endregion
 
-            //N-Stage start
+            #region N-Stage
             stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("c7998d5b-0017-4924-8544-49b4a276afe1"),
@@ -119,9 +119,9 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("8859c909-f5cf-4f72-ba53-5a9e6dfac34d")
             };
             data.Add(stuCat);
-            //N-Stage end
+            #endregion
 
-            //Wellness Centre start
+            #region Wellness Center
             stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("df44a062-9586-4815-8126-99c240433b22"),
@@ -149,9 +149,9 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("6f3f3c4a-9213-48a9-a112-362e10188983")
             };
             data.Add(stuCat);
-            //Wellness Centre end
+            #endregion
 
-            //Arsanta start
+            #region Arsanta
             stuCat = new StudioCategory()
             {
                 StudioId = Guid.Parse("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
@@ -172,7 +172,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("b9b9950e-5ad6-4f44-87b0-e8811e9a59e2")
             };
             data.Add(stuCat);
-            //Arsanta end
+            #endregion
 
             return data;
         }

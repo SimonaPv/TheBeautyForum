@@ -19,7 +19,7 @@
                                 <option value="@s.Id">@s.StudioName</option>
                             }
                         </select>
-                        <span asp-validation-for="Studios" class="text-danger"></span>
+                        <span asp-validation-for="Studio" class="text-danger"></span>
                     </span>
                 </p>
             </div>
@@ -31,13 +31,13 @@
             <div style="display: flex; justify-content: space-between; ">
                 <div style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; width: 200px">
                     <span asp-validation-for="@Model.Image" class="text-danger"></span>
-                    <input type="file" asp-for="@Model.Image" style="width: 175px" accept="image/gif, image/jpeg, image/png, image/jpg" aria-required="true"  />
+                    <input type="file" asp-for="@Model.Image" style="width: 175px" accept="image/gif, image/jpeg, image/png, image/jpg" aria-required="true" />
                 </div>
                 <div>
                     <img alt="Uploaded Image" accept="image/gif, image/jpeg, image/png, image/jpg" style="display:none;">
                 </div>
                 <div>
-                    <input hidden asp-for="@Model.ActionUrl" value="@Model.ActionUrl"/>
+                    <input hidden asp-for="@Model.ViewUrl" value="@Model.ViewUrl" />
                 </div>
                 <div style="padding-top: 0em;">
                     <input class="btn btn-light" type="submit" value="Post" style="font-size: 13px; margin-top: 0.5em; margin-right: 1em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em" />
@@ -61,7 +61,7 @@
         padding-top: 0.09em;
         pointer-events: none;
         content: "Upload pic: "
-   }
+    }
 
     input[type="file"]::file-selector-button {
         border-radius: 4px;
