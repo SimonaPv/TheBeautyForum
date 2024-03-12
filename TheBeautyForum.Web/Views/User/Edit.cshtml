@@ -1,0 +1,88 @@
+﻿@using TheBeautyForum.Web.ViewModels.User;
+@model EditProfileViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Favicon -->
+<link href="img/favicon.ico" rel="icon">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/styles.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/post.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner" style="display: flex; justify-content: center">
+            <div style="max-width: 30%; max-height: 30%; padding-left: 2em; padding-top:3.5em" class="image-holder">
+                <img style="border-radius: 6px" src="@Model.ProfilePictureUrl" alt="">
+            </div>
+            <form id="formId" asp-route-returnUrl="" method="post" enctype="multipart/form-data">
+                <h3>Edit profile</h3>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-holder">
+                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    <input asp-for="@Model.FirstName" class="form-control" placeholder="first name" autocomplete="on" aria-required="true" />
+                </div>
+                <div class="form-holder">
+                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    <input asp-for="@Model.LastName" class="form-control" placeholder="last name" autocomplete="on" aria-required="true" />
+                </div>
+                <div class="form-holder">
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    <input asp-for="@Model.Email" class="form-control" placeholder="e-mail" autocomplete="on" aria-required="true" />
+                </div>
+                <div class="form-login" style="margin-bottom: 2.5em;">
+                    <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
+                    <button id="registerSubmit" class="button" type="submit" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/mains.js"></script>
+
+    <style>
+        form{
+            width: 50%;
+            padding-top: inherit;
+            padding-right: 60px;
+            padding-left: 15px;
+        }
+
+        #formId {
+            width: 50%;
+            padding-top: 40px;
+            padding-right: 60px;
+            padding-left: 15px;
+        }
+    </style>
+</body>
+</html>

@@ -29,7 +29,7 @@
             <span asp-validation-for="Description" class="text-danger"></span>
             </textarea>
             <div style="display: flex; justify-content: space-between; ">
-                <div style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; width: 200px">
+                <div class="btn btn-light" style="font-size: 13px; margin-top: 0.5em; margin-left: 0em; color: #F9A392; background-color: #FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; width: 200px">
                     <span asp-validation-for="@Model.Image" class="text-danger"></span>
                     <input type="file" asp-for="@Model.Image" style="width: 175px" accept="image/gif, image/jpeg, image/png, image/jpg" aria-required="true" />
                 </div>
@@ -53,6 +53,9 @@
         color: transparent;
         border: none;
         margin-right: 0px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #FEF1EF;
     }
 
     input[type="file"]::before {
@@ -60,12 +63,6 @@
         padding-left: 0.2em;
         padding-top: 0.09em;
         pointer-events: none;
-        content: "Upload pic: "
-    }
-
-    input[type="file"]::file-selector-button {
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #FEF1EF;
+        content: "Upload pic: ";
     }
 </style>

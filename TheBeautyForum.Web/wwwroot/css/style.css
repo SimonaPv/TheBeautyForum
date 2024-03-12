@@ -242,7 +242,7 @@ h3 {
     }
 }
 
-button {
+.button {
     letter-spacing: 2px;
     border: none;
     width: 133px;
@@ -264,7 +264,7 @@ button {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-    button:hover {
+    .button:hover {
         -webkit-animation-name: hvr-wobble-horizontal;
         animation-name: hvr-wobble-horizontal;
         -webkit-animation-duration: 1s;

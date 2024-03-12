@@ -17,6 +17,46 @@ namespace TheBeautyForum.Services.Users
             this._dbContext = dbContext;
         }
 
+        public async Task EditUserProfileAsync(EditProfileViewModel model, Guid userId)
+        {
+            var user = await _dbContext.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.NormalizedEmail = model.Email.ToUpper();
+            user.UserName = model.FirstName;
+            user.NormalizedUserName = model.FirstName.ToUpper();
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<EditProfileViewModel> GetUserAsync(Guid userId)
+        {
+            var model = await _dbContext.Users.FindAsync(userId);
+
+            if(model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var user = new EditProfileViewModel()
+            {
+                Id = model.Id,
+                ProfilePictureUrl = model.ProfilePictureUrl,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
+
+            return user;
+        }
+
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
         {
             var user = await _dbContext.Users

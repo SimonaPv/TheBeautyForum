@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Publication;

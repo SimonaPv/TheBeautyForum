@@ -41,7 +41,7 @@
                         <p style="margin-bottom: 0.2em;">Open hours: @Model.OpenTime - @Model.CloseTime</p>
                         <p style="width: 25em; margin-bottom: 0.5em">Offers: @string.Join(", ", Model.CategoryNames)</p>
                         <div style="padding-top: 0em;">
-                            <button type="button" class="btn btn-light" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em">Edit profile</button>
+                            <a type="button" class="btn btn-light" asp-controller="Appointment" asp-action="Create" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Make appointment</a>
                         </div>
                     </div>
                 </div>
@@ -118,34 +118,7 @@
                 </div>
             </div>
             <div>
-                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
-                    <div class="profile-intro" style="padding: 10px; padding-top: 0px;">
-                        <div class="sidebar-title">
-                            <h4 style="font-size: 21px; padding: 20px 0px 0px 10px;">Location</h4>
-                        </div>
-                        <div class="event">
-                            <div class="mapouter">
-                                <div class="gmap_canvas">
-                                    <iframe width="330" height="330" id="gmap_canvas" src="https://maps.google.com/maps?q=sofia,%20hristo%20belchev&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>
-                                                                                                                                                                                                                                                                          .mapouter {
-                                                                                                                                                                                                                                                                              position: relative;
-                                                                                                                                                                                                                                                                              text-align: right;
-                                                                                                                                                                                                                                                                              height: 330px;
-                                                                                                                                                                                                                                                                              width: 330px;
-                                                                                                                                                                                                                                                                          }</style><a href="https://www.embedgooglemap.net"></a><style>
-                                                                                                                                                                                                                                                                                                                                    .gmap_canvas {
-                                                                                                                                                                                                                                                                                                                                        overflow: hidden;
-                                                                                                                                                                                                                                                                                                                                        background: none !important;
-                                                                                                                                                                                                                                                                                                                                        height: 330px;
-                                                                                                                                                                                                                                                                                                                                        width: 330px;
-                                                                                                                                                                                                                                                                                                                                    }</style>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-top: 1.2em;">
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em;">
                     <div class="profile-intro">
                         <div class="sidebar-title">
                             <h4 style="font-size: 20px;">Appointments</h4>
@@ -174,6 +147,32 @@
                                 </div>
                             </div>
                         }
+                    </div>
+                </div>
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-top: 1.2em;">
+                    <div class="profile-intro" style="padding: 10px; padding-top: 0px;">
+                        <div class="sidebar-title">
+                            <h4 style="font-size: 21px; padding: 20px 0px 0px 10px;">Location</h4>
+                        </div>
+                        <div class="event">
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                    <iframe width="330" height="330" id="gmap_canvas" src="https://maps.google.com/maps?q=sofia,%20hristo%20belchev&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>
+                                                                                                                                                                                                                                                                          .mapouter {
+                                                                                                                                                                                                                                                                              position: relative;
+                                                                                                                                                                                                                                                                              text-align: right;
+                                                                                                                                                                                                                                                                              height: 330px;
+                                                                                                                                                                                                                                                                              width: 330px;
+                                                                                                                                                                                                                                                                          }</style><a href="https://www.embedgooglemap.net"></a><style>
+                                                                                                                                                                                                                                                                                                                                    .gmap_canvas {
+                                                                                                                                                                                                                                                                                                                                        overflow: hidden;
+                                                                                                                                                                                                                                                                                                                                        background: none !important;
+                                                                                                                                                                                                                                                                                                                                        height: 330px;
+                                                                                                                                                                                                                                                                                                                                        width: 330px;
+                                                                                                                                                                                                                                                                                                                                    }</style>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
