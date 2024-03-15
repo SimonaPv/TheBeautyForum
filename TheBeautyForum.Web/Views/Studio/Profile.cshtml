@@ -39,9 +39,9 @@
                         <h2>@Model.Name</h2>
                         <h6>@Model.Description</h6>
                         <p style="margin-bottom: 0.2em;">Open hours: @Model.OpenTime - @Model.CloseTime</p>
-                        <p style="width: 25em; margin-bottom: 0.5em">Offers: @string.Join(", ", Model.CategoryNames)</p>
+                        <p style="width: 25em; margin-bottom: 0.5em">Offers: @string.Join(", ", Model.CategoryNames.OrderBy(x => x))</p>
                         <div style="padding-top: 0em;">
-                            <a type="button" class="btn btn-light" asp-controller="Appointment" asp-action="Create" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Make appointment</a>
+                            <a type="button" class="btn btn-light" asp-controller="Appointment" asp-action="Create" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Make appointment</a><a type="button" class="btn btn-light" asp-controller="Studio" asp-action="Edit" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Edit profile</a>
                         </div>
                     </div>
                 </div>

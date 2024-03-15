@@ -50,15 +50,15 @@
                     <input asp-for="@Model.StartDate" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;" asp-for="@Model.EndDate" type="date" value="@DateTime.UtcNow">
                 </div>
                 <div class="form-holder">
-                    <select asp-for="@Model.StartDate" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
+                    <select asp-for="@Model.StartDateHour" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
                         <option value="" selected disabled hidden>hh:mm</option>
                         @for (int i = Model.StudioOpenTime.Hour; i < Model.StudioCloseTime.Hour;)
                         {
                             <option value="@i"> @i:00-@(++i):00</option>
                         }
                     </select>
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                    <span asp-validation-for="StartDate.Hour" class="text-danger"></span>
+                    <span asp-validation-for="EndDate.Hour" class="text-danger"></span>
                 </div>
                 <div class="form-login" style="margin-bottom: 2.5em;">
                     <button id="registerSubmit" class="button" type="submit" asp-controller="Appointment" asp-action="Create" formmethod="post" asp-route-id="@Model.StudioId"><b>Save</b></button>

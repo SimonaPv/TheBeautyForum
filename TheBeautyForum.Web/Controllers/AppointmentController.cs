@@ -29,6 +29,19 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
+
+            model.StartDate = model.StartDate.AddHours(model.StartDateHour);
+
+            if (model.StartDate < DateTime.Now)
+            {
+                ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await _appointmentService.CreateAppointmentAsync(model, id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return RedirectToAction("Profile", "Studio", new { id = id });

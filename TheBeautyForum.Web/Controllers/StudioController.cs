@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheBeautyForum.Services.Studios;
+using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Web.Controllers
 {
@@ -24,6 +25,27 @@ namespace TheBeautyForum.Web.Controllers
             var model = await _studioService.ShowStudioProfileAsync(id);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(
+            [FromRoute]
+            Guid id)
+        {
+            var model = await _studioService.GetStudioAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(
+            EditStudioProfileViewModel model,
+            [FromRoute]
+            Guid id)
+        {
+            await _studioService.EditStudioProfileAsync(model, id);
+
+            return RedirectToAction("Profile", "Studio", new { id = id });
         }
     }
 }

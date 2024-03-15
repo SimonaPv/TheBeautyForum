@@ -13,7 +13,7 @@
         {
             public const int NAME_MAX_LENGTH = 50;
 
-            public const int NAME_MIN_LENGTH = 4;
+            public const int NAME_MIN_LENGTH = 3;
         }
 
         public static class Rating
@@ -27,7 +27,7 @@
         {
             public const int NAME_MAX_LENGTH = 50;
 
-            public const int NAME_MIN_LENGTH = 10;
+            public const int NAME_MIN_LENGTH = 2;
 
             public const int DESCRIPTION_MAX_LENGTH = 300;
 
@@ -44,11 +44,11 @@
         {
             public const int FIRST_NAME_MAX_LENGTH = 30;
 
-            public const int FIRST_NAME_MIN_LENGTH = 3;
+            public const int FIRST_NAME_MIN_LENGTH = 2;
 
             public const int LAST_NAME_MAX_LENGTH = 30;
 
-            public const int LAST_NAME_MIN_LENGTH = 3;
+            public const int LAST_NAME_MIN_LENGTH = 2;
         }
 
         public static class Publication

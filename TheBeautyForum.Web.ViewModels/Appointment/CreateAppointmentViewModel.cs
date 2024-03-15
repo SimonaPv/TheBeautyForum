@@ -13,17 +13,19 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 
         public Guid StudioId { get; set; }
 
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
-
         public string? Description { get; set; }
 
         public string? StudioPfp { get; set; }
 
+        public int StartDateHour { get; set; }
+
         public TimeOnly StudioOpenTime { get; set; }
 
         public TimeOnly StudioCloseTime { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
 
         public ICollection<CategoryViewModel> Categories{ get; set; }
             = new HashSet<CategoryViewModel>();

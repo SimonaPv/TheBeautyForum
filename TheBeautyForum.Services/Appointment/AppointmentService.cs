@@ -30,7 +30,7 @@ namespace TheBeautyForum.Services.Appointment
                 StudioId = studioId,
                 UserId = userId,
                 StartDate = model.StartDate,
-                EndDate = model.EndDate,
+                EndDate = model.StartDate.AddHours(1),
                 Description = model.Description,
                 CategoryId = model.CategoryId
             };

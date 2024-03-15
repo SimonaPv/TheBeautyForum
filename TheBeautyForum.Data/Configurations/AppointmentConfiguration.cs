@@ -23,8 +23,8 @@ namespace TheBeautyForum.Data.Configurations
                 UserId = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                 StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
                 CategoryId = Guid.Parse("3be6b016-9b6a-4f68-b7ee-bf32293acca9"),
-                StartDate = DateTime.ParseExact("22-07-2024 12:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                EndDate = DateTime.ParseExact("22-07-2024 13:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                StartDate = DateTime.ParseExact("22-07-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                EndDate = DateTime.ParseExact("22-07-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 Description = "I want a hairstyle for my birthday."
             };
             data.Add(app);
@@ -49,8 +49,8 @@ namespace TheBeautyForum.Data.Configurations
                 UserId = Guid.Parse("3bea7392-a556-4a99-86c2-8cb244868283"),
                 StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
                 CategoryId = Guid.Parse("db7effe2-16bb-4539-9dec-0bda384b859f"),
-                StartDate = DateTime.ParseExact("20-06-2024 12:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                EndDate = DateTime.ParseExact("20-06-2024 13:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                StartDate = DateTime.ParseExact("20-06-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                EndDate = DateTime.ParseExact("20-06-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 Description = "I want slight balayage."
             };
             data.Add(app);
@@ -75,8 +75,8 @@ namespace TheBeautyForum.Data.Configurations
                 UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                 StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
                 CategoryId = Guid.Parse("db7effe2-16bb-4539-9dec-0bda384b859f"),
-                StartDate = DateTime.ParseExact("18-06-2024 12:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                EndDate = DateTime.ParseExact("18-06-2024 13:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                StartDate = DateTime.ParseExact("18-06-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                EndDate = DateTime.ParseExact("18-06-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 Description = "I want platinum blond."
             };
             data.Add(app);

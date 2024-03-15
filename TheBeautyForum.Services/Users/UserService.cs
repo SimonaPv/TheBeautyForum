@@ -59,6 +59,13 @@ namespace TheBeautyForum.Services.Users
 
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
         {
+            var appointments = await _dbContext.Appointments
+                .Where(d => d.StartDate < DateTime.Now)
+                .ToListAsync();
+
+            _dbContext.RemoveRange(appointments);
+            await _dbContext.SaveChangesAsync();
+
             var user = await _dbContext.Users
                 .Include(a => a.Appointments)
                 .Include(r => r.Ratings)
