@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TheBeautyForum.Web.ViewModels.Category;
+
+namespace TheBeautyForum.Web.ViewModels.Studio
+{
+    public class ViewStudioViewModel
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; } = null!;
+
+        public string? ProfilePictureUrl { get; set; }
+
+        public string OpenTime { get; set; } = null!;
+
+        public string CloseTime { get; set; } = null!;
+
+        public string Description { get; set; } = null!;
+
+        public string Location { get; set; } = null!;
+
+        public int? RatingSum { get; set; }
+
+        public List<CategoryViewModel> Categories { get; set; }
+            = new List<CategoryViewModel>();
+    }
+}

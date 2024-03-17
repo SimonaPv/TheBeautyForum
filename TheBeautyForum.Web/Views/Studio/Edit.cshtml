@@ -69,31 +69,23 @@
                         <span asp-validation-for="CloseTime" class="text-danger"></span>
                     </div>
 
-                    <div class="form-holder" style="margin: 12px 0px 12px 0px;">
-                        <div class="form-group">
-                            <select asp-for="CategoryIds" multiple class="form-control chosen-select choices-multiple-remove-button">
+                    <div class="form-holder">
+                        <div class="form-control" style="padding-left: 1em">
+                            <select asp-for="CategoryIds" multiple data-placeholder="Select procedures..." class="form-control chosen-select choices-multiple-remove-button">
                                 @for (int i = 0; i < Model.Categories.Count; i++)
                                 {
-                                    <option value="@Model.Categories[i].Id">@Model.Categories[i].Name</option>
+                                    @if (Model.Categories[i].IsSelected)
+                                    {
+                                        <option class="chosen-choices" value="@Model.Categories[i].Id">@Model.Categories[i].Name (click to add it back)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Categories[i].Id">@Model.Categories[i].Name</option>
+                                    }
                                 }
                             </select>
                         </div>
                     </div>
-
-                    @*<div class="form-holder">
-                    <div class="form-group">
-                    @for (int i = 0; i < @Model.Categories.Count; i++)
-                    {
-                    <input type="checkbox" asp-for="@Model.Categories[i].IsSelected" />
-                    <label>@Model.Categories[i].Name</label>
-                    <input type="hidden" asp-for="@Model.Categories[i].Id" />
-                    <input type="hidden" asp-for="@Model.Categories[i].Name" />
-                    <br />
-                    }
-                    <span asp-validation-for="Categories" class="small text-danger"></span>
-                    </div>
-                    </div>*@
-
                     <div class="form-login" style="margin-bottom: 2.5em;">
                         <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
                         <button id="registerSubmit" class="button" type="submit" asp-controller="Studio" asp-action="Profile" asp-route-id="@Model.Id"><b>Cancel</b></button>
@@ -127,7 +119,6 @@
 
     @section Styles{
         <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
     }
 
     <style>

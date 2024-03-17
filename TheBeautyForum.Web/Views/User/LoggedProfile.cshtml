@@ -132,9 +132,9 @@
                                 <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                             </div>
                             <div class="right-event">
-                                @if (a.Description!.Length > 47)
+                                @if (a.Description!.Length > 29)
                                 {
-                                    <h4>@a.Description.Substring(0, 47)...</h4>
+                                    <h4>@a.Description.Substring(0, 29)...</h4>
                                 }
                                 else
                                 {

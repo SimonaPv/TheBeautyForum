@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using TheBeautyForum.Web.ViewModels.Studio;
+@model List<ViewStudioViewModel>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google Web Fonts -->
@@ -7,10 +10,40 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="~/css/studios.css">
     <link rel="stylesheet" href="~/css/post.css">
+
 </head>
 <body>
-
-    <script src="script.js"></script>
+    <div class="container-fluid service ">
+        <div class="container py-5">
+            @*<div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <h1 class="display-3 mb-4">Our Service Given Physio Therapy By Expert</h1>
+            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+            </div>*@
+            <div class="row g-4 justify-content-center">
+                @foreach (var s in Model)
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item rounded">
+                            <div class="service-img rounded-top">
+                                <img src="@s.ProfilePictureUrl" style="height: 300px; width: 300px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
+                            </div>
+                            <div class="service-content rounded-bottom bg-light p-4">
+                                <div class="service-content-inner">
+                                    <h5 class="mb-4">@s.Name</h5>
+                                    <p>@s.Description</p>
+                                    <p>Location: @s.Location</p>
+                                    <p>Location: @s.Location</p>
+                                    <p>Location: @s.Location</p>
+                                    <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.Id">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </body>
 </html>

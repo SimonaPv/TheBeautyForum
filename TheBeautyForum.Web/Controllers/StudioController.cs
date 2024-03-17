@@ -15,7 +15,9 @@ namespace TheBeautyForum.Web.Controllers
 
         public async Task<IActionResult> All()
         {
-            return View();
+            var model = await _studioService.GetAllStudiosAsync();
+
+            return View(model);
         }
 
         public async Task<IActionResult> Profile(

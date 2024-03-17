@@ -5,6 +5,7 @@ using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
+using static TheBeautyForum.Data.DataConstants;
 
 namespace TheBeautyForum.Services.Studios
 {
@@ -56,6 +57,31 @@ namespace TheBeautyForum.Services.Studios
             }
 
             await this._dbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync()
+        {
+            var model = await _dbContext.Studios
+                .Include(x => x.StudioCategories)
+                .Include(x => x.Ratings)
+                .Select(s => new ViewStudioViewModel()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    ProfilePictureUrl = s.StudioPictureUrl,
+                    Location = s.Location,
+                    OpenTime = s.OpenTime.ToString(),
+                    CloseTime = s.CloseTime.ToString(),
+                    RatingSum = s.Ratings.Sum(x => x.Value),
+                    Categories = s.StudioCategories.Select(x => new CategoryViewModel()
+                    {
+                        Id = x.CategoryId,
+                        Name = x.Category!.Name
+                    }).ToList()
+                }).ToListAsync();
+
+            return model;
         }
 
         public async Task<EditStudioProfileViewModel> GetStudioAsync(Guid studioId)
