@@ -45,12 +45,12 @@ namespace TheBeautyForum.Services.Studios
 
             this._dbContext.StudioCategories.RemoveRange(categories);
 
-            foreach (var category in model.Categories.Where(x => x.IsSelected))
+            foreach (var categoryId in model.CategoryIds)
             {
                 var studioCategory = new StudioCategory()
                 {
                     StudioId = studio.Id,
-                    CategoryId = category.Id
+                    CategoryId = categoryId
                 };
 
                 await this._dbContext.StudioCategories.AddAsync(studioCategory);
