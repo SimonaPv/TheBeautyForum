@@ -32,7 +32,7 @@ namespace TheBeautyForum.Data.Configurations
                 Id = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
                 Name = "Murphy",
                 Description = "Hairstyling and Haircutting",
-                Location = "Stara Zagora, Bulgaria, ul. Vasil Levski 50",
+                Location = "Stara Zagora, Bulgaria, ul. Tsar Kaloyan 3",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
                 StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg"
