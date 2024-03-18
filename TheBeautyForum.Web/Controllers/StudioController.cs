@@ -13,6 +13,27 @@ namespace TheBeautyForum.Web.Controllers
             _studioService = studioService;
         }
 
+        public async Task<IActionResult> FilterLocation(string location)
+        {
+            var model = await _studioService.FilterByLocationAsync(location);
+
+            return View("All", model);
+        }
+
+        public async Task<IActionResult> FilterProcedure(string category)
+        {
+            var model = await _studioService.FilterByProcedureAsync(category);
+
+            return View("All", model);
+        }
+
+        public async Task<IActionResult> FilterRating(string rating)
+        {
+            var model = await _studioService.FilterByRatingAsync(rating);
+
+            return View("All", model);
+        }
+
         public async Task<IActionResult> All()
         {
             var model = await _studioService.GetAllStudiosAsync();

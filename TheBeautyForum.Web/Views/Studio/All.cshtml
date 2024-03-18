@@ -1,5 +1,5 @@
 ﻿@using TheBeautyForum.Web.ViewModels.Studio;
-@model List<ViewStudioViewModel>
+@model AllStudiosViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,28 +15,83 @@
 
 </head>
 <body>
-    <div class="container-fluid service ">
-        <div class="container py-5">
-            @*<div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
-            <h1 class="display-3 mb-4">Our Service Given Physio Therapy By Expert</h1>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
-            </div>*@
-            <div class="row g-4 justify-content-center">
-                @foreach (var s in Model)
+    <div class="container-fluid service">
+        <div class="container py-3">
+            <div id="openRolesSection" class="container content-space-1" style="margin-bottom: 1em; ">
+                <div class="row gx-2 gx-md-3 mb-7">
+                    <div style="display: flex; flex-direction: row; justify-content: end">
+                        <form asp-controller="Studio" asp-action="FilterLocation" style="width: 250px;">
+                            <div>
+                                <select asp-for="@Model.Location" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="locationsJobCareers" aria-label="Select location" onchange="this.form.submit()">
+                                    <option selected value="all">All locations</option>
+                                    @foreach (var c in Model.Locations.OrderBy(x => x))
+                                    {
+                                        <option value="@c">@c</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                        <form asp-controller="Studio" asp-action="FilterProcedure" style="width: 250px;">
+                            <div style="margin-left: 0.5em">
+                                <select asp-for="@Model.Category" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select procedure" onchange="this.form.submit()">
+                                    <option selected value="all">All procedures</option>
+                                    @foreach (var c in Model.Categories.OrderBy(x => x.Name))
+                                    {
+                                        <option value="@c.Name">@c.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                        <form asp-controller="Studio" asp-action="FilterRating" style="width: 250px;">
+                            <div style="margin-left: 0.5em;">
+                                <select asp-for="@Model.Rating" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" onchange="this.form.submit()">
+                                    <option selected value="all">No matter the rating</option>
+                                    <option value="descending">Highest to lowest</option>
+                                    <option value="ascending">Lowest to highest</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-start">
+                @if (Model.Studios.Any())
+                {
+                    @foreach (var s in Model.Studios)
+                    {
+                        <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-item rounded">
+                                <div class="service-img rounded-top">
+                                    <img src="@s.ProfilePictureUrl" style="height: 300px; width: 300px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
+                                </div>
+                                <div class="service-content rounded-bottom light-ligth p-4">
+                                    <div class="service-content-inner">
+                                        <div style="height: 150px">
+                                            <h5 class="mb-1">@s.Name</h5>
+                                            <p style="margin-bottom: 0.5em; font-size: 12px; font-weight: 400; color: #626262">@s.Description</p>
+                                            <p style="margin-bottom: 0.2em; font-size: 13px"><span style="font-size: 13px; color: #626262">Location: </span>@s.Location</p>
+                                            <p style="font-size: 13px"><span style="font-size: 13px; color: #626262">Offers: </span>@string.Join(", ", @s.Categories.Select(x => x.Name))</p>
+                                        </div>
+                                        <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.Id">View profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
                 {
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item rounded">
                             <div class="service-img rounded-top">
-                                <img src="@s.ProfilePictureUrl" style="height: 300px; width: 300px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
+                                <img src="~/images/empty_state.png" style="height: 300px; width: 300px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
                             </div>
-                            <div class="service-content rounded-bottom bg-light p-4">
+                            <div class="service-content rounded-bottom light-ligth p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">@s.Name</h5>
-                                    <p>@s.Description</p>
-                                    <p>Location: @s.Location</p>
-                                    <p>Location: @s.Location</p>
-                                    <p>Location: @s.Location</p>
-                                    <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.Id">View profile</a>
+                                    <h5 class="mb-1">Nothing found.</h5>
+                                    <div style="height: 100px"></div>
+                                    <a class="btn btn-primary none rounded-pill text-white py-2 px-4 mb-2" style="background-color: gray">View profile</a>
                                 </div>
                             </div>
                         </div>
@@ -47,3 +102,9 @@
     </div>
 </body>
 </html>
+
+<style>
+    .light-ligth {
+        background-color: white;
+    }
+</style>

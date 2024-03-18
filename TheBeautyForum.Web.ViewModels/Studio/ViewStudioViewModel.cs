@@ -24,7 +24,9 @@ namespace TheBeautyForum.Web.ViewModels.Studio
 
         public string Location { get; set; } = null!;
 
-        public int? RatingSum { get; set; }
+        public double? RatingSum { get; set; }
+
+        public FilterViewModel? Filter { get; set; }
 
         public List<CategoryViewModel> Categories { get; set; }
             = new List<CategoryViewModel>();

@@ -59,8 +59,233 @@ namespace TheBeautyForum.Services.Studios
             await this._dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync()
+        public async Task<AllStudiosViewModel> FilterByLocationAsync(string loc)
         {
+            if (loc == "all")
+            {
+                var allStudios = await GetAllStudiosAsync();
+
+                return allStudios;
+            }
+
+            #region GetStudiosFromDb
+
+            var model = await _dbContext.Studios
+               .Include(x => x.StudioCategories)
+               .Include(x => x.Ratings)
+               .Select(s => new ViewStudioViewModel()
+               {
+                   Id = s.Id,
+                   Name = s.Name,
+                   Description = s.Description,
+                   ProfilePictureUrl = s.StudioPictureUrl,
+                   Location = s.Location,
+                   OpenTime = s.OpenTime.ToString(),
+                   CloseTime = s.CloseTime.ToString(),
+                   RatingSum = s.Ratings.Average(x => x.Value),
+                   Categories = s.StudioCategories.Select(x => new CategoryViewModel()
+                   {
+                       Id = x.CategoryId,
+                       Name = x.Category!.Name
+                   }).ToList()
+               })
+               .Where(x => x.Location.Contains(loc))
+               .ToListAsync();
+
+            foreach (var l in model)
+            {
+                string add = l.Location;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                l.Location = result;
+            }
+            #endregion
+
+            #region MakeThemAllStudiosViewModel
+
+            var studios = new AllStudiosViewModel()
+            {
+                Studios = model,
+                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
+                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToListAsync()
+            };
+
+            var locs = new List<string>();
+
+            foreach (var l in studios.Locations)
+            {
+                string add = l;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                locs.Add(result);
+            }
+
+            studios.Locations = locs.Distinct().ToList();
+            #endregion
+
+            return studios;
+        }
+
+        public async Task<AllStudiosViewModel> FilterByProcedureAsync(string proc)
+        {
+            if (proc == "all")
+            {
+                var allStudios = await GetAllStudiosAsync();
+
+                return allStudios;
+            }
+
+            #region GetStudiosFromDb
+            var model = await _dbContext.Studios
+               .Include(x => x.StudioCategories)
+               .Include(x => x.Ratings)
+               .Where(x => x.StudioCategories.Select(x => x.Category.Name).Contains(proc))
+               .Select(s => new ViewStudioViewModel()
+               {
+                   Id = s.Id,
+                   Name = s.Name,
+                   Description = s.Description,
+                   ProfilePictureUrl = s.StudioPictureUrl,
+                   Location = s.Location,
+                   OpenTime = s.OpenTime.ToString(),
+                   CloseTime = s.CloseTime.ToString(),
+                   RatingSum = s.Ratings.Average(x => x.Value),
+                   Categories = s.StudioCategories
+                        .Select(x => new CategoryViewModel()
+                        {
+                            Id = x.CategoryId,
+                            Name = x.Category!.Name
+                        }).ToList()
+               })
+               .ToListAsync();
+
+            foreach (var l in model)
+            {
+                string add = l.Location;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                l.Location = result;
+            }
+            #endregion
+
+            #region MakeThemAllStudiosViewModel
+            var studios = new AllStudiosViewModel()
+            {
+                Studios = model,
+                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
+                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToListAsync()
+            };
+
+            var locs = new List<string>();
+
+            foreach (var l in studios.Locations)
+            {
+                string add = l;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                locs.Add(result);
+            }
+
+            studios.Locations = locs.Distinct().ToList();
+            #endregion
+
+            return studios;
+        }
+
+        public async Task<AllStudiosViewModel> FilterByRatingAsync(string method)
+        {
+            if (method == "all")
+            {
+                var allStudios = await GetAllStudiosAsync();
+
+                return allStudios;
+            }
+
+            #region GetStudiosFromDb
+
+            var model = await _dbContext.Studios
+               .Include(x => x.StudioCategories)
+               .Include(x => x.Ratings)
+               .Select(s => new ViewStudioViewModel()
+               {
+                   Id = s.Id,
+                   Name = s.Name,
+                   Description = s.Description,
+                   ProfilePictureUrl = s.StudioPictureUrl,
+                   Location = s.Location,
+                   OpenTime = s.OpenTime.ToString(),
+                   CloseTime = s.CloseTime.ToString(),
+                   RatingSum = s.Ratings.Average(x => x.Value),
+                   Categories = s.StudioCategories.Select(x => new CategoryViewModel()
+                   {
+                       Id = x.CategoryId,
+                       Name = x.Category!.Name
+                   }).ToList()
+               }).ToListAsync();
+
+            foreach (var l in model)
+            {
+                string add = l.Location;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                l.Location = result;
+            }
+            #endregion
+
+            if (method == "ascending")
+            {
+                model = model.OrderBy(x => x.RatingSum).ToList();
+            }
+            else
+            {
+                model = model.OrderByDescending(x => x.RatingSum).ToList();
+            }
+
+            #region MakeThemAllStudiosViewModel
+            var studios = new AllStudiosViewModel()
+            {
+                Studios = model,
+                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
+                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToListAsync()
+            };
+
+            var locs = new List<string>();
+
+            foreach (var l in studios.Locations)
+            {
+                string add = l;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                locs.Add(result);
+            }
+
+            studios.Locations = locs.Distinct().ToList();
+            #endregion
+
+            return studios;
+        }
+
+        public async Task<AllStudiosViewModel> GetAllStudiosAsync()
+        {
+            #region GetStudiosFromDb
             var model = await _dbContext.Studios
                 .Include(x => x.StudioCategories)
                 .Include(x => x.Ratings)
@@ -81,7 +306,43 @@ namespace TheBeautyForum.Services.Studios
                     }).ToList()
                 }).ToListAsync();
 
-            return model;
+            foreach (var l in model)
+            {
+                string add = l.Location;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                l.Location = result;
+            }
+            #endregion
+
+            #region MakeThemAllStudiosViewModel
+            var studios = new AllStudiosViewModel()
+            {
+                Studios = model,
+                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
+                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToListAsync()
+            };
+
+            var locs = new List<string>();
+
+            foreach (var l in studios.Locations)
+            {
+                string add = l;
+                string[] parts = add.Split(',');
+                string result = string.Join(",", parts[0], parts[1]);
+
+                locs.Add(result);
+            }
+
+            studios.Locations = locs.Distinct().ToList();
+            #endregion
+
+            return studios;
         }
 
         public async Task<EditStudioProfileViewModel> GetStudioAsync(Guid studioId)
@@ -200,18 +461,6 @@ namespace TheBeautyForum.Services.Studios
                         StudioName = a.Studio!.Name
                     })
                     .ToListAsync(),
-                //Post = new CreatePublicationViewModel()
-                //{
-                //    Studios = _dbContext.Studios
-                //            .Select(s => new StudioPostViewModel()
-                //            {
-                //                Id = s.Id,
-                //                StudioName = s.Name
-                //            }).ToList(),
-                //    UserFirstName = model.Name,
-                //    UserProfilePic = model.StudioPictureUrl,
-                //    ActionUrl = "StudioProfile"
-                //}
             };
 
             return profile;
