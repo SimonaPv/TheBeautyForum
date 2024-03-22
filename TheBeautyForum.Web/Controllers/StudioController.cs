@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Completion;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Web.ViewModels.Studio;
 
@@ -13,32 +14,11 @@ namespace TheBeautyForum.Web.Controllers
             _studioService = studioService;
         }
 
-        public async Task<IActionResult> FilterLocation(string location)
+        public async Task<IActionResult> All(FilterViewModel model)
         {
-            var model = await _studioService.FilterByLocationAsync(location);
+            var studios  = await _studioService.GetAllStudiosAsync(model);
 
-            return View("All", model);
-        }
-
-        public async Task<IActionResult> FilterProcedure(string category)
-        {
-            var model = await _studioService.FilterByProcedureAsync(category);
-
-            return View("All", model);
-        }
-
-        public async Task<IActionResult> FilterRating(string rating)
-        {
-            var model = await _studioService.FilterByRatingAsync(rating);
-
-            return View("All", model);
-        }
-
-        public async Task<IActionResult> All()
-        {
-            var model = await _studioService.GetAllStudiosAsync();
-
-            return View(model);
+            return View(studios);
         }
 
         public async Task<IActionResult> Profile(

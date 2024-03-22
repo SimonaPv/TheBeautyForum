@@ -63,7 +63,6 @@
             </div>
             <div class="post-col">
                 <div style="margin-right: 10em;">
-                    @*<partial name="_CreatePostStudioPartial" model="@Model.Post" />*@
                     @foreach (var p in Model.Publications.OrderByDescending(x => x.DatePosted))
                     {
                         <div class="post-containerr">

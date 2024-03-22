@@ -59,235 +59,9 @@ namespace TheBeautyForum.Services.Studios
             await this._dbContext.SaveChangesAsync();
         }
 
-        public async Task<AllStudiosViewModel> FilterByLocationAsync(string loc)
+        public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync(FilterViewModel? filter = null)
         {
-            if (loc == "all")
-            {
-                var allStudios = await GetAllStudiosAsync();
-
-                return allStudios;
-            }
-
-            #region GetStudiosFromDb
-
-            var model = await _dbContext.Studios
-               .Include(x => x.StudioCategories)
-               .Include(x => x.Ratings)
-               .Select(s => new ViewStudioViewModel()
-               {
-                   Id = s.Id,
-                   Name = s.Name,
-                   Description = s.Description,
-                   ProfilePictureUrl = s.StudioPictureUrl,
-                   Location = s.Location,
-                   OpenTime = s.OpenTime.ToString(),
-                   CloseTime = s.CloseTime.ToString(),
-                   RatingSum = s.Ratings.Average(x => x.Value),
-                   Categories = s.StudioCategories.Select(x => new CategoryViewModel()
-                   {
-                       Id = x.CategoryId,
-                       Name = x.Category!.Name
-                   }).ToList()
-               })
-               .Where(x => x.Location.Contains(loc))
-               .ToListAsync();
-
-            foreach (var l in model)
-            {
-                string add = l.Location;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                l.Location = result;
-            }
-            #endregion
-
-            #region MakeThemAllStudiosViewModel
-
-            var studios = new AllStudiosViewModel()
-            {
-                Studios = model,
-                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
-                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }).ToListAsync()
-            };
-
-            var locs = new List<string>();
-
-            foreach (var l in studios.Locations)
-            {
-                string add = l;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                locs.Add(result);
-            }
-
-            studios.Locations = locs.Distinct().ToList();
-            #endregion
-
-            return studios;
-        }
-
-        public async Task<AllStudiosViewModel> FilterByProcedureAsync(string proc)
-        {
-            if (proc == "all")
-            {
-                var allStudios = await GetAllStudiosAsync();
-
-                return allStudios;
-            }
-
-            #region GetStudiosFromDb
-            var model = await _dbContext.Studios
-               .Include(x => x.StudioCategories)
-               .Include(x => x.Ratings)
-               .Where(x => x.StudioCategories.Select(x => x.Category.Name).Contains(proc))
-               .Select(s => new ViewStudioViewModel()
-               {
-                   Id = s.Id,
-                   Name = s.Name,
-                   Description = s.Description,
-                   ProfilePictureUrl = s.StudioPictureUrl,
-                   Location = s.Location,
-                   OpenTime = s.OpenTime.ToString(),
-                   CloseTime = s.CloseTime.ToString(),
-                   RatingSum = s.Ratings.Average(x => x.Value),
-                   Categories = s.StudioCategories
-                        .Select(x => new CategoryViewModel()
-                        {
-                            Id = x.CategoryId,
-                            Name = x.Category!.Name
-                        }).ToList()
-               })
-               .ToListAsync();
-
-            foreach (var l in model)
-            {
-                string add = l.Location;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                l.Location = result;
-            }
-            #endregion
-
-            #region MakeThemAllStudiosViewModel
-            var studios = new AllStudiosViewModel()
-            {
-                Studios = model,
-                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
-                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }).ToListAsync()
-            };
-
-            var locs = new List<string>();
-
-            foreach (var l in studios.Locations)
-            {
-                string add = l;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                locs.Add(result);
-            }
-
-            studios.Locations = locs.Distinct().ToList();
-            #endregion
-
-            return studios;
-        }
-
-        public async Task<AllStudiosViewModel> FilterByRatingAsync(string method)
-        {
-            if (method == "all")
-            {
-                var allStudios = await GetAllStudiosAsync();
-
-                return allStudios;
-            }
-
-            #region GetStudiosFromDb
-
-            var model = await _dbContext.Studios
-               .Include(x => x.StudioCategories)
-               .Include(x => x.Ratings)
-               .Select(s => new ViewStudioViewModel()
-               {
-                   Id = s.Id,
-                   Name = s.Name,
-                   Description = s.Description,
-                   ProfilePictureUrl = s.StudioPictureUrl,
-                   Location = s.Location,
-                   OpenTime = s.OpenTime.ToString(),
-                   CloseTime = s.CloseTime.ToString(),
-                   RatingSum = s.Ratings.Average(x => x.Value),
-                   Categories = s.StudioCategories.Select(x => new CategoryViewModel()
-                   {
-                       Id = x.CategoryId,
-                       Name = x.Category!.Name
-                   }).ToList()
-               }).ToListAsync();
-
-            foreach (var l in model)
-            {
-                string add = l.Location;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                l.Location = result;
-            }
-            #endregion
-
-            if (method == "ascending")
-            {
-                model = model.OrderBy(x => x.RatingSum).ToList();
-            }
-            else
-            {
-                model = model.OrderByDescending(x => x.RatingSum).ToList();
-            }
-
-            #region MakeThemAllStudiosViewModel
-            var studios = new AllStudiosViewModel()
-            {
-                Studios = model,
-                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
-                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }).ToListAsync()
-            };
-
-            var locs = new List<string>();
-
-            foreach (var l in studios.Locations)
-            {
-                string add = l;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                locs.Add(result);
-            }
-
-            studios.Locations = locs.Distinct().ToList();
-            #endregion
-
-            return studios;
-        }
-
-        public async Task<AllStudiosViewModel> GetAllStudiosAsync()
-        {
-            #region GetStudiosFromDb
-            var model = await _dbContext.Studios
-                .Include(x => x.StudioCategories)
+            var studios = await _dbContext.Studios.Include(x => x.StudioCategories)
                 .Include(x => x.Ratings)
                 .Select(s => new ViewStudioViewModel()
                 {
@@ -303,44 +77,59 @@ namespace TheBeautyForum.Services.Studios
                     {
                         Id = x.CategoryId,
                         Name = x.Category!.Name
-                    }).ToList()
+                    }).ToList(),
                 }).ToListAsync();
 
-            foreach (var l in model)
+            foreach (var s in studios)
             {
-                string add = l.Location;
+                string add = s.Location;
                 string[] parts = add.Split(',');
                 string result = string.Join(",", parts[0], parts[1]);
 
-                l.Location = result;
+                s.Location = result;
             }
-            #endregion
 
-            #region MakeThemAllStudiosViewModel
-            var studios = new AllStudiosViewModel()
+            var locations = studios.Select(x => x.Location).Distinct().ToList();
+            var categories = new List<CategoryViewModel>();
+
+            foreach (var m in studios)
             {
-                Studios = model,
-                Locations = await _dbContext.Studios.Select(x => x.Location).Distinct().ToListAsync(),
-                Categories = await _dbContext.Categories.Select(x => new CategoryViewModel()
+                categories.AddRange(m.Categories);
+            }
+
+            categories = categories.Distinct().ToList();
+
+            if (filter.Location != null && filter.Category != null && filter.Rating != null)
+            {
+                if (filter.Location != "none")
                 {
-                    Id = x.Id,
-                    Name = x.Name
-                }).ToListAsync()
-            };
-
-            var locs = new List<string>();
-
-            foreach (var l in studios.Locations)
-            {
-                string add = l;
-                string[] parts = add.Split(',');
-                string result = string.Join(",", parts[0], parts[1]);
-
-                locs.Add(result);
+                    studios = studios.Where(x => x.Location == filter.Location).ToList();
+                }
+                if (filter.Category != "none")
+                {
+                    studios = studios.Where(x => x.Categories.Select(x => x.Name).Contains(filter.Category)).ToList();
+                }
+                if (filter.Rating != "none")
+                {
+                    if (filter.Rating == "descending")
+                    {
+                        studios = studios.OrderByDescending(x => x.RatingSum).ToList();
+                    }
+                    else
+                    {
+                        studios = studios.OrderBy(x => x.RatingSum).ToList();
+                    }
+                }
             }
 
-            studios.Locations = locs.Distinct().ToList();
-            #endregion
+            studios[0].Filter = new FilterViewModel()
+            {
+                Locations = locations,
+                Categories = categories,
+                Location = filter.Location,
+                Category = filter.Category,
+                Rating = filter.Rating,
+            };
 
             return studios;
         }
