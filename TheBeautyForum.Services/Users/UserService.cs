@@ -40,7 +40,7 @@ namespace TheBeautyForum.Services.Users
         {
             var model = await _dbContext.Users.FindAsync(userId);
 
-            if(model == null)
+            if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
@@ -59,13 +59,6 @@ namespace TheBeautyForum.Services.Users
 
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
         {
-            var appointments = await _dbContext.Appointments
-                .Where(d => d.StartDate < DateTime.Now)
-                .ToListAsync();
-
-            _dbContext.RemoveRange(appointments);
-            await _dbContext.SaveChangesAsync();
-
             var user = await _dbContext.Users
                 .Include(a => a.Appointments)
                 .Include(r => r.Ratings)
@@ -125,7 +118,7 @@ namespace TheBeautyForum.Services.Users
                     EndDate = a.EndDate,
                     Description = a.Description,
                     CategoryName = a.Category!.Name,
-                    StudioName = a.Studio!.Name
+                    StudioName = a.Studio!.Name,
                 })
                 .ToListAsync(),
                 Post = new CreatePublicationViewModel()

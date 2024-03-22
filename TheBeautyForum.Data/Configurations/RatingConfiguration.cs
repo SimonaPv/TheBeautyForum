@@ -64,6 +64,50 @@ namespace TheBeautyForum.Data.Configurations
             data.Add(rat);
             #endregion
 
+            #region N-Stage
+            rat = new Rating()
+            {
+                Id = Guid.Parse("9056efb3-0f7d-4393-bca6-a61c8e92ceb5"),
+                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                StudioId = Guid.Parse("c7998d5b-0017-4924-8544-49b4a276afe1"),
+                Value = 2
+            };
+            data.Add(rat);
+            #endregion
+
+            #region IN Beauty
+            rat = new Rating()
+            {
+                Id = Guid.Parse("9f5c4415-ce99-4d50-82cf-43fda2cdb71b"),
+                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                StudioId = Guid.Parse("bf2832b2-5b62-471b-9980-583753504ca6"),
+                Value = 3
+            };
+            data.Add(rat);
+            #endregion
+
+            #region Wellness Center
+            rat = new Rating()
+            {
+                Id = Guid.Parse("ffd265a7-832d-4fc1-925c-5e72eab2d02e"),
+                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                StudioId = Guid.Parse("df44a062-9586-4815-8126-99c240433b22"),
+                Value = 4
+            };
+            data.Add(rat);
+            #endregion
+
+            #region Helita
+            rat = new Rating()
+            {
+                Id = Guid.Parse("beb87557-618d-4fbc-b5a4-12b8f54c5359"),
+                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+                Value = 3
+            };
+            data.Add(rat);
+            #endregion
+
             return data;
         }
     }

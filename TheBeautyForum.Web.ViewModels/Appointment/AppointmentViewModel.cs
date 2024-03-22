@@ -1,4 +1,7 @@
-﻿namespace TheBeautyForum.Web.ViewModels.Appointment
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using TheBeautyForum.Web.ViewModels.Rating;
+
+namespace TheBeautyForum.Web.ViewModels.Appointment
 {
     public class AppointmentViewModel
     {
@@ -7,6 +10,8 @@
         public Guid UserId { get; set; }
 
         public Guid StudioId { get; set; }
+
+        public RatingViewModel Rating { get; set; }
 
         public DateTime StartDate { get; set; }
 

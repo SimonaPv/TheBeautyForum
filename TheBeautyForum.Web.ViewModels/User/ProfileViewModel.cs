@@ -15,7 +15,9 @@ namespace TheBeautyForum.Web.ViewModels.User
 
         public string? ProfilePictureUrl { get; set; }
 
-        public string? Email { get; set; } 
+        public string? Email { get; set; }
+
+        public int? Rating { get; set; }
 
         public CreatePublicationViewModel? Post { get; set; }
 

@@ -19,7 +19,7 @@ namespace TheBeautyForum.Web.Controllers
             this._userService = userService;
         }
 
-        public async Task<IActionResult> LoggedProfile()
+        public async Task<IActionResult> LoggedProfile(ProfileViewModel mo)
         {
             var model = await _userService
                 .ShowLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));

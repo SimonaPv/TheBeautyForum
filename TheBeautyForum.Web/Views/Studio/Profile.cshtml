@@ -36,7 +36,17 @@
                 <div class="pd-row" style="display: flex; flex-direction: row; align-items: center;">
                     <img src="@Model.ProfilePictureUrl" class="pd-image">
                     <div style="padding-top:0em;">
-                        <h2>@Model.Name</h2>
+                        <div style="display: flex; flex-direction: row">
+                            <h2 style="padding-right:0.1em">@Model.Name</h2>
+                            @for (int i = 0; i < Model.RatingSum; i++)
+                            {
+                                <span style="font-size: 13px; padding-top: 0.9em" class="fa fa-star checked"></span>
+                            }
+                            @for (int i = 0; i < 5 - Model.RatingSum; i++)
+                            {
+                                <span style="font-size: 13px; padding-top: 0.9em" class="fa fa-star"></span>
+                            }
+                        </div>
                         <h6>@Model.Description</h6>
                         <p style="margin-bottom: 0.2em;">Open hours: @Model.OpenTime - @Model.CloseTime</p>
                         <p style="width: 25em; margin-bottom: 0.5em">Offers: @string.Join(", ", Model.CategoryNames.OrderBy(x => x))</p>
@@ -151,8 +161,9 @@
                 <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-top: 1.2em;">
                     <div class="profile-intro" style="padding: 10px; padding-top: 0px;">
                         <div class="sidebar-title" style="margin-bottom: 0.3em">
-                            <h4 style="font-size: 21px; padding: 20px 0px 0px 10px;">Location </br>
-                            <span style="font-size: 12px; font-weight: 500">(@Model.Location)</span>
+                            <h4 style="font-size: 21px; padding: 20px 0px 0px 10px;">
+                                Location </br>
+                                <span style="font-size: 12px; font-weight: 500">(@Model.Location)</span>
                             </h4>
                         </div>
                         <div class="event">
@@ -168,6 +179,11 @@
         </div>
     </div>
 
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
 
     <script src="script.js"></script>
     <script src="~/js/site.js"></script>

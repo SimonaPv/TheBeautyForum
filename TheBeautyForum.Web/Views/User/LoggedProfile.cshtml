@@ -1,8 +1,9 @@
 ﻿@using System.Globalization;
+@using System.Security.Claims;
 @using TheBeautyForum.Web.ViewModels.User;
 @model ProfileViewModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Your profile";
 }
 
 <!DOCTYPE html>
@@ -119,35 +120,95 @@
                     }
                 </div>
             </div>
-            <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
-                <div class="profile-intro">
-                    <div class="sidebar-title">
-                        <h4 style="font-size: 20px;">Appointments</h4>
-                    </div>
-                    @foreach (var a in Model.Appointments.OrderBy(x => x.StartDate))
-                    {
-                        <div class="event">
-                            <div class="left-event" style="width: 55px;">
-                                <h3>@a.StartDate.Day</h3>
-                                <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+            <div>
+
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
+                    <div class="profile-intro">
+                        <div class="sidebar-title">
+                            <h4 style="font-size: 20px;">Appointments</h4>
+                        </div>
+                        @foreach (var a in Model.Appointments.Where(u => u.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
+                        {
+                            <div class="event">
+                                <div class="left-event" style="width: 55px;">
+                                    <h3>@a.StartDate.Day</h3>
+                                    <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                                </div>
+                                <div class="right-event">
+                                    @if (a.Description!.Length > 33)
+                                    {
+                                        <h4>@a.Description.Substring(0, 30)...</h4>
+                                    }
+                                    else
+                                    {
+                                        <h4>@a.Description</h4>
+                                    }
+                                    <p>
+                                        <i class="fas fa-map-marker-alt"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: #626262; font-size: 14px">
+                                            @a.StudioName
+                                        </a> at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)
+                                    </p>
+                                </div>
                             </div>
-                            <div class="right-event">
-                                @if (a.Description!.Length > 29)
+                        }
+                    </div>
+                </div>
+
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-top: 1.2em;">
+                    <div class="profile-intro">
+                        <div class="sidebar-title">
+                            <h4 style="font-size: 20px;">Rate your experiences</h4>
+                        </div>
+                        @foreach (var a in Model.Appointments.Where(u => u.StartDate < DateTime.Now).OrderBy(x => x.StartDate))
+                        {
+                            <div class="event">
+                                <div class="left-event" style="width: 55px;">
+                                    <h3 style="color: #626262">@a.StartDate.Day</h3>
+                                    <span style="background-color: #E7E6E6; color: #626262">@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                                </div>
+                                <div class="right-event">
+                                    <h5 style="color: black; font-size: 15px; padding-top: 0.6em">
+                                        <i class="fas fa-map-marker-alt" style="font-size: 15px"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: black; font-weight: 500; font-size: 16px">
+                                            @a.StudioName
+                                        </a>
+                                    </h5>
+
+
+                                    <form asp-controller="User" asp-action="LoggedProfile">
+                                        <div class="rate">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                <input asp-for=@Model.Rating hidden type="radio" checked id="@i" name="rate" value="@i" />
+                                                <label asp-for=@Model.Rating for="@i" title="text">@i stars</label>
+                                            }
+                                        <button type="submit">Submit Rating</button>
+                                        </div>
+                                    </form>
+
+
+
+                                    @* @if (Model.Ratings.Any(x => x.UserId == (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))) && x.StudioId == a.StudioId))
                                 {
-                                    <h4>@a.Description.Substring(0, 29)...</h4>
+                                <div id="rating_bar" style="width: 100px">
+                                @for (int i = 0; i < Model.Ratings.FirstOrDefault(x => x.UserId == (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))) && x.StudioId == a.StudioId).Value; i++)
+                                {
+                                <span style="font-size: 15px;" class="fa fa-star"></span>
+                                }
+                                </div>
                                 }
                                 else
                                 {
-                                    <h4>@a.Description</h4>
+                                <div id="rating_bar" style="width: 100px">
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                <span style="font-size: 15px;" class="fa fa-star"></span>
                                 }
-                                <p>
-                                    <i class="fas fa-map-marker-alt"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: #626262; font-size: 14px">
-                                        @a.StudioName
-                                    </a> at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)
-                                </p>
+                                </div>
+                                }*@
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,7 +225,50 @@
             }
         }
     </script>
-    <script src="script.js"></script>
+
+    <style>
+        .rate {
+            /*float: left;*/
+            /*height: 5px;*/
+            /*padding: 0 10px;*/
+        }
+
+            .rate:not(:checked) > input {
+                position: absolute;
+                top: -9999px;
+            }
+
+            .rate:not(:checked) > label {
+                float: right;
+                width: 1em;
+                overflow: hidden;
+                white-space: nowrap;
+                cursor: pointer;
+                font-size: 22px;
+                color: #ccc;
+            }
+
+                .rate:not(:checked) > label:before {
+                    content: '★ ';
+                }
+
+            .rate > input:checked ~ label {
+                color: orange;
+            }
+
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;
+            }
+
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
+    </style>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

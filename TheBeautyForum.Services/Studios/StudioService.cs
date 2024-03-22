@@ -72,7 +72,7 @@ namespace TheBeautyForum.Services.Studios
                     Location = s.Location,
                     OpenTime = s.OpenTime.ToString(),
                     CloseTime = s.CloseTime.ToString(),
-                    RatingSum = s.Ratings.Sum(x => x.Value),
+                    RatingSum = s.Ratings.Average(x => x.Value),
                     Categories = s.StudioCategories.Select(x => new CategoryViewModel()
                     {
                         Id = x.CategoryId,
@@ -181,13 +181,6 @@ namespace TheBeautyForum.Services.Studios
 
         public async Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId)
         {
-            var appointments = await _dbContext.Appointments
-               .Where(d => d.StartDate < DateTime.Now)
-               .ToListAsync();
-
-            _dbContext.RemoveRange(appointments);
-            await _dbContext.SaveChangesAsync();
-
             var model = await _dbContext.Studios
                 .Include(x => x.Ratings)
                 .Include(x => x.Publications)
@@ -205,7 +198,7 @@ namespace TheBeautyForum.Services.Studios
                 StudioId = model.Id,
                 Name = model.Name,
                 ProfilePictureUrl = model.StudioPictureUrl,
-                RatingSum = model.Ratings.Sum(x => x.Value),
+                RatingSum = (int)Math.Round(model.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero),
                 Location = model.Location,
                 Description = model.Description,
                 OpenTime = model.OpenTime,

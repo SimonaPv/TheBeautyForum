@@ -32,7 +32,13 @@
                                 <div class="service-content rounded-bottom light-ligth p-4">
                                     <div class="service-content-inner">
                                         <div style="height: 150px">
-                                            <h5 class="mb-1">@s.Name</h5>
+                                            <div style="display: flex; flex-direction: row">
+                                                <h5 class="mb-1" style="padding-right: 0.1em">@s.Name</h5>
+                                                @for (int i = 0; i < s.RatingSum; i++)
+                                                {
+                                                    <span style="font-size: 11px; padding-top: 0.5em" class="fa fa-star checked"></span>
+                                                }
+                                            </div>
                                             <p style="margin-bottom: 0.5em; font-size: 12px; font-weight: 400; color: #626262">@s.Description</p>
                                             <p style="margin-bottom: 0.2em; font-size: 13px"><span style="font-size: 13px; color: #626262">Location: </span>@s.Location</p>
                                             <p style="font-size: 13px"><span style="font-size: 13px; color: #626262">Offers: </span>@string.Join(", ", @s.Categories.Select(x => x.Name).Take(4))</p>
@@ -70,5 +76,9 @@
 <style>
     .light-ligth {
         background-color: white;
+    }
+
+    .checked {
+        color: orange;
     }
 </style>
