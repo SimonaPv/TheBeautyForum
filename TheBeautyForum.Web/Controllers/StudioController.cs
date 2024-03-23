@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Completion;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Web.Controllers
 {
+    [Authorize]
     public class StudioController : Controller
     {
         private readonly IStudioService _studioService;

@@ -109,7 +109,7 @@ namespace TheBeautyForum.Services.Appointment
                 throw new ArgumentNullException(nameof(studio));
             }
 
-            var categories = await _dbContext.StudioCategories
+            var categories = await _dbContext.StudiosCategories
                 .Where(s => s.StudioId == studio.Id)
                 .Select(x => new CategoryViewModel()
                 {

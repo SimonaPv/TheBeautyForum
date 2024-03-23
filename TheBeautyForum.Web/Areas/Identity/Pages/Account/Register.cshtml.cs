@@ -110,10 +110,17 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             public IFormFile? ProfilePicture { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -137,6 +144,15 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    if (_userManager.Users.Count() < 3)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrator");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

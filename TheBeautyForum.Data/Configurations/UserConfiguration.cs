@@ -19,6 +19,38 @@ namespace TheBeautyForum.Data.Configurations
 
             var user = new User()
             {
+                Id = Guid.Parse("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"),
+                UserName = "Simona",
+                NormalizedUserName = "SIMONA",
+                Email = "simonapalieva@mail.com",
+                NormalizedEmail = "SIMONAPALIEVA@MAIL.COM",
+                FirstName = "Simona",
+                LastName = "Palieva",
+                PhoneNumber = "0884912724",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png",
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+            user.PasswordHash = hasher.HashPassword(user, "123456");
+            data.Add(user);
+
+            user = new User()
+            {
+                Id = Guid.Parse("b313e2e1-0270-4a86-924b-71256500be8b"),
+                UserName = "Mirela",
+                NormalizedUserName = "MIRELA",
+                Email = "mirelametodieva@mail.com",
+                NormalizedEmail = "MIRELAMETODIEVA@MAIL.COM",
+                FirstName = "Mirela",
+                LastName = "Metodieva",
+                PhoneNumber = "0886666666",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg",
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+            user.PasswordHash = hasher.HashPassword(user, "123456");
+            data.Add(user);
+
+            user = new User()
+            {
                 Id = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                 UserName = "Maria",
                 NormalizedUserName = "MARIA",
@@ -32,7 +64,7 @@ namespace TheBeautyForum.Data.Configurations
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
-            
+
             user = new User()
             {
                 Id = Guid.Parse("3bea7392-a556-4a99-86c2-8cb244868283"),

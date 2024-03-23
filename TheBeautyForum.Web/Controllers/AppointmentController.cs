@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheBeautyForum.Services.Appointment;
 using TheBeautyForum.Web.ViewModels.Appointment;
 
 namespace TheBeautyForum.Web.Controllers
 {
+    [Authorize]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;

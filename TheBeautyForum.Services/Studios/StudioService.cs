@@ -39,11 +39,11 @@ namespace TheBeautyForum.Services.Studios
             studio.OpenTime = TimeOnly.Parse(model.OpenTime);
             studio.CloseTime = TimeOnly.Parse(model.CloseTime);
 
-            var categories = await this._dbContext.StudioCategories
+            var categories = await this._dbContext.StudiosCategories
                 .Where(s => s.StudioId == studio.Id)
                 .ToListAsync();
 
-            this._dbContext.StudioCategories.RemoveRange(categories);
+            this._dbContext.StudiosCategories.RemoveRange(categories);
 
             foreach (var categoryId in model.CategoryIds)
             {
@@ -53,7 +53,7 @@ namespace TheBeautyForum.Services.Studios
                     CategoryId = categoryId
                 };
 
-                await this._dbContext.StudioCategories.AddAsync(studioCategory);
+                await this._dbContext.StudiosCategories.AddAsync(studioCategory);
             }
 
             await this._dbContext.SaveChangesAsync();
@@ -218,7 +218,7 @@ namespace TheBeautyForum.Services.Studios
                             StudioName = p.Studio.Name
                         })
                         .ToListAsync(),
-                CategoryNames = await _dbContext.StudioCategories
+                CategoryNames = await _dbContext.StudiosCategories
                     .Where(x => x.StudioId == studioId)
                     .Select(x => x.Category!.Name)
                     .ToListAsync(),

@@ -25,7 +25,7 @@ namespace TheBeautyForum.Web.Data
 
         public DbSet<Studio> Studios { get; set; } = null!;
 
-        public DbSet<StudioCategory> StudioCategories { get; set; } = null!;
+        public DbSet<StudioCategory> StudiosCategories { get; set; } = null!;
 
         public DbSet<Image> Images { get; set; } = null!;
 
