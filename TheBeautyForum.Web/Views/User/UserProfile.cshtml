@@ -2,7 +2,7 @@
 @using TheBeautyForum.Web.ViewModels.User;
 @model ProfileViewModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
 }
 
 <!DOCTYPE html>
@@ -87,8 +87,6 @@
                                 <div class="activity-icons">
                                     <p style="font-size: 18px; margin: 0.5em 1em 0 1em">
                                         <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
-
-                                        <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0
                                     </p>
                                 </div>
                             </div>

@@ -17,8 +17,6 @@ namespace TheBeautyForum.Web.Data
 
         public DbSet<Category> Categories { get; set; } = null!;
 
-        public DbSet<Comment> Comments { get; set; } = null!;
-
         public DbSet<Like> Likes { get; set; } = null!;
 
         public DbSet<Publication> Publications { get; set; } = null!;
@@ -104,14 +102,6 @@ namespace TheBeautyForum.Web.Data
                 .WithMany(p => p.Publications)
                 .HasForeignKey(fk => fk.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
-            });
-
-            modelBuilder.Entity<Comment>(builder =>
-            {
-                builder.HasOne(p => p.Publication)
-                .WithMany(c => c.Comments)
-                .HasForeignKey(fk => fk.PublicationId)
-                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Like>(builder =>

@@ -302,6 +302,15 @@ right-event p {
     cursor: pointer;
 }
 
+.display .dropbtn {
+    background-color: white;
+    color: #626262;
+    padding-top: 0.3em;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -578,6 +587,7 @@ right-event p {
 .profile-intro {
     background: var(--bg-color);
     padding: 20px;
+    padding-bottom: 0px;
     padding-right: 0px;
     margin-bottom: 0px;
     border-radius: 4px;

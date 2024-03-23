@@ -33,9 +33,6 @@ namespace TheBeautyForum.Data.Models
 
         public Image? Image { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-           = new HashSet<Comment>();
-
         public ICollection<Like> Likes { get; set; }
            = new HashSet<Like>();
     }

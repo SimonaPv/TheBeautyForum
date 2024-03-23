@@ -2,6 +2,9 @@
 @using System.Security.Claims;
 @using TheBeautyForum.Web.ViewModels.Studio;
 @model StudioProfileViewModel
+@{
+    ViewData["Title"] = Model.Name;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -117,8 +120,6 @@
                                 <div class="activity-icons">
                                     <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
                                         <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
-
-                                        <i class="fa fa-regular fa-comment" style="margin-left:0.8em; cursor:pointer"></i> 0
                                     </p>
                                 </div>
                             </div>
@@ -132,17 +133,17 @@
                         <div class="sidebar-title">
                             <h4 style="font-size: 20px;">Appointments</h4>
                         </div>
-                        @foreach (var a in Model.Appointments.OrderBy(x => x.StartDate))
+                        @foreach (var a in Model.Appointments.Where(x => x.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
                         {
                             <div class="event">
                                 <div class="left-event" style="width: 55px;">
                                     <h3>@a.StartDate.Day</h3>
                                     <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                                 </div>
-                                <div class="right-event">
-                                    @if (a.Description!.Length > 29)
+                                <div class="right-event" style="width: 250px">
+                                    @if (a.Description!.Length > 57)
                                     {
-                                        <h4>@a.Description.Substring(0, 29)...</h4>
+                                        <h4>@a.Description.Substring(0, 54)...</h4>
                                     }
                                     else
                                     {

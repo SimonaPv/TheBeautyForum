@@ -33,7 +33,7 @@ namespace TheBeautyForum.Data.Configurations
             {
                 Id = Guid.Parse("1790311d-5712-44a9-abbd-3bfc47802419"),
                 UserId = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
-                StudioId = Guid.Parse("0d753e1d-c98b-47c7-b260-0377048c529a"),
+                StudioId = Guid.Parse("bf2832b2-5b62-471b-9980-583753504ca6"),
                 CategoryId = Guid.Parse("4ebb7e23-2a49-4451-8c96-b5c6de99900e"),
                 StartDate = DateTime.ParseExact("22-07-2024 14:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("22-07-2024 15:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),

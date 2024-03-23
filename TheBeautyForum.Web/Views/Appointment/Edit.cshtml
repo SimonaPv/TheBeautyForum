@@ -1,7 +1,8 @@
 ﻿@using TheBeautyForum.Web.ViewModels.Appointment;
 @model CreateAppointmentViewModel
+
 @{
-    ViewData["Title"] = "Create appointment";
+    ViewData["Title"] = "Edit appointment";
 }
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@
                     </select>
                 </div>
                 <div class="form-holder">
-                    <input asp-for="@Model.StartDate" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;" asp-for="@Model.EndDate" type="date" value="@DateTime.UtcNow">
+                    <input asp-for="@Model.StartDate" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;" asp-for="@Model.EndDate" type="date">
                 </div>
                 <div class="form-holder">
                     <select asp-for="@Model.StartDateHour" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
@@ -64,8 +65,8 @@
                     <span asp-validation-for="EndDate.Hour" class="text-danger"></span>
                 </div>
                 <div class="form-login" style="margin-bottom: 2.5em;">
-                    <button id="registerSubmit" class="button" type="submit" asp-controller="Appointment" asp-action="Create" formmethod="post" asp-route-id="@Model.StudioId"><b>Save</b></button>
-                    <button id="registerSubmit" class="button" type="submit" asp-controller="Studio" asp-action="Profile" asp-route-id="@Model.StudioId"><b>Cancel</b></button>
+                    <button id="registerSubmit" class="button" type="submit" asp-controller="Appointment" asp-action="Edit" formmethod="post" asp-route-id="@Model.Id"><b>Save</b></button>
+                    <button id="registerSubmit" class="button" type="submit" asp-controller="User" asp-action="LoggedProfile"><b>Cancel</b></button>
                 </div>
             </form>
         </div>

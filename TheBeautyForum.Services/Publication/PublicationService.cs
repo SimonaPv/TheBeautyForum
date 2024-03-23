@@ -44,7 +44,6 @@ namespace TheBeautyForum.Services.Publication
                     PostUserId = p.UserId,
                     StudioId = p.StudioId,
                     LikeCount = p.Likes.Count,
-                    CommentCount = p.Comments.Count,
                     UserName = $"{p.User!.FirstName} {p.User.LastName}",
                     PostUserProfilePic = p.User.ProfilePictureUrl,
                     ViewUrl = "",

@@ -9,6 +9,8 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 {
     public class CreateAppointmentViewModel
     {
+        public Guid Id { get; set; }
+
         public Guid CategoryId { get; set; }
 
         public Guid StudioId { get; set; }
