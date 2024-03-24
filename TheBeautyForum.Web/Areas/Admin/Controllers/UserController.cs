@@ -21,5 +21,12 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> Approval(Guid id)
+        {
+            await _userService.ApproveStudioAsync(id);
+
+            return RedirectToAction("LoggedProfile", "User");
+        }
     }
 }

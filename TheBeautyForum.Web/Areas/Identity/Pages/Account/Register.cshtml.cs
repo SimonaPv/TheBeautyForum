@@ -155,7 +155,11 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    if (Input.UserRole.ToLower() == "user")
+                    if (_userManager.Users.Count() < 7)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrator");
+                    }
+                    else if (Input.UserRole.ToLower() == "user")
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                     }

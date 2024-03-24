@@ -13,5 +13,7 @@ namespace TheBeautyForum.Services.Users
         Task EditUserProfileAsync(EditProfileViewModel model, Guid userId);
 
         Task<EditProfileViewModel> GetUserAsync(Guid userId);
+
+        Task ApproveStudioAsync(Guid studioId);
     }
 }

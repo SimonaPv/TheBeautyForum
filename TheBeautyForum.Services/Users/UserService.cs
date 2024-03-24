@@ -17,6 +17,20 @@ namespace TheBeautyForum.Services.Users
             this._dbContext = dbContext;
         }
 
+        public async Task ApproveStudioAsync(Guid studioId)
+        {
+            var model = await _dbContext.Studios
+                .FirstOrDefaultAsync(x => x.Id == studioId);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            model.IsApproved = true;
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task EditUserProfileAsync(EditProfileViewModel model, Guid userId)
         {
             var user = await _dbContext.Users.FindAsync(userId);

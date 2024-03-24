@@ -198,7 +198,7 @@ namespace TheBeautyForum.Services.Studios
                 StudioId = model.Id,
                 Name = model.Name,
                 ProfilePictureUrl = model.StudioPictureUrl,
-                RatingSum = (int)Math.Round(model.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero),
+                RatingSum = model.Ratings.Count > 0 ? (int)Math.Round(model.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero) : 0,
                 Location = model.Location,
                 Description = model.Description,
                 OpenTime = model.OpenTime,

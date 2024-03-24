@@ -27,6 +27,7 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/post.css">
+    <link rel="stylesheet" href="~/css/studios.css">
 </head>
 
 <body>
@@ -79,15 +80,61 @@
 
 
 
-            <div class="post-col">
-                <div style="margin-right: 10em;">
-                    <h3>Studios waiting for approval</h3>
-                    @foreach (var p in Model.FavoriteStudios.OrderBy(x => x.StudioName))
-                    {
-                        
-                    }
+                <div class="post-containerr" style="width: 532px">
+                    <h3 style="padding-bottom: 0.4em; padding-left:2.2em;">Studios waiting for approval</h3>
+                    <div class="service">
+                        <div class="row g-4 justify-content-start">
+                            <div style="margin-right: 10em;">
+                                <div style="display: flex; flex-direction: row">
+                                    @foreach (var s in Model.FavoriteStudios.OrderBy(x => x.StudioName))
+                                    {
+                                        <div class="col-xl-6 wow fadeInUp" style="margin-bottom: 1em" data-wow-delay="0.3s">
+                                            <div class="service-item rounded">
+                                                <div class="service-img rounded-top">
+                                                    <img src="@s.ProfilePicUrl" style="height: 200px; width: 200px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
+                                                </div>
+                                                <div class="service-content rounded-bottom light-ligth p-4">
+                                                    <div class="service-content-inner">
+                                                        <div style="height: 80px">
+                                                            <div style="display: flex; flex-direction: row">
+                                                                <h5 class="mb-1" style="padding-right: 0.1em">@s.StudioName</h5>
+                                                            <a class="btn btn-primary rounded-pill text-white py-1 px-2.5 mb-2" style="font-size: 10px; font-weight: 200; margin-left: 0.5em; margin-bottom: 1em" asp-area="Admin" asp-controller="User" asp-action="Approval" asp-route-id="@s.StudioId">Approve</a>
+                                                            </div>
+                                                            <p style="margin-bottom: 0.5em; font-size: 12px; font-weight: 400; color: #626262">@s.StudioDescription</p>
+                                                        </div>
+                                                        <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId">View profile</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @foreach (var s in Model.FavoriteStudios.OrderBy(x => x.StudioName))
+                                    {
+                                        <div class="col-xl-6 wow fadeInUp" style="margin-bottom: 1em" data-wow-delay="0.3s">
+                                            <div class="service-item rounded">
+                                                <div class="service-img rounded-top">
+                                                    <img src="@s.ProfilePicUrl" style="height: 200px; width: 200px; margin-top: 0" class="img-fluid rounded-top w-100" alt="">
+                                                </div>
+                                                <div class="service-content rounded-bottom light-ligth p-4">
+                                                    <div class="service-content-inner">
+                                                        <div style="height: 80px">
+                                                            <div style="display: flex; flex-direction: row">
+                                                                <h5 class="mb-1" style="padding-right: 0.1em">@s.StudioName</h5>
+                                                            <a class="btn btn-primary rounded-pill text-white py-1 px-2.5 mb-2" style="font-size: 10px; font-weight: 200; margin-left: 0.5em; margin-bottom: 1em" asp-area="Admin" asp-controller="User" asp-action="Approval" asp-route-id="@s.StudioId">Approve</a>
+                                                            </div>
+                                                            <p style="margin-bottom: 0.5em; font-size: 12px; font-weight: 400; color: #626262">@s.StudioDescription</p>
+                                                        </div>
+                                                        <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId">View profile</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
 
             <div class="right-sidebar">
