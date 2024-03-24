@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Appointment;
+using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Rating;
 using TheBeautyForum.Web.ViewModels.Studio;
@@ -124,6 +125,12 @@ namespace TheBeautyForum.Services.Users
                         StudioDescription = x.Description,
                         StudioName = x.Name,
                         ProfilePicUrl = x.StudioPictureUrl
+                    }).ToListAsync(),
+                Categories = await _dbContext.Categories
+                    .Select(x => new CategoryViewModel()
+                    {
+                        Id = x.Id,
+                        Name = x.Name
                     }).ToListAsync()
             };
 

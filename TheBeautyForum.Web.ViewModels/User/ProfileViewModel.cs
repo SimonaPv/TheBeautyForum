@@ -1,5 +1,6 @@
 ﻿using TheBeautyForum.Data.Models;
 using TheBeautyForum.Web.ViewModels.Appointment;
+using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Rating;
 using TheBeautyForum.Web.ViewModels.Studio;
@@ -21,6 +22,9 @@ namespace TheBeautyForum.Web.ViewModels.User
         public int? Rating { get; set; }
 
         public CreatePublicationViewModel? Post { get; set; }
+
+        public ICollection<CategoryViewModel> Categories { get; set; }
+            = new HashSet<CategoryViewModel>();
 
         public ICollection<StudioUserViewModel> FavoriteStudios { get; set; }
             = new HashSet<StudioUserViewModel>();
