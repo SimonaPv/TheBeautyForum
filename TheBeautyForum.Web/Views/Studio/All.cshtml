@@ -46,7 +46,17 @@
                                             <p style="margin-bottom: 0.2em; font-size: 13px"><span style="font-size: 13px; color: #626262">Location: </span>@s.Location</p>
                                             <p style="font-size: 13px"><span style="font-size: 13px; color: #626262">Offers: </span>@string.Join(", ", @s.Categories.Select(x => x.Name).Take(4))</p>
                                         </div>
-                                        <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.Id">View profile</a>
+                                        <div style="display:flex; flex-direction: row; justify-content: space-between">
+                                            <div>
+                                                <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.Id">View profile</a>
+                                            </div>
+                                            @if (this.User.IsInRole("Administrator"))
+                                            {
+                                                <div onclick="return confirm('Are you sure you want to delete this studio?')">
+                                                    <a class="btn btn-danger rounded-pill text-white py-2 px-4 mb-2" asp-area="Admin" asp-controller="Studio" asp-action="Delete" asp-route-id="@s.Id">Delete</a>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>

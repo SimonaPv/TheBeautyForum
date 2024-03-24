@@ -11,5 +11,7 @@ namespace TheBeautyForum.Services.Studios
         Task EditStudioProfileAsync(EditStudioProfileViewModel model, Guid studioId);
 
         Task<List<ViewStudioViewModel>> GetAllStudiosAsync(FilterViewModel? filter = null);
+
+        Task DeleteStudioAsync(Guid studioId);
     }
 }

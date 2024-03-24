@@ -17,6 +17,20 @@ namespace TheBeautyForum.Services.Studios
             this._dbContext = dbContext;
         }
 
+        public async Task DeleteStudioAsync(Guid studioId)
+        {
+            var model = await _dbContext.Studios
+                .FirstOrDefaultAsync(x => x.Id == studioId);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            _dbContext.Studios.Remove(model);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task EditStudioProfileAsync(EditStudioProfileViewModel model, Guid studioId)
         {
             if (model is null)
