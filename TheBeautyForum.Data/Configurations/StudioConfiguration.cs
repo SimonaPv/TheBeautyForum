@@ -23,7 +23,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Varna, Bulgaria, ul. Zora 371",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/cjb6es4kqpy6kukryk8r.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/cjb6es4kqpy6kukryk8r.jpg",
+                IsApproved = false
             };
             data.Add(studio);
 
@@ -35,7 +36,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Stara Zagora, Bulgaria, ul. Tsar Kaloyan 3",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg",
+                IsApproved = true
             };
             data.Add(studio);
 
@@ -47,7 +49,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Varna, Bulgaria, ul. Veles 7",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg",
+                IsApproved = true
             };
             data.Add(studio);
 
@@ -59,7 +62,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Sofia, Bulgaria, ul. Dospat 44",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg",
+                IsApproved = true
             };
             data.Add(studio);
 
@@ -71,7 +75,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Sofia, Bulgaria, ul. Erovete 7",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg",
+                IsApproved = true
             };
             data.Add(studio);
 
@@ -83,7 +88,8 @@ namespace TheBeautyForum.Data.Configurations
                 Location = "Sofia, Bulgaria, ul. Aksakov 11",
                 OpenTime = TimeOnly.Parse("9:00:00"),
                 CloseTime = TimeOnly.Parse("18:00:00"),
-                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg"
+                StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg",
+                IsApproved = true
             };
             data.Add(studio);
 

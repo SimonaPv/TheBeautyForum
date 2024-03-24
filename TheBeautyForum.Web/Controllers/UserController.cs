@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheBeautyForum.Services.Publication;
 using TheBeautyForum.Services.Users;
@@ -7,14 +6,12 @@ using TheBeautyForum.Web.ViewModels.User;
 
 namespace TheBeautyForum.Web.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
 
         public UserController(
-            IUserService userService,
-            IPublicationService publicationService)
+            IUserService userService)
         {
             this._userService = userService;
         }

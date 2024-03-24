@@ -57,6 +57,65 @@ namespace TheBeautyForum.Services.Users
             return user;
         }
 
+        public async Task<ProfileViewModel> ShowAdminLoggedProfileAsync(Guid userId)
+        {
+            var user = await _dbContext.Users
+               .Include(a => a.Appointments)
+               .Include(r => r.Ratings)
+               .Include(p => p.Publications)
+               .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            var profile = new ProfileViewModel()
+            {
+                UserId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                Email = user.Email,
+                Appointments = await _dbContext.Appointments
+                    .Include(c => c.Category)
+                    .Include(s => s.Studio)
+                    .Select(a => new AppointmentViewModel()
+                    {
+                        Id = a.Id,
+                        UserId = a.UserId,
+                        StudioId = a.StudioId,
+                        StartDate = a.StartDate,
+                        EndDate = a.EndDate,
+                        Description = a.Description,
+                        CategoryName = a.Category!.Name,
+                        StudioName = a.Studio!.Name,
+                        UserName = a.User.FirstName
+                    })
+                    .ToListAsync(),
+                Users = await _dbContext.Users
+                    .Select(u => new UserViewModel()
+                    {
+                        Id = u.Id,
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
+                        ProfilePictureUrl = u.ProfilePictureUrl,
+                        Email = u.Email,
+                    }).ToListAsync(),
+                FavoriteStudios = await _dbContext.Studios
+                    .Where(x => x.IsApproved == false)
+                    .Select(x => new StudioUserViewModel()
+                    {
+                        StudioId = x.Id,
+                        StudioDescription = x.Description,
+                        StudioName = x.Name,
+                        ProfilePicUrl = x.StudioPictureUrl
+                    }).ToListAsync()
+            };
+
+            return profile;
+        }
+
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
         {
             var user = await _dbContext.Users

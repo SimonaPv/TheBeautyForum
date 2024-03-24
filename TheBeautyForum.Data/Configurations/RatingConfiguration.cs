@@ -15,7 +15,7 @@ namespace TheBeautyForum.Data.Configurations
         {
             var data = new HashSet<Rating>();
 
-            #region Arsanta - Aylin, Amaya, Maria
+            #region Arsanta
             var rat = new Rating()
             {
                 Id = Guid.Parse("168884a2-fc77-4169-836f-dc0a0599bc2e"),
@@ -97,16 +97,16 @@ namespace TheBeautyForum.Data.Configurations
             data.Add(rat);
             #endregion
 
-            #region Helita
-            rat = new Rating()
-            {
-                Id = Guid.Parse("beb87557-618d-4fbc-b5a4-12b8f54c5359"),
-                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
-                StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
-                Value = 3
-            };
-            data.Add(rat);
-            #endregion
+            //#region Helita
+            //rat = new Rating()
+            //{
+            //    Id = Guid.Parse("beb87557-618d-4fbc-b5a4-12b8f54c5359"),
+            //    UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+            //    StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
+            //    Value = 3
+            //};
+            //data.Add(rat);
+            //#endregion
 
             return data;
         }

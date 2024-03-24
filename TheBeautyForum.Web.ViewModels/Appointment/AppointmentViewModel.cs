@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using TheBeautyForum.Web.ViewModels.Rating;
+﻿using TheBeautyForum.Web.ViewModels.Rating;
 
 namespace TheBeautyForum.Web.ViewModels.Appointment
 {

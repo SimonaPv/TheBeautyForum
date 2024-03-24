@@ -34,8 +34,10 @@ namespace TheBeautyForum.Data.Models
 
         public string? StudioPictureUrl { get; set; }
 
-        //public User? User { get; set; }
+        public bool IsApproved { get; set; }
 
+        //public User? User { get; set; }
+        
         public ICollection<StudioCategory> StudioCategories { get; set; }
             = new HashSet<StudioCategory>();
 

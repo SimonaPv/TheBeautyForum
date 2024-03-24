@@ -71,6 +71,16 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapRazorPages();
+});
+
 app.Run();
 
 static void ConfigureCloudinaryService(IServiceCollection services, IConfiguration configuration)

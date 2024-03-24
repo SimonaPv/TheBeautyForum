@@ -48,9 +48,12 @@
         <!------------------main-content-------------------->
         <div class="main-content">
 
-            <div>
-                <partial name="_CreatePostPartial" model="@Model[0].Post" />
-            </div>
+            @if (this.User.IsInRole("User"))
+            {
+                <div>
+                    <partial name="_CreatePostPartial" model="@Model[0].Post" />
+                </div>
+            }
 
             @foreach (var p in Model.OrderByDescending(x => x.DatePosted))
             {
@@ -111,7 +114,7 @@
             </div>
             @foreach (var s in Model[0].Studios.OrderByDescending(x => x.StudioRating).Take(3))
             {
-                <div class="event" >
+                <div class="event">
                     <img style="width: 55px; border-radius: 6px;" src="@s.StudioProfilePic">
                     <div class="right-event">
                         <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color: #626262;">

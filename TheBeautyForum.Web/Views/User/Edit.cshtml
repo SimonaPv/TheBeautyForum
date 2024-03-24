@@ -48,10 +48,20 @@
                     <span asp-validation-for="@Model.Email" class="text-danger"></span>
                     <input asp-for="@Model.Email" class="form-control" placeholder="e-mail" autocomplete="on" aria-required="true" />
                 </div>
-                <div class="form-login" style="margin-bottom: 2.5em;">
-                    <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
-                    <button id="registerSubmit" class="button" type="submit" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
-                </div>
+                @if(this.User.IsInRole("Administrator"))
+                {
+                    <div class="form-login" style="margin-bottom: 2.5em;">
+                        <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
+                        <button id="registerSubmit" class="button" type="submit" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-login" style="margin-bottom: 2.5em;">
+                        <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
+                        <button id="registerSubmit" class="button" type="submit" asp-area="" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                    </div>
+                }
             </form>
         </div>
     </div>

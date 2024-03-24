@@ -1,0 +1,148 @@
+﻿@using System.Globalization;
+@using System.Security.Claims;
+@using TheBeautyForum.Web.ViewModels.User;
+@model ProfileViewModel
+@{
+    ViewData["Title"] = "Your profile";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/058aede230.js" crossorigin="anonymous"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/post.css">
+</head>
+
+<body>
+    <!-----------------------profile page----------------------->
+    <div class="profile-container">
+        <div class="profile-details" style="margin-top: 1.5em;">
+            <div class="pd-left">
+                <div class="pd-row" style="display: flex; flex-direction: row; align-items: center;">
+                    <img src="@Model.ProfilePictureUrl" class="pd-image">
+                    <div>
+                        <h2>@Model.FirstName @Model.LastName</h2>
+                        <h7>@Model.Email</h7>
+                        <div style="padding-top: 0.6em;">
+                            <a type="button" class="btn btn-light" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em" asp-area="" asp-controller="User" asp-action="Edit">Edit profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="info-col">
+                <div class="profile-intro">
+                    <div class="total-box" style="margin-bottom: 1.3em">
+                        <h3>All appointments</h3>
+                    </div>
+                    @foreach (var a in Model.Appointments.Where(u => u.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
+                    {
+                        <div class="event">
+                            <div class="left-event" style="width: 55px;">
+                                <h3>@a.StartDate.Day</h3>
+                                <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                            </div>
+                            <div class="right-event" style="width: 300px">
+                                <div>
+                                    <h6 style="font-size:15px">@a.Description</h6>
+                                </div>
+                                <p>
+                                    <i class="fas fa-map-marker-alt"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: #626262; font-size: 14px">
+                                        @a.StudioName
+                                    </a> at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture) for <a asp-controller="User" asp-action="UserProfile" asp-route-id="@a.UserId" style="font-size: 14px">
+                                        @a.UserName
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    <div style="padding-bottom: 0.3em"></div>
+                </div>
+            </div>
+
+
+
+            <div class="post-col">
+                <div style="margin-right: 10em;">
+                    <h3>Studios waiting for approval</h3>
+                    @foreach (var p in Model.FavoriteStudios.OrderBy(x => x.StudioName))
+                    {
+                        
+                    }
+                </div>
+            </div>
+
+
+            <div class="right-sidebar">
+                <div class="sidebar-title" style="margin-bottom:0.5em">
+                    <h3 style="padding-top: 0.25em; padding-bottom: 0.2em">All users</h3>
+                </div>
+                @foreach (var s in Model.Users.OrderBy(x => x.FirstName))
+                {
+                    <div class="event">
+                        <img style="width: 55px; border-radius: 6px;" src="@s.ProfilePictureUrl">
+                        <div class="right-event" style="width: 220px">
+                            <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color:black;">
+                                <a asp-controller="User" asp-action="UserProfile" asp-route-id="@s.Id" style="font-size: 15px; font-weight:500; color:black"> @s.FirstName @s.LastName</a>
+                            </p>
+                            <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;">@s.Email</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function likeButton() {
+            let graylike = document.querySelector('.fa-heart');
+
+            if (graylike.style.color = "#626262") {
+                graylike.style.color = "#F9A392";
+            }
+            else {
+                graylike.style.color = "#626262";
+            }
+        }
+    </script>
+
+    <style>
+
+    </style>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/mains.js"></script>
+</body>
+</html>

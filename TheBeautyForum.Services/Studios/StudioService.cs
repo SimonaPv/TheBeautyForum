@@ -5,7 +5,6 @@ using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
-using static TheBeautyForum.Data.DataConstants;
 
 namespace TheBeautyForum.Services.Studios
 {
@@ -63,6 +62,7 @@ namespace TheBeautyForum.Services.Studios
         {
             var studios = await _dbContext.Studios.Include(x => x.StudioCategories)
                 .Include(x => x.Ratings)
+                .Where(x => x.IsApproved == true)
                 .Select(s => new ViewStudioViewModel()
                 {
                     Id = s.Id,
