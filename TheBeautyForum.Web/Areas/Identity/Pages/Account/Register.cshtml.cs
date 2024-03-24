@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using TheBeautyForum.Data.Models;
 using TheBeautyForum.Services.Images;
@@ -63,6 +64,13 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        public List<SelectListItem> Roles { get; }
+               = new List<SelectListItem>()
+               {
+                    new SelectListItem {Value = "User", Text ="USER"},
+                    new SelectListItem {Value = "StudioCreator", Text = "STUDIO CREATOR"},
+               };
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -108,6 +116,9 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             public IFormFile? ProfilePicture { get; set; }
+
+            [Required]
+            public string UserRole { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync(string returnUrl = null)
@@ -144,13 +155,13 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    if (_userManager.Users.Count() < 3)
+                    if (Input.UserRole.ToLower() == "user")
                     {
-                        await _userManager.AddToRoleAsync(user, "Administrator");
+                        await _userManager.AddToRoleAsync(user, "User");
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "StudioCreator");
                     }
 
                     _logger.LogInformation("User created a new account with password.");
