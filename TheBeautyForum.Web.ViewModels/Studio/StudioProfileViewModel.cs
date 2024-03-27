@@ -8,6 +8,8 @@ namespace TheBeautyForum.Web.ViewModels.Studio
     {
         public Guid StudioId { get; set; }
 
+        public Guid UserId { get; set; }
+
         [Required]
         public string Name { get; set; } = null!;
 

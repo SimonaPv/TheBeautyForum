@@ -25,13 +25,17 @@
                     <div class="navbar-nav m-auto py-0">
                         <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-item nav-link" asp-area="" asp-controller="Publication" asp-action="Forum">Forum</a>
-                        @if (this.User.IsInRole("User") || this.User.IsInRole("StudioCreator"))
+                        @if (this.User.IsInRole("User"))
                         {
                             <a class="nav-item nav-link" asp-area="" asp-controller="User" asp-action="LoggedProfile">Profile</a>
                         }
-                        @if (this.User.IsInRole("Administrator"))
+                        else if (this.User.IsInRole("Administrator"))
                         {
                             <a class="nav-item nav-link" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile">Profile</a>
+                        }
+                        else
+                        {
+                            <a class="nav-item nav-link" asp-area="StudioCreator" asp-controller="User" asp-action="LoggedProfile">Profile</a>
                         }
                         <a class="nav-item nav-link" asp-area="" asp-controller="Studio" asp-action="All">Studios</a>
                         <partial name="_LoginPartial" />

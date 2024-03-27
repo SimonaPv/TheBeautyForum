@@ -12,8 +12,8 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240324111953_ModifyDb2")]
-    partial class ModifyDb2
+    [Migration("20240327064053_CreateAndSeedDatabase")]
+    partial class CreateAndSeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,6 +122,11 @@ namespace TheBeautyForum.Data.Migrations
                         },
                         new
                         {
+                            UserId = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647"),
+                            RoleId = new Guid("71d6d7d8-f4f6-42b5-a9a9-ed2d3ef0bc73")
+                        },
+                        new
+                        {
                             UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                             RoleId = new Guid("5a322cf5-7101-4d4a-9e08-16382fc0a641")
                         },
@@ -204,16 +209,6 @@ namespace TheBeautyForum.Data.Migrations
                     b.ToTable("Appointments");
 
                     b.HasData(
-                        new
-                        {
-                            Id = new Guid("0b561660-608b-4e07-80bc-96c168ff11ac"),
-                            CategoryId = new Guid("3be6b016-9b6a-4f68-b7ee-bf32293acca9"),
-                            Description = "I want a hairstyle for my birthday.",
-                            EndDate = new DateTime(2024, 7, 22, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartDate = new DateTime(2024, 7, 22, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
-                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9")
-                        },
                         new
                         {
                             Id = new Guid("1790311d-5712-44a9-abbd-3bfc47802419"),
@@ -559,6 +554,27 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasData(
                         new
                         {
+                            Id = new Guid("168884a2-fc77-4169-836f-dc0a0599bc2e"),
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
+                            Value = 5
+                        },
+                        new
+                        {
+                            Id = new Guid("912d1986-7424-43fa-a531-b9d811961386"),
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
+                            Value = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("960c4945-0b04-4c40-bd17-c697cb8d5eda"),
+                            StudioId = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
+                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
+                            Value = 5
+                        },
+                        new
+                        {
                             Id = new Guid("bb10aa9c-da74-4846-a075-7b203f22aefc"),
                             StudioId = new Guid("0d753e1d-c98b-47c7-b260-0377048c529a"),
                             UserId = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
@@ -587,38 +603,10 @@ namespace TheBeautyForum.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("168884a2-fc77-4169-836f-dc0a0599bc2e"),
-                            StudioId = new Guid("bf2832b2-5b62-471b-9980-583753504ca6"),
-                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
-                            Value = 5
-                        },
-                        new
-                        {
-                            Id = new Guid("912d1986-7424-43fa-a531-b9d811961386"),
-                            StudioId = new Guid("bf2832b2-5b62-471b-9980-583753504ca6"),
-                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
-                            Value = 4
-                        },
-                        new
-                        {
-                            Id = new Guid("960c4945-0b04-4c40-bd17-c697cb8d5eda"),
-                            StudioId = new Guid("bf2832b2-5b62-471b-9980-583753504ca6"),
-                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
-                            Value = 5
-                        },
-                        new
-                        {
                             Id = new Guid("ffd265a7-832d-4fc1-925c-5e72eab2d02e"),
                             StudioId = new Guid("df44a062-9586-4815-8126-99c240433b22"),
                             UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                             Value = 4
-                        },
-                        new
-                        {
-                            Id = new Guid("beb87557-618d-4fbc-b5a4-12b8f54c5359"),
-                            StudioId = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
-                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
-                            Value = 3
                         });
                 });
 
@@ -706,7 +694,12 @@ namespace TheBeautyForum.Data.Migrations
                     b.Property<string>("StudioPictureUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Studios");
 
@@ -716,11 +709,12 @@ namespace TheBeautyForum.Data.Migrations
                             Id = new Guid("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
                             CloseTime = new TimeSpan(0, 18, 0, 0, 0),
                             Description = "Dream haircuts can come true!",
-                            IsApproved = true,
+                            IsApproved = false,
                             Location = "Varna, Bulgaria, ul. Zora 371",
                             Name = "Helita",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/cjb6es4kqpy6kukryk8r.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/cjb6es4kqpy6kukryk8r.jpg",
+                            UserId = new Guid("b313e2e1-0270-4a86-924b-71256500be8b")
                         },
                         new
                         {
@@ -731,7 +725,8 @@ namespace TheBeautyForum.Data.Migrations
                             Location = "Stara Zagora, Bulgaria, ul. Tsar Kaloyan 3",
                             Name = "Murphy",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/fnk089i9d440zt0vuhjm.jpg",
+                            UserId = new Guid("b313e2e1-0270-4a86-924b-71256500be8b")
                         },
                         new
                         {
@@ -742,7 +737,8 @@ namespace TheBeautyForum.Data.Migrations
                             Location = "Varna, Bulgaria, ul. Veles 7",
                             Name = "IN Beauty",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/omikwkyqnrafjnju82jf.jpg",
+                            UserId = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647")
                         },
                         new
                         {
@@ -753,7 +749,8 @@ namespace TheBeautyForum.Data.Migrations
                             Location = "Sofia, Bulgaria, ul. Dospat 44",
                             Name = "N-Stage",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/ulq1xkktowireigsxuil.jpg",
+                            UserId = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647")
                         },
                         new
                         {
@@ -764,18 +761,20 @@ namespace TheBeautyForum.Data.Migrations
                             Location = "Sofia, Bulgaria, ul. Erovete 7",
                             Name = "Wellness Center",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/wrm1h8b2sfjf06xujkck.jpg",
+                            UserId = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647")
                         },
                         new
                         {
                             Id = new Guid("d8fbc428-62b8-42aa-b3d7-b40658072dca"),
                             CloseTime = new TimeSpan(0, 18, 0, 0, 0),
                             Description = "Bali&Thai Massages",
-                            IsApproved = false,
+                            IsApproved = true,
                             Location = "Sofia, Bulgaria, ul. Aksakov 11",
                             Name = "Arsanta",
                             OpenTime = new TimeSpan(0, 9, 0, 0, 0),
-                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg"
+                            StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706708324/sf7gy9cpjrnlkn2ba8rs.jpg",
+                            UserId = new Guid("b313e2e1-0270-4a86-924b-71256500be8b")
                         });
                 });
 
@@ -984,7 +983,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c08d1393-67b1-48ae-bc3f-64cf2a9ce786",
+                            ConcurrencyStamp = "106871dc-153e-4736-8577-bd5845527503",
                             Email = "simonapalieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Simona",
@@ -992,11 +991,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SIMONAPALIEVA@MAIL.COM",
                             NormalizedUserName = "SIMONA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDWDGy0cqn5NmR1g1q4SX+lAbmCv1Zw8gdjRK21fOIUO87MdPkhcI6+aXBzAxYzccQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBPzQL8sVS9NYe2uzTXB+VxdqiX22H8hBEj7EiiPqyTSPrRsLGiokGeqcVvuS6XDHA==",
                             PhoneNumber = "0884912724",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png",
-                            SecurityStamp = "da4d1b2e-550e-41f8-a6c2-49fc330ed366",
+                            SecurityStamp = "8215f695-3eb2-4ff1-838b-91b0efda5a78",
                             TwoFactorEnabled = false,
                             UserName = "Simona"
                         },
@@ -1004,7 +1003,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("b313e2e1-0270-4a86-924b-71256500be8b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "71f86965-4cb1-477e-a94b-acfa5cb69a6e",
+                            ConcurrencyStamp = "69bdbae7-b39a-4605-b8df-814ff1a1c1dc",
                             Email = "mirelametodieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Mirela",
@@ -1012,19 +1011,39 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MIRELAMETODIEVA@MAIL.COM",
                             NormalizedUserName = "MIRELA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDo4USrrJbc25rSoHEPHHXjGQCuDDY2QW374lwD5x0P7roASoIe8drSzk9OTd/xXPw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFaYVLlN2QJl8JwPeVJ1l7eEyFZ7u1YfL+2dbBG9Vd3XNZ9n/kL02PUNeZuVlumUGw==",
                             PhoneNumber = "0886666666",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg",
-                            SecurityStamp = "4199b149-2615-4de7-a115-f0b37d4ad21a",
+                            SecurityStamp = "ec7296d0-f436-4087-b918-29a10010f9f6",
                             TwoFactorEnabled = false,
                             UserName = "Mirela"
                         },
                         new
                         {
+                            Id = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a54847ec-e18f-4edd-abff-b4907e20a1a1",
+                            Email = "monailieva@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Mona",
+                            LastName = "Ilieva",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MONAILIEVA@MAIL.COM",
+                            NormalizedUserName = "MONA",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP0BzPmGWf65E34edraFtphql3SLNxf+6BIzHe8QjJz//F5q74MlD0pYNPQULfpgvA==",
+                            PhoneNumber = "0887777777",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg",
+                            SecurityStamp = "6b2c6443-b36d-4874-8f6d-b4c2561fcbda",
+                            TwoFactorEnabled = false,
+                            UserName = "Mona"
+                        },
+                        new
+                        {
                             Id = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e70a0aa5-d2a0-4840-8e7e-96242279da91",
+                            ConcurrencyStamp = "21150f80-bfdc-4f0e-851d-73e5d84fce4f",
                             Email = "mariageorgieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Maria",
@@ -1032,11 +1051,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
                             NormalizedUserName = "MARIA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHComKVb6XDvIlv3xBpAhV0PtAt+mvnjn8+/TBsjdZwkqWaxOTmuQy5/sbR70gC6Pw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGeSjiyIPUHHVCdvEq7trPl9aaTPPfDFgmty4E+8EomhLamBuGRBVnWwmrBl9flSjQ==",
                             PhoneNumber = "0881111111",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg",
-                            SecurityStamp = "23a4de28-9d10-4670-9c3b-8cd76687630a",
+                            SecurityStamp = "ca20f5ba-335b-4a81-9bb0-d6553388f9de",
                             TwoFactorEnabled = false,
                             UserName = "Maria"
                         },
@@ -1044,7 +1063,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8963cd3-4671-46b4-8c61-63276c41d6ed",
+                            ConcurrencyStamp = "ed695ddf-ac36-4edc-b06b-62ed863e4dc3",
                             Email = "amayaivanova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Amaya",
@@ -1052,11 +1071,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "AMAYAIVANOVA@MAIL.COM",
                             NormalizedUserName = "AMAYA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAhz6kOpFo/iRmiQRzic2ynEYmiIJBZefzQiKfzf3GMiX3fQkC3q/jQeNVDkZBtMIw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGv9Wdd8f/kiQRlrWQ4QKHZNnN2g3bi/hI0QmZkTdJV/Qnb4ovFh4onghLWS4KpZUw==",
                             PhoneNumber = "0882222222",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
-                            SecurityStamp = "cde19e86-6945-4ace-b69c-4362aa6fda06",
+                            SecurityStamp = "2d6fd84c-d47f-48ef-b884-6121eca2a439",
                             TwoFactorEnabled = false,
                             UserName = "Amaya"
                         },
@@ -1064,7 +1083,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5b97dc94-696d-4a89-8e5a-556727d2cf6e",
+                            ConcurrencyStamp = "ffa3cf68-cf2a-499e-82ee-3b58784ac5df",
                             Email = "aylintodorova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Aylin",
@@ -1072,11 +1091,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "AYLINTODOROVA@MAIL.COM",
                             NormalizedUserName = "AYLIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKcTSnva/Vzfv+0iNBxV7U8NPJvxnzzeKHY3t4sFAyi0sGqCmclMrS0PnA/IJnOxlw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDTaohjyhmLWvARJjKq7a27zGeHB9A9+95gro9qDS3fbB8/fXXpGMscDd+7hBTTYWw==",
                             PhoneNumber = "0883333333",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg",
-                            SecurityStamp = "ae50c374-a23a-4ace-b792-77c1615c7f3a",
+                            SecurityStamp = "bb662a16-336f-405e-b358-a99619254b1b",
                             TwoFactorEnabled = false,
                             UserName = "Aylin"
                         },
@@ -1084,7 +1103,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc37a191-4a4c-4bea-9f01-c90cba90ad7c",
+                            ConcurrencyStamp = "d2feb09a-cb10-49cc-b792-3418f465fa5d",
                             Email = "deboramileva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Debora",
@@ -1092,11 +1111,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DEBORAMILEVA@MAIL.COM",
                             NormalizedUserName = "DEBORA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDfoYBG7GvdC25Zls6/AHAlBL6tQBUH3EmClIrwY9do085fGiQxp2pRevQTVXhBnsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH6dbNoFt+U4ce1Q0aGRaARJ9kvhADrTm4h43JOLrmvSIRB0w9TbH0ymyWj7jGe4sA==",
                             PhoneNumber = "0884444444",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
-                            SecurityStamp = "0929e402-91c5-43e6-ab9e-59b24c91c8ca",
+                            SecurityStamp = "ac599d1a-1e74-4293-a1b5-014315e1d3a7",
                             TwoFactorEnabled = false,
                             UserName = "Debora"
                         },
@@ -1104,7 +1123,7 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4ac9f9de-412f-4923-bb24-91b8bf795dfd",
+                            ConcurrencyStamp = "0e66db83-5928-4884-83c6-ea65358fdbcb",
                             Email = "lisaborisova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Lisa",
@@ -1112,11 +1131,11 @@ namespace TheBeautyForum.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "LISABORISOVA@MAIL.COM",
                             NormalizedUserName = "LISA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDRixNEf+yD090tTrYC85lAbOvQnoFWRbfslXU8bqWgmGB19ajovBaJEnx2bHuN4+Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBKlxkdpoiSkS8VVAxFr2+pOWX6eWWkT9ZbFugxs+E2MS+xwJXaLBEaiCZHFBAzRuw==",
                             PhoneNumber = "0885555555",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg",
-                            SecurityStamp = "cbe6e2b9-3917-4d9c-b1bf-cf8ad36c824f",
+                            SecurityStamp = "e9c62266-7366-4bb9-b482-49159f75f419",
                             TwoFactorEnabled = false,
                             UserName = "Lisa"
                         });
@@ -1268,6 +1287,17 @@ namespace TheBeautyForum.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TheBeautyForum.Data.Models.Studio", b =>
+                {
+                    b.HasOne("TheBeautyForum.Data.Models.User", "User")
+                        .WithMany("Studios")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TheBeautyForum.Data.Models.StudioCategory", b =>
                 {
                     b.HasOne("TheBeautyForum.Data.Models.Category", "Category")
@@ -1319,6 +1349,8 @@ namespace TheBeautyForum.Data.Migrations
                     b.Navigation("Publications");
 
                     b.Navigation("Ratings");
+
+                    b.Navigation("Studios");
                 });
 #pragma warning restore 612, 618
         }

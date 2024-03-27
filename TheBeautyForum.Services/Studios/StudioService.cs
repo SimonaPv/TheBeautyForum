@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Data.Models;
+using TheBeautyForum.Services.Category;
+using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
@@ -11,10 +13,63 @@ namespace TheBeautyForum.Services.Studios
     public class StudioService : IStudioService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IImageService _imageService;
+        private readonly ICategoryService _categoryService;
 
-        public StudioService(ApplicationDbContext dbContext)
+        public StudioService(ApplicationDbContext dbContext, IImageService imageService, ICategoryService categoryService)
         {
             this._dbContext = dbContext;
+            this._imageService = imageService;
+            this._categoryService = categoryService;
+        }
+
+        public async Task<CreateStudioViewModel> CreateStudioCategoriesAsync()
+        {
+            var model = new CreateStudioViewModel()
+            {
+                Categories = await _categoryService.LoadCategoriesAsync(),
+            };
+
+            return model;
+        }
+
+        public async Task CreateStudioAsync(CreateStudioViewModel model, Guid userId)
+        {
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var studio = new Studio()
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Name = model.Name,
+                Description = model.Description,
+                Location = model.Location,
+                OpenTime = TimeOnly.Parse(model.OpenTime),
+                CloseTime = TimeOnly.Parse(model.CloseTime),
+            };
+
+            await _dbContext.Studios.AddAsync(studio);
+
+            foreach (var categoryId in model.CategoryIds)
+            {
+                var categoryStudio = new StudioCategory()
+                {
+                    StudioId = studio.Id,
+                    CategoryId = categoryId
+                };
+
+                await _dbContext.StudiosCategories.AddAsync(categoryStudio);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            if (model.ProfilePicture != null)
+            {
+                await this._imageService.UploadImage(model.ProfilePicture, "images", studio);
+            }
         }
 
         public async Task DeleteStudioAsync(Guid studioId)
@@ -52,21 +107,24 @@ namespace TheBeautyForum.Services.Studios
             studio.OpenTime = TimeOnly.Parse(model.OpenTime);
             studio.CloseTime = TimeOnly.Parse(model.CloseTime);
 
-            var categories = await this._dbContext.StudiosCategories
-                .Where(s => s.StudioId == studio.Id)
-                .ToListAsync();
-
-            this._dbContext.StudiosCategories.RemoveRange(categories);
-
-            foreach (var categoryId in model.CategoryIds)
+            if (model.CategoryIds.Count > 0)
             {
-                var studioCategory = new StudioCategory()
-                {
-                    StudioId = studio.Id,
-                    CategoryId = categoryId
-                };
+                var categories = await this._dbContext.StudiosCategories
+                    .Where(s => s.StudioId == studio.Id)
+                    .ToListAsync(); 
 
-                await this._dbContext.StudiosCategories.AddAsync(studioCategory);
+                this._dbContext.StudiosCategories.RemoveRange(categories);
+
+                foreach (var categoryId in model.CategoryIds)
+                {
+                    var studioCategory = new StudioCategory()
+                    {
+                        StudioId = studio.Id,
+                        CategoryId = categoryId
+                    };
+
+                    await this._dbContext.StudiosCategories.AddAsync(studioCategory);
+                }
             }
 
             await this._dbContext.SaveChangesAsync();
@@ -86,7 +144,7 @@ namespace TheBeautyForum.Services.Studios
                     Location = s.Location,
                     OpenTime = s.OpenTime.ToString(),
                     CloseTime = s.CloseTime.ToString(),
-                    RatingSum = s.Ratings.Average(x => x.Value),
+                    RatingSum = s.Ratings.Count > 0 ? (int)Math.Round(s.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero) : 0,
                     Categories = s.StudioCategories.Select(x => new CategoryViewModel()
                     {
                         Id = x.CategoryId,
@@ -196,6 +254,7 @@ namespace TheBeautyForum.Services.Studios
         public async Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId)
         {
             var model = await _dbContext.Studios
+                .Include(x => x.User)
                 .Include(x => x.Ratings)
                 .Include(x => x.Publications)
                 .Include(x => x.Appointments)
@@ -210,6 +269,7 @@ namespace TheBeautyForum.Services.Studios
             var profile = new StudioProfileViewModel()
             {
                 StudioId = model.Id,
+                UserId = model.User.Id,
                 Name = model.Name,
                 ProfilePictureUrl = model.StudioPictureUrl,
                 RatingSum = model.Ratings.Count > 0 ? (int)Math.Round(model.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero) : 0,

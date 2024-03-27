@@ -39,5 +39,18 @@ namespace TheBeautyForum.Services.Category
             _dbContext.Categories.Remove(model);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<List<CategoryViewModel>> LoadCategoriesAsync()
+        {
+            var model = await _dbContext.Categories
+                .Select(x => new CategoryViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    IsSelected = false
+                }).ToListAsync();
+
+            return model;
+        }
     }
 }

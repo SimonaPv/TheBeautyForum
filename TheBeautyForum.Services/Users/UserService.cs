@@ -219,6 +219,41 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
+        public async Task<ProfileViewModel> ShowStudioCreatorLoggedProfileAsync(Guid userId)
+        {
+            var user = await _dbContext.Users
+               .Include(x => x.Studios)
+               .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            var profile = new ProfileViewModel()
+            {
+                UserId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                Email = user.Email,
+                FavoriteStudios = await _dbContext.Studios
+                    .Include(x => x.Ratings)
+                    .Where(s => s.UserId == userId)
+                    .Select(x => new StudioUserViewModel()
+                    {
+                        StudioId = x.Id,
+                        StudioName = x.Name,
+                        StudioDescription = x.Description,
+                        ProfilePicUrl = x.StudioPictureUrl,
+                        IsApproved = x.IsApproved,
+                        RatingSum = x.Ratings.Count > 0 ? (int)Math.Round(x.Ratings.Average(x => x.Value), 0, MidpointRounding.AwayFromZero) : 0,
+                    }).ToListAsync(),
+            };
+
+            return profile;
+        }
+
         public async Task<ProfileViewModel> ShowUserProfileAsync(Guid userId)
         {
             var user = await _dbContext.Users
@@ -291,6 +326,22 @@ namespace TheBeautyForum.Services.Users
                     .Select(x => x.UrlPath!)
                     .ToListAsync(),
                 FavoriteStudios = pubs.DistinctBy(x => x.StudioName).ToList(),
+                Appointments = await _dbContext.Appointments
+                    .Include(c => c.Category)
+                    .Include(s => s.Studio)
+                    .Where(u => u.UserId == userId)
+                    .Select(a => new AppointmentViewModel()
+                    {
+                        Id = a.Id,
+                        UserId = a.UserId,
+                        StudioId = a.StudioId,
+                        StartDate = a.StartDate,
+                        EndDate = a.EndDate,
+                        Description = a.Description,
+                        CategoryName = a.Category!.Name,
+                        StudioName = a.Studio!.Name,
+                    })
+                    .ToListAsync(),
             };
 
             return profile;

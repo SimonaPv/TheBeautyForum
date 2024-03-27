@@ -4,33 +4,44 @@
 <form asp-controller="Studio" asp-action="All">
     <div id="openRolesSection" class="container content-space-1" style="margin-bottom: 1em; ">
         <div class="row gx-2 gx-md-3 mb-7">
-            <div style="display: flex; flex-direction: row; justify-content: end">
+            <div style="display: flex; flex-direction: row; justify-content: space-between">
+                @if (this.User.IsInRole("StudioCreator"))
+                {
+                    <div>
+                        <button asp-area="StudioCreator" asp-controller="Studio" asp-action="Create" formmethod="get" class="btn btn-primary" style="font-size: 13px; margin-left: 0.1em; border-radius: 50rem; font-weight: 500; padding-top: 0.6em; padding-bottom: 0.6em">Create studio</button>
+                    </div>
+                }
+                <div></div>
                 <div>
-                    <select asp-for="@Model.Location" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="locationsJobCareers" aria-label="Select location">
-                        <option selected value="none">All locations</option>
-                        @foreach (var c in Model.Locations.OrderBy(x => x))
-                        {
-                            <option value="@c">@c</option>
-                        }
-                    </select>
+                    <div style="display: flex; flex-direction: row; justify-content: end">
+                        <div>
+                            <select asp-for="@Model.Location" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="locationsJobCareers" aria-label="Select location">
+                                <option selected value="none">All locations</option>
+                                @foreach (var c in Model.Locations.OrderBy(x => x))
+                                {
+                                    <option value="@c">@c</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="margin-left: 0.5em">
+                            <select asp-for="@Model.Category" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select procedure">
+                                <option selected value="none">All procedures</option>
+                                @foreach (var c in Model.Categories.OrderBy(x => x.Name))
+                                {
+                                    <option value="@c.Name">@c.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="margin-left: 0.5em;">
+                            <select asp-for="@Model.Rating" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg">
+                                <option selected value="none">No matter the rating</option>
+                                <option value="descending">Highest to lowest</option>
+                                <option value="ascending">Lowest to highest</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="font-size: 13px; margin-left: 0.5em; border-radius: 50rem; font-weight: 500">Apply filters</button>
+                    </div>
                 </div>
-                <div style="margin-left: 0.5em">
-                    <select asp-for="@Model.Category" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select procedure">
-                        <option selected value="none">All procedures</option>
-                        @foreach (var c in Model.Categories.OrderBy(x => x.Name))
-                        {
-                            <option value="@c.Name">@c.Name</option>
-                        }
-                    </select>
-                </div>
-                <div style="margin-left: 0.5em;">
-                    <select asp-for="@Model.Rating" style="font-size: 14px; border-radius: 9px; color: #808080" class="form-select form-select-lg">
-                        <option selected value="none">No matter the rating</option>
-                        <option value="descending">Highest to lowest</option>
-                        <option value="ascending">Lowest to highest</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary" style="font-size: 13px; margin-left: 0.5em; border-radius: 50rem; font-weight: 500">Apply filters</button>
             </div>
         </div>
     </div>

@@ -69,5 +69,29 @@ namespace TheBeautyForum.Services.Images
 
             return user.ProfilePictureUrl;
         }
+
+        public async Task<string> UploadImage(IFormFile imageFile, string nameFolder, Studio studio)
+        {
+            using var stream = imageFile.OpenReadStream();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(studio.Id.ToString(), stream),
+                Folder = nameFolder,
+            };
+
+            var result = await this._cloudinary.UploadAsync(uploadParams);
+            if (result.Error != null)
+            {
+                throw new InvalidOperationException(result.Error.Message);
+            }
+
+            studio.StudioPictureUrl = result.Url.ToString();
+
+            this._dbContext.Update(studio);
+            await this._dbContext.SaveChangesAsync();
+
+            return studio.StudioPictureUrl;
+        }
     }
 }

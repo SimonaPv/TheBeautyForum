@@ -1,0 +1,149 @@
+﻿@using TheBeautyForum.Web.ViewModels.Studio;
+@model CreateStudioViewModel
+@{
+    ViewData["Title"] = "Create studio";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/post.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner" style="display: flex; justify-content: center; width: 800px">
+            <form id="formId" method="post" enctype="multipart/form-data">
+                <div>
+                    <h3>Create studio</h3>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-holder">
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="name" autocomplete="on" />
+                    </div>
+                    <div class="form-holder">
+                        <span asp-validation-for="@Model.Location" class="text-danger"></span>
+                        <input asp-for="@Model.Location" class="form-control" placeholder="location" autocomplete="on" />
+                    </div>
+                    <div class="form-holder">
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                        <input asp-for="@Model.Description" class="form-control" placeholder="description" autocomplete="on" />
+                    </div>
+                    <div class="form-holder">
+                        <select asp-for="@Model.OpenTime" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
+                            <option value="" selected disabled hidden>CLICK TO CHOOSE OPENING TIME</option>
+                            <option value="00:00">00:00</option>
+                            @for (int i = 1; i < 24; i++)
+                            {
+                                <option value="@i:00">@i:00</option>
+                            }
+                            <span asp-validation-for="OpenTime" class="text-danger"></span>
+                        </select>
+                    </div>
+                    <div class="form-holder">
+                        <select asp-for="@Model.CloseTime" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
+                            <option value="" selected disabled hidden>CLICK TO CHOOSE CLOSING TIME</option>
+                            <option value="00:00">00:00</option>
+                            @for (int i = 1; i < 24; i++)
+                            {
+                                <option value="@i:00">@i:00</option>
+                            }
+                        </select>
+                        <span asp-validation-for="CloseTime" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-holder">
+                        <div class="form-control" style="padding-left: 1em">
+                            <select asp-for="CategoryIds" multiple data-placeholder="CLICK TO SELECT PROCEDURES..." class="form-control chosen-select choices-multiple-remove-button">
+                                @for (int i = 0; i < Model.Categories.Count; i++)
+                                {
+                                    @if (Model.Categories[i].IsSelected)
+                                    {
+                                        <option class="chosen-choices" value="@Model.Categories[i].Id">@Model.Categories[i].Name (click to add it back)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Categories[i].Id">@Model.Categories[i].Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-holder" style="padding-left: 1.7em;">
+                        <span asp-validation-for="@Model.ProfilePicture" class="text-danger"></span>
+                        <input type="file" asp-for="@Model.ProfilePicture" class="form-control" accept="image/gif, image/jpeg, image/png" aria-required="true" style="padding-top: 1.09em; text-transform:uppercase; " />
+                    </div>
+                    <div class="form-group">
+                        <img alt="Uploaded Image" accept="image/gif, image/jpeg, image/png" style="display:none;">
+                    </div>
+                    <div class="form-login" style="margin-bottom: 2.5em;">
+                        <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
+                        <a class="button" asp-controller="Studio" asp-action="All"><b>Cancel</b></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+        <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js" asp-append-version="true"></script>
+        <script src="~/js/editStudio.js" asp-append-version="true"></script>
+    }
+
+    @section Styles{
+        <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" asp-append-version="true" />
+    }
+
+    <style>
+        form {
+            width: 50%;
+            padding-top: inherit;
+            padding-right: 60px;
+            padding-left: 15px;
+        }
+
+        #formId {
+            width: 50%;
+            padding-top: 40px;
+            padding-right: 60px;
+            padding-left: 15px;
+        }
+
+        input[type="file"]::file-selector-button {
+            width: 142px;
+            color: transparent;
+            border-radius: 4px;
+            margin-right: 1px;
+        }
+
+        input[type="file"]::before {
+            position: absolute;
+            padding-left: 0em;
+            pointer-events: none;
+            content: "Upload profile pic: ";
+        }
+
+        input[type="file"]::file-selector-button {
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #f7f7f7;
+        }
+
+        input[type=radio] {
+            accent-color: #808080;
+        }
+    </style>
+</body>
+</html>

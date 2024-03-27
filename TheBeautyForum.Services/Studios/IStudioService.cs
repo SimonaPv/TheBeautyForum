@@ -1,4 +1,5 @@
-﻿using TheBeautyForum.Web.ViewModels.Studio;
+﻿using TheBeautyForum.Web.ViewModels.Category;
+using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Studios
 {
@@ -13,5 +14,9 @@ namespace TheBeautyForum.Services.Studios
         Task<List<ViewStudioViewModel>> GetAllStudiosAsync(FilterViewModel? filter = null);
 
         Task DeleteStudioAsync(Guid studioId);
+
+        Task CreateStudioAsync(CreateStudioViewModel model, Guid userId);
+
+        Task<CreateStudioViewModel> CreateStudioCategoriesAsync();
     }
 }

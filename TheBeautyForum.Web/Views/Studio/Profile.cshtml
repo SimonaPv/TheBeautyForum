@@ -13,18 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/styles.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/post.css">
     <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
@@ -54,7 +48,14 @@
                         <p style="margin-bottom: 0.2em;">Open hours: @Model.OpenTime - @Model.CloseTime</p>
                         <p style="width: 25em; margin-bottom: 0.5em">Offers: @string.Join(", ", Model.CategoryNames.OrderBy(x => x))</p>
                         <div style="padding-top: 0em;">
-                            <a type="button" class="btn btn-light" asp-controller="Appointment" asp-action="Create" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Make appointment</a><a type="button" class="btn btn-light" asp-controller="Studio" asp-action="Edit" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Edit profile</a>
+                            @if (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) == Model.UserId)
+                            {
+                                <a type="button" class="btn btn-light" asp-area="StudioCreator" asp-controller="Studio" asp-action="Edit" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Edit profile</a>
+                            }
+                            else if(this.User.IsInRole("User"))
+                            {
+                                <a type="button" class="btn btn-light" asp-controller="Appointment" asp-action="Create" asp-route-id="@Model.StudioId" style="color: #F9A392; background-color:#FEF1EF; font-weight: 400; border-radius: 13px; padding: 0.4em 1em 0.4em 1em; margin-top: 0.3em">Make appointment</a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
         </div>
         <div class="profile-info">
             <div class="info-col">
-                <div class="profile-intro">
+                <div class="profile-intro" style="padding-bottom: 1em">
                     <div class="total-box">
                         <h3>Clients' photos</h3>
                     </div>
@@ -128,38 +129,41 @@
                 </div>
             </div>
             <div>
-                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em;">
-                    <div class="profile-intro">
-                        <div class="sidebar-title">
-                            <h4 style="font-size: 20px;">Appointments</h4>
-                        </div>
-                        @foreach (var a in Model.Appointments.Where(x => x.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
-                        {
-                            <div class="event">
-                                <div class="left-event" style="width: 55px;">
-                                    <h3>@a.StartDate.Day</h3>
-                                    <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
-                                </div>
-                                <div class="right-event" style="width: 250px">
-                                    @if (a.Description!.Length > 57)
-                                    {
-                                        <h4>@a.Description.Substring(0, 54)...</h4>
-                                    }
-                                    else
-                                    {
-                                        <h4>@a.Description</h4>
-                                    }
-                                    <p>
-                                        <i class="fa fa-solid fa-user"></i>
-                                        <a asp-controller="User" asp-action="UserProfile" asp-route-id="@a.UserId" style="font-size: 14px;">@a.UserName</a>
-                                        at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)
-                                    </p>
-                                </div>
+                @if (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) == Model.UserId)
+                {
+                    <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-bottom: 1.2em;">
+                        <div class="profile-intro">
+                            <div class="sidebar-title">
+                                <h4 style="font-size: 20px;">Appointments</h4>
                             </div>
-                        }
+                            @foreach (var a in Model.Appointments.Where(x => x.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
+                            {
+                                <div class="event">
+                                    <div class="left-event" style="width: 55px;">
+                                        <h3>@a.StartDate.Day</h3>
+                                        <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                                    </div>
+                                    <div class="right-event" style="width: 250px">
+                                        @if (a.Description!.Length > 57)
+                                        {
+                                            <h4>@a.Description.Substring(0, 54)...</h4>
+                                        }
+                                        else
+                                        {
+                                            <h4>@a.Description</h4>
+                                        }
+                                        <p>
+                                            <i class="fa fa-solid fa-user"></i>
+                                            <a asp-controller="User" asp-action="UserProfile" asp-route-id="@a.UserId" style="font-size: 14px;">@a.UserName</a>
+                                            at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-top: 1.2em;">
+                }
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em;">
                     <div class="profile-intro" style="padding: 10px; padding-top: 0px;">
                         <div class="sidebar-title" style="margin-bottom: 0.3em">
                             <h4 style="font-size: 21px; padding: 20px 0px 0px 10px;">
@@ -192,19 +196,5 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/mains.js"></script>
 </body>
 </html>

@@ -12,21 +12,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="~/css/post.css">
-    <script src="https://kit.fontawesome.com/b9403dda92.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -45,7 +39,7 @@
         </div>
         <div class="profile-info">
             <div class="info-col">
-                <div class="profile-intro">
+                <div class="profile-intro" style="padding-bottom: 1em">
                     <div class="total-box">
                         <h3>Photos</h3>
                     </div>
@@ -94,24 +88,68 @@
                     }
                 </div>
             </div>
-            <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
-                <div class="profile-intro" style="padding-bottom: 0px;">
-                    <div class="sidebar-title" style="margin-bottom: 0.3em;">
-                        <h4 style="font-size: 20px;">Visited studios</h4>
-                    </div>
-                    @foreach (var a in Model.FavoriteStudios.OrderBy(x => x.StudioName))
-                    {
-                        <div class="event">
-                            <img style="width: 55px; border-radius: 6px;" src="@a.ProfilePicUrl">
-                            <div class="right-event">
-                                <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color: #626262;">
-                                    <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="font-size: 15px; color:#626262"><i class="fas fa-map-marker-alt"></i> @a.StudioName</a>
-                                </p>
-                                <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;"><i class="fa fa-solid fa-check"></i> @a.StudioDescription</p>
-                            </div>
+            <div>
+                <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em; margin-bottom: 1.5em">
+                    <div class="profile-intro" style="padding-bottom: 0px;">
+                        <div class="sidebar-title" style="margin-bottom: 0.3em;">
+                            <h4 style="font-size: 20px;">Visited studios</h4>
                         </div>
-                    }
+                        @foreach (var a in Model.FavoriteStudios.OrderBy(x => x.StudioName))
+                        {
+                            <div class="event">
+                                <img style="width: 55px; border-radius: 6px;" src="@a.ProfilePicUrl">
+                                <div class="right-event">
+                                    <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color: #626262;">
+                                        <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="font-size: 15px; color:#626262"><i class="fas fa-map-marker-alt"></i> @a.StudioName</a>
+                                    </p>
+                                    <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;"><i class="fa fa-solid fa-check"></i> @a.StudioDescription</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
+                @if (this.User.IsInRole("Administrator"))
+                {
+                    <div class="right-sidebar" style="margin-left: -10em; padding-left: 0.5em; padding-top: 0.3em">
+                        <div class="profile-intro">
+                            <div class="sidebar-title">
+                                <h4 style="font-size: 20px;">User's appointments</h4>
+                            </div>
+                            @foreach (var a in Model.Appointments.Where(u => u.StartDate > DateTime.Now).OrderBy(x => x.StartDate))
+                            {
+                                <div class="event">
+                                    <div class="left-event" style="width: 55px;">
+                                        <h3>@a.StartDate.Day</h3>
+                                        <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
+                                    </div>
+                                    <div class="right-event" style="height: 90px">
+                                        @if (a.Description!.Length > 30)
+                                        {
+                                            <div class="display" style="display: flex; flex-direction: row; justify-content: space-between;">
+                                                <div>
+                                                    <h4>@a.Description.Substring(0, 27)...</h4>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="display" style="display: flex; flex-direction: row; justify-content: space-between">
+                                                <div>
+                                                    <h4>@a.Description</h4>
+                                                </div>
+                                            </div>
+                                        }
+                                        <p>
+                                            <i class="fas fa-map-marker-alt"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: #626262; font-size: 14px">
+                                                @a.StudioName
+                                            </a> at @a.StartDate.ToString("HH:mm", CultureInfo.InvariantCulture)
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -127,7 +165,7 @@
             }
         }
     </script>
-    <script src="script.js"></script>
+    @*<script src="script.js"></script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -145,6 +183,6 @@
     <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/mains.js"></script>
+    <script src="js/mains.js"></script>*@
 </body>
 </html>

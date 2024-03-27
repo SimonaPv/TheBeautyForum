@@ -26,6 +26,11 @@ namespace TheBeautyForum.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePublicationViewModel model)
         {
+            if (this.User.IsInRole("Administrator"))
+            {
+                return RedirectToAction("Profile", "Studio", new { id = model.StudioId });
+            }
+
             if (model.Image != null && model.Image.Length > 10485760)
             {
                 ModelState.AddModelError(nameof(model.Image), "your file size exceeds the maximum allowed file size");
@@ -94,21 +99,5 @@ namespace TheBeautyForum.Web.Controllers
                 return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
             }
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> Edit(
-        //    [FromRoute]
-        //    Guid id)
-        //{
-        //    var model = await _publicationService.GetPostAsync(id);
-
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(CreatePublicationViewModel model)
-        //{
-        //    return View();
-        //}
     }
 }

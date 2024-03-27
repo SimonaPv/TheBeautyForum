@@ -10,9 +10,9 @@ namespace TheBeautyForum.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        //[Required]
-        //[ForeignKey(nameof(User))]
-        //public Guid UserId { get; set; }
+        [Required]
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
 
         [Required]
         [StringLength(NAME_MAX_LENGTH)]
@@ -36,8 +36,8 @@ namespace TheBeautyForum.Data.Models
 
         public bool IsApproved { get; set; }
 
-        //public User? User { get; set; }
-        
+        public User? User { get; set; }
+
         public ICollection<StudioCategory> StudioCategories { get; set; }
             = new HashSet<StudioCategory>();
 

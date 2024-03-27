@@ -32,6 +32,13 @@ namespace TheBeautyForum.Data.Configurations
 
             userRole = new IdentityUserRole<Guid>()
             {
+                UserId = Guid.Parse("1674d538-3cf0-4a6e-bc27-aa070a230647"),
+                RoleId = Guid.Parse("71d6d7d8-f4f6-42b5-a9a9-ed2d3ef0bc73")
+            };
+            data.Add(userRole);
+
+            userRole = new IdentityUserRole<Guid>()
+            {
                 UserId = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                 RoleId = Guid.Parse("5a322cf5-7101-4d4a-9e08-16382fc0a641")
             };

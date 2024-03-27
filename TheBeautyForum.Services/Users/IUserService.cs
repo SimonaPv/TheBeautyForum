@@ -8,6 +8,8 @@ namespace TheBeautyForum.Services.Users
 
         Task<ProfileViewModel> ShowAdminLoggedProfileAsync(Guid userId);
 
+        Task<ProfileViewModel> ShowStudioCreatorLoggedProfileAsync(Guid userId);
+
         Task<ProfileViewModel> ShowUserProfileAsync(Guid userId);
 
         Task EditUserProfileAsync(EditProfileViewModel model, Guid userId);

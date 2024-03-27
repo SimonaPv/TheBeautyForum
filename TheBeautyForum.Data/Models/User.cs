@@ -19,8 +19,8 @@ namespace TheBeautyForum.Data.Models
         public ICollection<Appointment> Appointments { get; set; }
             = new HashSet<Appointment>();
 
-        //public ICollection<Studio> Studios { get; set; }
-        //    = new HashSet<Studio>();
+        public ICollection<Studio> Studios { get; set; }
+            = new HashSet<Studio>();
 
         public ICollection<Rating> Ratings { get; set; }
             = new HashSet<Rating>();

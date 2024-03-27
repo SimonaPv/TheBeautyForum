@@ -51,6 +51,22 @@ namespace TheBeautyForum.Data.Configurations
 
             user = new User()
             {
+                Id = Guid.Parse("1674d538-3cf0-4a6e-bc27-aa070a230647"),
+                UserName = "Mona",
+                NormalizedUserName = "MONA",
+                Email = "monailieva@mail.com",
+                NormalizedEmail = "MONAILIEVA@MAIL.COM",
+                FirstName = "Mona",
+                LastName = "Ilieva",
+                PhoneNumber = "0887777777",
+                ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg",
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+            user.PasswordHash = hasher.HashPassword(user, "123456");
+            data.Add(user);
+
+            user = new User()
+            {
                 Id = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                 UserName = "Maria",
                 NormalizedUserName = "MARIA",

@@ -59,10 +59,10 @@ namespace TheBeautyForum.Web.Data
                 builder.Property(p => p.CloseTime)
                  .HasConversion(timeOnlyToTimeSpanConverter);
 
-                //builder.HasOne(u => u.User)
-                //    .WithMany(s => s.Studios)
-                //    .HasForeignKey(fk => fk.UserId)
-                //    .OnDelete(DeleteBehavior.NoAction);
+                builder.HasOne(u => u.User)
+                    .WithMany(s => s.Studios)
+                    .HasForeignKey(fk => fk.UserId)
+                    .OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<Rating>(builder =>

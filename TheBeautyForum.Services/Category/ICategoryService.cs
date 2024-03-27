@@ -12,5 +12,7 @@ namespace TheBeautyForum.Services.Category
         Task DeleteCategoryAsync(Guid categoryId);
 
         Task CreateCategoryAsync(CategoryViewModel model);
+
+        Task<List<CategoryViewModel>> LoadCategoriesAsync();
     }
 }

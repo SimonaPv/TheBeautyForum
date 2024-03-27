@@ -7,9 +7,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,12 +14,6 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/post.css">
 
@@ -33,21 +24,21 @@
             <div style="max-width: 40%; max-height: 40%; padding-left: 2em; padding-top:3.5em; padding-bottom: 2em; padding-top: 2em" class="image-holder">
                 <img style="border-radius: 6px" src="@Model.ProfilePictureUrl" alt="">
             </div>
-            <form id="formId" asp-route-returnUrl="" method="post" enctype="multipart/form-data">
+            <form id="formId" method="post" enctype="multipart/form-data">
                 <div>
-                    <h3>Edit profile</h3>
+                    <h3>Edit studio</h3>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-holder">
                         <span asp-validation-for="@Model.Name" class="text-danger"></span>
-                        <input asp-for="@Model.Name" class="form-control" placeholder="name" autocomplete="on" aria-required="true" />
+                        <input asp-for="@Model.Name" class="form-control" placeholder="name" autocomplete="on" />
                     </div>
                     <div class="form-holder">
                         <span asp-validation-for="@Model.Location" class="text-danger"></span>
-                        <input asp-for="@Model.Location" class="form-control" placeholder="location" autocomplete="on" aria-required="true" />
+                        <input asp-for="@Model.Location" class="form-control" placeholder="location" autocomplete="on" />
                     </div>
                     <div class="form-holder">
                         <span asp-validation-for="@Model.Description" class="text-danger"></span>
-                        <input asp-for="@Model.Description" class="form-control" placeholder="description" autocomplete="on" aria-required="true" />
+                        <input asp-for="@Model.Description" class="form-control" placeholder="description" autocomplete="on" />
                     </div>
                     <div class="form-holder">
                         <select asp-for="@Model.OpenTime" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
@@ -74,7 +65,7 @@
 
                     <div class="form-holder">
                         <div class="form-control" style="padding-left: 1em">
-                            <select asp-for="CategoryIds" multiple data-placeholder="Select procedures..." class="form-control chosen-select choices-multiple-remove-button">
+                            <select asp-for="CategoryIds" multiple data-placeholder="Click to select procedures..." class="form-control chosen-select choices-multiple-remove-button">
                                 @for (int i = 0; i < Model.Categories.Count; i++)
                                 {
                                     @if (Model.Categories[i].IsSelected)
@@ -91,7 +82,7 @@
                     </div>
                     <div class="form-login" style="margin-bottom: 2.5em;">
                         <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
-                        <button id="registerSubmit" class="button" type="submit" asp-controller="Studio" asp-action="Profile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                        <a class="button" asp-controller="Studio" asp-action="Profile" asp-route-id="@Model.Id"><b>Cancel</b></a>
                     </div>
                 </div>
             </form>
@@ -99,20 +90,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/mains.js"></script>
 
     @section Scripts{
         <partial name="_ValidationScriptsPartial" />

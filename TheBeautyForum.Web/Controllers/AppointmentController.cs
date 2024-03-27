@@ -21,6 +21,11 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
+            if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
+            {
+                return RedirectToAction("Profile", "Studio", new { id = id });
+            }
+
             var model = await _appointmentService.LoadCategoriesAsync(id);
 
             return View(model);
@@ -66,11 +71,11 @@ namespace TheBeautyForum.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(
             [FromRoute]
-            Guid id, 
+            Guid id,
             CreateAppointmentViewModel model)
         {
             model.StartDate = model.StartDate.AddHours(model.StartDateHour);
-                
+
             if (model.StartDate < DateTime.Now)
             {
                 ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");

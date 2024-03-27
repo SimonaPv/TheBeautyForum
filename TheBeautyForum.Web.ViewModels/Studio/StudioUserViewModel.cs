@@ -9,5 +9,9 @@
         public string? StudioName { get; set; }
 
         public string? StudioDescription { get; set; }
+
+        public bool IsApproved { get; set; }
+
+        public int? RatingSum { get; set; }
     }
 }

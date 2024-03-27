@@ -8,5 +8,7 @@ namespace TheBeautyForum.Services.Images
         Task<Image> UploadImage(IFormFile imageFile, string nameFolder, Guid postId);
 
         Task<string> UploadImage(IFormFile imageFile, string nameFolder, User user);
+
+        Task<string> UploadImage(IFormFile imageFile, string nameFolder, Studio studio);
     }
 }

@@ -7,24 +7,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-<!-- Libraries Stylesheet -->
-<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-<!-- Customized Bootstrap Stylesheet -->
-<link href="css/styles.css" rel="stylesheet">
-<link rel="stylesheet" href="~/css/style.css">
-<link rel="stylesheet" href="~/css/post.css">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/post.css">
 
 </head>
 <body>
@@ -48,18 +41,25 @@
                     <span asp-validation-for="@Model.Email" class="text-danger"></span>
                     <input asp-for="@Model.Email" class="form-control" placeholder="e-mail" autocomplete="on" aria-required="true" />
                 </div>
-                @if(this.User.IsInRole("Administrator"))
+                @if (this.User.IsInRole("Administrator"))
                 {
                     <div class="form-login" style="margin-bottom: 2.5em;">
                         <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
                         <button id="registerSubmit" class="button" type="submit" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
                     </div>
                 }
+                else if (this.User.IsInRole("StudioCreator"))
+                {
+                    <div class="form-login" style="margin-bottom: 2.5em;">
+                        <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
+                        <button id="registerSubmit" class="button" type="submit" asp-area="StudioCreator" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                    </div>
+                }
                 else
                 {
                     <div class="form-login" style="margin-bottom: 2.5em;">
                         <button id="registerSubmit" class="button" type="submit"><b>Save</b></button>
-                        <button id="registerSubmit" class="button" type="submit" asp-area="" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></button>
+                        <a class="button" asp-area="" asp-controller="User" asp-action="LoggedProfile" asp-route-id="@Model.Id"><b>Cancel</b></a>
                     </div>
                 }
             </form>
@@ -67,23 +67,9 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/mains.js"></script>
 
     <style>
-        form{
+        form {
             width: 50%;
             padding-top: inherit;
             padding-right: 60px;
