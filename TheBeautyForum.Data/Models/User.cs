@@ -14,6 +14,8 @@ namespace TheBeautyForum.Data.Models
         [StringLength(LAST_NAME_MAX_LENGTH)]
         public string LastName { get; set; } = null!;
 
+        public string UserRole { get; set; } = null!;
+
         public string? ProfilePictureUrl { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; }

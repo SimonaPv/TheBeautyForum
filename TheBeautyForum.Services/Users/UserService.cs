@@ -94,6 +94,7 @@ namespace TheBeautyForum.Services.Users
                 LastName = user.LastName,
                 ProfilePictureUrl = user.ProfilePictureUrl,
                 Email = user.Email,
+                
                 Appointments = await _dbContext.Appointments
                     .Include(c => c.Category)
                     .Include(s => s.Studio)
@@ -118,6 +119,7 @@ namespace TheBeautyForum.Services.Users
                         LastName = u.LastName,
                         ProfilePictureUrl = u.ProfilePictureUrl,
                         Email = u.Email,
+                        Role = u.UserRole
                     }).ToListAsync(),
                 FavoriteStudios = await _dbContext.Studios
                     .Where(x => x.IsApproved == false)

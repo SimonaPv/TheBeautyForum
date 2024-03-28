@@ -145,6 +145,18 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                if (Input.UserRole.ToLower() == "user")
+                {
+                    user.UserRole = "User";
+                }
+                else if (Input.UserRole.ToLower() == "studiocreator")
+                {
+                    user.UserRole = "Studio creator";
+                }
+                else
+                {
+                    user.UserRole = "Administrator";
+                }
 
                 await _userStore.SetUserNameAsync(user, Input.FirstName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

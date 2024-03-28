@@ -106,30 +106,17 @@
                     <div class="event">
                         <img style="width: 55px; border-radius: 6px;" src="@s.ProfilePictureUrl">
                         <div class="right-event" style="width: 220px">
-                            <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 0px; margin-top: 0px; color:black;">
+                            <p style="padding-left: 0.8em; margin-bottom: 0px; padding-top: 3px; margin-top: 0px; color:black;">
                                 <a asp-controller="User" asp-action="UserProfile" asp-route-id="@s.Id" style="font-size: 15px; font-weight:500; color:black"> @s.FirstName @s.LastName</a>
                             </p>
                             <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;">@s.Email</p>
+                            <p style="padding-left: 0.8em; padding-top: 0px; margin-bottom: 0px; font-size: 13px;">In role: @s.Role</p>
                         </div>
                     </div>
                 }
             </div>
         </div>
     </div>
-
-    <script>
-        function likeButton() {
-            let graylike = document.querySelector('.fa-heart');
-
-            if (graylike.style.color = "#626262") {
-                graylike.style.color = "#F9A392";
-            }
-            else {
-                graylike.style.color = "#626262";
-            }
-        }
-    </script>
-
     <style>
         .row {
             margin-right: 0px;

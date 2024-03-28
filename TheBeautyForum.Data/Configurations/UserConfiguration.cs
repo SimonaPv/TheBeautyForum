@@ -28,7 +28,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Palieva",
                 PhoneNumber = "0884912724",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "Administrator"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -44,7 +45,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Metodieva",
                 PhoneNumber = "0886666666",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "Studio creator"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -60,7 +62,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Ilieva",
                 PhoneNumber = "0887777777",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "Studio creator"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -76,7 +79,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Georgieva",
                 PhoneNumber = "0881111111",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "User"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -92,7 +96,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Ivanova",
                 PhoneNumber = "0882222222",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "User"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -108,7 +113,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Todorova",
                 PhoneNumber = "0883333333",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "User"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -124,7 +130,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Mileva",
                 PhoneNumber = "0884444444",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "User"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
@@ -140,7 +147,8 @@ namespace TheBeautyForum.Data.Configurations
                 LastName = "Borisova",
                 PhoneNumber = "0885555555",
                 ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg",
-                SecurityStamp = Guid.NewGuid().ToString("D")
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                UserRole = "User"
             };
             user.PasswordHash = hasher.HashPassword(user, "123456");
             data.Add(user);
