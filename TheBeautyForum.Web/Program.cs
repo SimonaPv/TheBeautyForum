@@ -5,6 +5,7 @@ using TheBeautyForum.Services.Appointment;
 using TheBeautyForum.Services.Category;
 using TheBeautyForum.Services.Home;
 using TheBeautyForum.Services.Images;
+using TheBeautyForum.Services.Like;
 using TheBeautyForum.Services.Publication;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Services.Users;
@@ -44,11 +45,28 @@ builder.Services.AddScoped<IStudioService, StudioService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
 ConfigureCloudinaryService(builder.Services, builder.Configuration);
 
 builder.Services.AddResponseCaching();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7000")
+                .AllowAnyHeader()
+                .WithMethods("GET", "POST", "PUT")
+                .AllowCredentials();
+        });
+});
+
 var app = builder.Build();
+
+app.UseCors();
+
 
 if (app.Environment.IsDevelopment())
 {

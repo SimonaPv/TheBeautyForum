@@ -655,3 +655,11 @@ right-event p {
 .profile-intro p {
     font-size: 14px;
 }
+
+.likedPost {
+    color: #F9A392;
+}
+
+.notLikedPost {
+    color: #626262;
+}

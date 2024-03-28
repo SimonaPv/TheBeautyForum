@@ -98,9 +98,10 @@
                     }
                     <div class="post-row">
                         <div class="activity-icons">
-                            <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
-                                <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> @p.LikeCount
-                            </p>
+                            @*<p style="font-size: 18px; margin: 0.5em 1em 0 0.5em" >
+                                <i class="fa fa-solid fa-heart @(User.Likes ? "likedPost" : "notLikedPost")" onclick="likeButton('@p.PublicationId', @(p.PostLikedByCurrentUser ? "true" : "false"))" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
+                                <span id="like-@p.PublicationId">@p.LikeCount</span>
+                            </p>*@
                         </div>
                     </div>
                 </div>
@@ -126,40 +127,12 @@
             }
         </div>
     </div>
-    <script>
-        function likeButton() {
-            let graylike = document.querySelector('.fa-heart');
-
-            if (graylike.style.color = "#626262") {
-                graylike.style.color = "#F9A392";
-            }
-            else {
-                graylike.style.color = "#626262";
-            }
-        }
-
-        function myFunction() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        }
-    </script>
+ 
     <style>
         .imp-links a:hover {
             color: #F9A392;
         }
     </style>
-    <script src="script.js"></script>
+    <script asp-append-version="true" src="~/js/publications.js"></script>
 </body>
 </html>

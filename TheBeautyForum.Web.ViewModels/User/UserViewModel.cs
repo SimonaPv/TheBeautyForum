@@ -16,6 +16,8 @@ namespace TheBeautyForum.Web.ViewModels.User
 
         public string? Email { get; set; }
 
+        public string? Role { get; set; }
+
         public ICollection<AppointmentViewModel> Appointments { get; set; }
             = new HashSet<AppointmentViewModel>();
 

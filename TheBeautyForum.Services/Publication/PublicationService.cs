@@ -29,9 +29,12 @@ namespace TheBeautyForum.Services.Publication
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var model = await _dbContext.Publications
+            var model1 = _dbContext.Publications
                 .Include(x => x.Image)
                 .Include(x => x.Studio)
+                .Include(x => x.Likes);
+
+            var model = await model1
                 .Select(p => new ForumViewModel()
                 {
                     UserFirstName = user.FirstName,
@@ -46,6 +49,7 @@ namespace TheBeautyForum.Services.Publication
                     LikeCount = p.Likes.Count,
                     UserName = $"{p.User!.FirstName} {p.User.LastName}",
                     PostUserProfilePic = p.User.ProfilePictureUrl,
+                    PostLikedByCurrentUser = p.Likes.FirstOrDefault(publication => publication.UserId == user.Id) != null,
                     ViewUrl = "",
                     StudioName = p.Studio.Name,
                     Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
@@ -68,6 +72,7 @@ namespace TheBeautyForum.Services.Publication
                         UserLastName = user.LastName,
                         UserProfilePic = user.ProfilePictureUrl,
                         ViewUrl = "Forum"
+
                     }
                 }).ToListAsync();
 

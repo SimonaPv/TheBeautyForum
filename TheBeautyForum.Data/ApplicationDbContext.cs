@@ -110,6 +110,11 @@ namespace TheBeautyForum.Web.Data
                 .WithMany(l => l.Likes)
                 .HasForeignKey(p => p.PublicationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+                builder.HasOne(u => u.User)
+                .WithMany(l => l.Likes)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.ApplyConfiguration(new ImageConfiguration());

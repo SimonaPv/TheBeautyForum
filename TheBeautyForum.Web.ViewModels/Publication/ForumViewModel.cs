@@ -17,6 +17,7 @@ namespace TheBeautyForum.Web.ViewModels.Publication
         public Guid StudioId { get; set; }
 
         public string? PostUserProfilePic { get; set; }
+        public bool PostLikedByCurrentUser { get; set; }
 
         public string? UserName { get; set; }
 
