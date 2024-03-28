@@ -20,8 +20,8 @@ namespace TheBeautyForum.Data.Configurations
             var user = new User()
             {
                 Id = Guid.Parse("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"),
-                UserName = "Simona",
-                NormalizedUserName = "SIMONA",
+                UserName = "simonapalieva@mail.com",
+                NormalizedUserName = "simonapalieva@mail.com".ToUpper(),
                 Email = "simonapalieva@mail.com",
                 NormalizedEmail = "SIMONAPALIEVA@MAIL.COM",
                 FirstName = "Simona",
@@ -37,8 +37,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("b313e2e1-0270-4a86-924b-71256500be8b"),
-                UserName = "Mirela",
-                NormalizedUserName = "MIRELA",
+                UserName = "mirelametodieva@mail.com",
+                NormalizedUserName = "mirelametodieva@mail.com".ToUpper(),
                 Email = "mirelametodieva@mail.com",
                 NormalizedEmail = "MIRELAMETODIEVA@MAIL.COM",
                 FirstName = "Mirela",
@@ -54,8 +54,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("1674d538-3cf0-4a6e-bc27-aa070a230647"),
-                UserName = "Mona",
-                NormalizedUserName = "MONA",
+                UserName = "monailieva@mail.com",
+                NormalizedUserName = "monailieva@mail.com".ToUpper(),
                 Email = "monailieva@mail.com",
                 NormalizedEmail = "MONAILIEVA@MAIL.COM",
                 FirstName = "Mona",
@@ -71,8 +71,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
-                UserName = "Maria",
-                NormalizedUserName = "MARIA",
+                UserName = "mariageorgieva@mail.com",
+                NormalizedUserName = "mariageorgieva@mail.com".ToUpper(),
                 Email = "mariageorgieva@mail.com",
                 NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
                 FirstName = "Maria",
@@ -88,8 +88,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("3bea7392-a556-4a99-86c2-8cb244868283"),
-                UserName = "Amaya",
-                NormalizedUserName = "AMAYA",
+                UserName = "amayaivanova@mail.com",
+                NormalizedUserName = "amayaivanova@mail.com".ToUpper(),
                 Email = "amayaivanova@mail.com",
                 NormalizedEmail = "amayaivanova@mail.com".ToUpper(),
                 FirstName = "Amaya",
@@ -105,8 +105,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
-                UserName = "Aylin",
-                NormalizedUserName = "AYLIN".ToUpper(),
+                UserName = "aylintodorova@mail.com",
+                NormalizedUserName = "aylintodorova@mail.com".ToUpper(),
                 Email = "aylintodorova@mail.com",
                 NormalizedEmail = "aylintodorova@mail.com".ToUpper(),
                 FirstName = "Aylin",
@@ -122,8 +122,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
-                UserName = "Debora",
-                NormalizedUserName = "DEBORA",
+                UserName = "deboramileva@mail.com",
+                NormalizedUserName = "deboramileva@mail.com".ToUpper(),
                 Email = "deboramileva@mail.com",
                 NormalizedEmail = "deboramileva@mail.com".ToUpper(),
                 FirstName = "Debora",
@@ -139,8 +139,8 @@ namespace TheBeautyForum.Data.Configurations
             user = new User()
             {
                 Id = Guid.Parse("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
-                UserName = "Lisa",
-                NormalizedUserName = "LISA",
+                UserName = "lisaborisova@mail.com",
+                NormalizedUserName = "lisaborisova@mail.com".ToUpper(),
                 Email = "lisaborisova@mail.com",
                 NormalizedEmail = "lisaborisova@mail.com".ToUpper(),
                 FirstName = "Lisa",

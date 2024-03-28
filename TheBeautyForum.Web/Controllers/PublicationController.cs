@@ -26,9 +26,9 @@ namespace TheBeautyForum.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePublicationViewModel model)
         {
-            if (this.User.IsInRole("Administrator"))
+            if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
             {
-                return RedirectToAction("Profile", "Studio", new { id = model.StudioId });
+                return RedirectToAction("Forum", "Publication");
             }
 
             if (model.Image != null && model.Image.Length > 10485760)

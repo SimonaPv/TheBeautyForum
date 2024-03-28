@@ -107,12 +107,12 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "First name")]
-            [StringLength(FIRST_NAME_MAX_LENGTH)]
+            [StringLength(FIRST_NAME_MAX_LENGTH, MinimumLength = FIRST_NAME_MIN_LENGTH)]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last name")]
-            [StringLength(LAST_NAME_MAX_LENGTH)]
+            [StringLength(LAST_NAME_MAX_LENGTH, MinimumLength = LAST_NAME_MIN_LENGTH)]
             public string LastName { get; set; }
 
             public IFormFile? ProfilePicture { get; set; }
@@ -158,12 +158,15 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
                     user.UserRole = "Administrator";
                 }
 
-                await _userStore.SetUserNameAsync(user, Input.FirstName, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                user.ProfilePictureUrl = await this._imageService.UploadImage(Input.ProfilePicture, "images", user);
+                if (Input.ProfilePicture != null)
+                {
+                    user.ProfilePictureUrl = await this._imageService.UploadImage(Input.ProfilePicture, "images", user);
+                }
 
                 if (result.Succeeded)
                 {

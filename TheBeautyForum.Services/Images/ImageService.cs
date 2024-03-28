@@ -8,8 +8,8 @@ namespace TheBeautyForum.Services.Images
 {
     public class ImageService : IImageService
     {
-        private readonly Cloudinary _cloudinary;
         private readonly ApplicationDbContext _dbContext;
+        private readonly Cloudinary _cloudinary;
 
         public ImageService(
             ApplicationDbContext dbContext,

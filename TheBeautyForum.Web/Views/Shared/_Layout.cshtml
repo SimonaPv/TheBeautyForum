@@ -21,21 +21,24 @@
                 <a asp-area="" asp-controller="Publication" asp-action="Forum" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 text-primary"><span class="text-dark">The</span>Beauty<span class="text-dark">Forum</span></h1>
                 </a>
-                <div class="collapse navbar-collapse justify-content-between" style="padding-left:12em;" id="navbarCollapse">
+                <div class="collapse navbar-collapse justify-content-between" style="padding-left:15em;" id="navbarCollapse">
                     <div class="navbar-nav m-auto py-0">
                         <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-item nav-link" asp-area="" asp-controller="Publication" asp-action="Forum">Forum</a>
-                        @if (this.User.IsInRole("User"))
+                        @if (this.User!.Identity!.IsAuthenticated)
                         {
-                            <a class="nav-item nav-link" asp-area="" asp-controller="User" asp-action="LoggedProfile">Profile</a>
-                        }
-                        else if (this.User.IsInRole("Administrator"))
-                        {
-                            <a class="nav-item nav-link" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile">Profile</a>
-                        }
-                        else
-                        {
-                            <a class="nav-item nav-link" asp-area="StudioCreator" asp-controller="User" asp-action="LoggedProfile">Profile</a>
+                            @if (this.User.IsInRole("User"))
+                            {
+                                <a class="nav-item nav-link" asp-area="" asp-controller="User" asp-action="LoggedProfile">Profile</a>
+                            }
+                            else if (this.User.IsInRole("Administrator"))
+                            {
+                                <a class="nav-item nav-link" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile">Profile</a>
+                            }
+                            else
+                            {
+                                <a class="nav-item nav-link" asp-area="StudioCreator" asp-controller="User" asp-action="LoggedProfile">Profile</a>
+                            }
                         }
                         <a class="nav-item nav-link" asp-area="" asp-controller="Studio" asp-action="All">Studios</a>
                         <partial name="_LoginPartial" />
