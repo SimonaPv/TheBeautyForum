@@ -1,7 +1,9 @@
-﻿function likeButton(postId, isPostLiked) {
+﻿function onLikeButtonPress(postId) {
     let token = document.querySelector("input[name='__RequestVerificationToken']").value;
-    let likesCount = document.getElementById(`like-${postId}`);
+    let likesCount = document.getElementById(`likes-${postId}`);
     let likesIcon = document.getElementById(`like-icon-${postId}`);
+
+    let isPostLiked = document.getElementById(`${postId}-is-liked`);
 
     let data = new FormData();
     data.append('postId', postId);
@@ -17,15 +19,17 @@
         processData: false,
         contentType: false,
         success: async function (data) {
-            if (!isPostLiked) {
+            if (isPostLiked.value == 'false') {
                 likesCount.textContent = parseInt(likesCount.textContent) + 1;
                 likesIcon.classList.remove("notLikedPost");
                 likesIcon.classList.add("likedPost");
+                isPostLiked.value = 'true';
             }
             else {
                 likesCount.textContent = parseInt(likesCount.textContent) - 1;
                 likesIcon.classList.remove("likedPost");
                 likesIcon.classList.add("notLikedPost");
+                isPostLiked.value = 'false';
             }
         },
         error: function (error) {

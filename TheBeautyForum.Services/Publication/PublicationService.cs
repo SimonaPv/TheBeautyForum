@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
+
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
 
@@ -29,12 +30,9 @@ namespace TheBeautyForum.Services.Publication
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var model1 = _dbContext.Publications
+            var model = await _dbContext.Publications
                 .Include(x => x.Image)
                 .Include(x => x.Studio)
-                .Include(x => x.Likes);
-
-            var model = await model1
                 .Select(p => new ForumViewModel()
                 {
                     UserFirstName = user.FirstName,
@@ -49,7 +47,6 @@ namespace TheBeautyForum.Services.Publication
                     LikeCount = p.Likes.Count,
                     UserName = $"{p.User!.FirstName} {p.User.LastName}",
                     PostUserProfilePic = p.User.ProfilePictureUrl,
-                    PostLikedByCurrentUser = p.Likes.FirstOrDefault(publication => publication.UserId == user.Id) != null,
                     ViewUrl = "",
                     StudioName = p.Studio.Name,
                     Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
@@ -75,6 +72,11 @@ namespace TheBeautyForum.Services.Publication
 
                     }
                 }).ToListAsync();
+            var publicationIds = model.Select(f => f.PublicationId);
+            var likes = _dbContext.Likes
+                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+
+            model.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == user.Id && publication.PublicationId == f.PublicationId) != null);
 
             return model;
         }
@@ -168,27 +170,5 @@ namespace TheBeautyForum.Services.Publication
 
             return post;
         }
-
-        //public async Task EditPublicationAsync(Guid postId, CreatePublicationViewModel model)
-        //{
-        //    var post = await _dbContext.Publications.FindAsync(postId);
-
-        //    if (post == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(post));
-        //    }
-
-        //    post.StudioId = model.StudioId;
-        //    post.Description = model.Description;
-
-        //    await _dbContext.SaveChangesAsync();
-
-        //    if (model.Image != null)
-        //    {
-        //        await this._imageService.UploadImage(model.Image, "images", post.Id);
-        //    }
-
-        //    await _dbContext.SaveChangesAsync();
-        //}
     }
 }

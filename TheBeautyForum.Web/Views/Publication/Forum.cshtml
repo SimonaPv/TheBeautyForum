@@ -98,10 +98,11 @@
                     }
                     <div class="post-row">
                         <div class="activity-icons">
-                            @*<p style="font-size: 18px; margin: 0.5em 1em 0 0.5em" >
-                                <i class="fa fa-solid fa-heart @(User.Likes ? "likedPost" : "notLikedPost")" onclick="likeButton('@p.PublicationId', @(p.PostLikedByCurrentUser ? "true" : "false"))" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
-                                <span id="like-@p.PublicationId">@p.LikeCount</span>
-                            </p>*@
+                            <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em" >
+                                <input type="hidden" id="@p.PublicationId-is-liked" name="@p.PublicationId" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
+                                <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" onclick="onLikeButtonPress('@p.PublicationId')" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
+                                <span id="likes-@p.PublicationId">@p.LikeCount</span>
+                            </p>
                         </div>
                     </div>
                 </div>

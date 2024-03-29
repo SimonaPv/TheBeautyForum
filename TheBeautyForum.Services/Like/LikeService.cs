@@ -22,12 +22,7 @@ namespace TheBeautyForum.Services.Like
         {
             var model = await _dbContext.Users.Include(x => x.Likes).FirstOrDefaultAsync(x => x.Id == userId);
 
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            if (!model.Likes.Select(x => x.UserId).Contains(model.Id))
+            if (model!= null && !model.Likes.Select(x => x.PublicationId).Contains(postId))
             {
                 var like = new Data.Models.Like()
                 {

@@ -33,20 +33,15 @@ namespace TheBeautyForum.Web.Controllers
 
             if (model.Image != null && model.Image.Length > 10485760)
             {
-                ModelState.AddModelError(nameof(model.Image), "your file size exceeds the maximum allowed file size");
+                ModelState.AddModelError(nameof(model.Image), "Your file size exceeds the maximum allowed file size");
 
-                if (model.ViewUrl == "Forum")
-                {
-                    return RedirectToAction("Forum", "Publication", model);
-                }
-                else if (model.ViewUrl == "LoggedProfile")
-                {
-                    return RedirectToAction("LoggedProfile", "User", model);
-                }
-                else
-                {
-                    return RedirectToAction("Profile", "Studio", model);
-                }
+                //if (model.ViewUrl == "Forum")
+                //{
+                //    return RedirectToAction("Forum", "Publication", model);
+                //}
+                //else {
+                //    return RedirectToAction("LoggedProfile", "User", model);
+                //}
             }
 
             if (!ModelState.IsValid)
@@ -55,13 +50,9 @@ namespace TheBeautyForum.Web.Controllers
                 {
                     return RedirectToAction("Forum", "Publication", model);
                 }
-                else if (model.ViewUrl == "LoggedProfile")
-                {
-                    return RedirectToAction("LoggedProfile", "User", model);
-                }
                 else
                 {
-                    return RedirectToAction("Profile", "Studio", model);
+                    return RedirectToAction("LoggedProfile", "User", model);
                 }
             }
 
@@ -71,13 +62,9 @@ namespace TheBeautyForum.Web.Controllers
             {
                 return RedirectToAction("Forum", "Publication", model);
             }
-            else if (model.ViewUrl == "LoggedProfile")
-            {
-                return RedirectToAction("LoggedProfile", "User", model);
-            }
             else
             {
-                return RedirectToAction("Profile", "Studio", model);
+                return RedirectToAction("LoggedProfile", "User", model);
             }
         }
 

@@ -32,13 +32,13 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public int LikeCount { get; set; }
 
-        public int CommentCount { get; set; }
-
         public DateTime DatePosted { get; set; }
 
         public CreatePublicationViewModel? Post { get; set; }
 
         public ICollection<StudioForumViewModel> Studios { get; set; }
             = new List<StudioForumViewModel>();
+
+        public ICollection<Guid> likedPublicationIds { get; set; } = new List<Guid>(); 
     }
 }
