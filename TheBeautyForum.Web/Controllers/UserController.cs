@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TheBeautyForum.Services.Publication;
 using TheBeautyForum.Services.Users;
 using TheBeautyForum.Web.ViewModels.User;
 

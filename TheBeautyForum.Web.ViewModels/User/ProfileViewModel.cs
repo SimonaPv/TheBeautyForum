@@ -1,5 +1,4 @@
-﻿using TheBeautyForum.Data.Models;
-using TheBeautyForum.Web.ViewModels.Appointment;
+﻿using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Rating;
@@ -18,8 +17,6 @@ namespace TheBeautyForum.Web.ViewModels.User
         public string? ProfilePictureUrl { get; set; }
 
         public string? Email { get; set; }
-
-        public int? Rating { get; set; }
 
         public CreatePublicationViewModel? Post { get; set; }
 

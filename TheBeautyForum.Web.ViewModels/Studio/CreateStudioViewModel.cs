@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using static TheBeautyForum.Data.DataConstants.Studio;
 using TheBeautyForum.Web.ViewModels.Category;
 using Microsoft.AspNetCore.Http;
-using System.ComponentModel;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace TheBeautyForum.Web.ViewModels.Studio
 {

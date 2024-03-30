@@ -10,7 +10,7 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 
         public Guid StudioId { get; set; }
 
-        public RatingViewModel Rating { get; set; }
+        public RatingViewModel? Rating { get; set; }
 
         public DateTime StartDate { get; set; }
 

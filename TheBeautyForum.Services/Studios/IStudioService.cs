@@ -1,5 +1,4 @@
-﻿using TheBeautyForum.Web.ViewModels.Category;
-using TheBeautyForum.Web.ViewModels.Studio;
+﻿using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Studios
 {

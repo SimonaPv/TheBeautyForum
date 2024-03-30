@@ -187,10 +187,11 @@
                                     <span style="background-color: #E7E6E6; color: #626262">@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                                 </div>
                                 <div class="right-event">
-                                    <h5 style="color: black; font-size: 15px; padding-top: 0.6em">
-                                        <i class="fas fa-map-marker-alt" style="font-size: 15px"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: black; font-weight: 500; font-size: 16px">
+                                    <h5 style="color: black; font-size: 15px; padding-top: 0.3em">
+                                        <i class="fas fa-map-marker-alt" style="font-size: 15px; margin-bottom: 0.4em"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: black; font-weight: 500; font-size: 16px">
                                             @a.StudioName
                                         </a>
+                                        <partial name="_UpdateRatingPartial" model="a.Rating" />
                                     </h5>
                                 </div>
                             </div>

@@ -1,0 +1,19 @@
+﻿@using TheBeautyForum.Web.ViewModels.Rating;
+@model RatingViewModel
+
+<body>
+    <form enctype="multipart/form-data" method="post">
+        <div style="display: flex; flex-direction: row;">
+
+            <select asp-for="@Model.Value" style="font-size: 15px; font-weight: 700; margin-right: 0.3em; font-size: 14px; border-radius: 9px; color: orange">
+                <option value="1" style="color: orange">★</option>
+                <option value="2" style="color: orange">★★</option>
+                <option value="3" style="color: orange">★★★</option>
+                <option value="4" style="color: orange">★★★★</option>
+                <option value="5" style="color: orange">★★★★★</option>
+            </select>
+
+            <input class="btn" style="font-size: 12px; margin-left: 0.5em; border-radius: 9px; background-color: #E7E6E6; color: #626262; padding: 0.2em 1em 0.2em 1em ; font-weight: 400" asp-controller="Rating" asp-action="UpdateRating" asp-route-id="@Model.StudioId" type="submit" value="Rate" />
+        </div>
+    </form>
+</body>

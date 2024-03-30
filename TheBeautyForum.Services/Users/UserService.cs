@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using TheBeautyForum.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
@@ -94,7 +92,7 @@ namespace TheBeautyForum.Services.Users
                 LastName = user.LastName,
                 ProfilePictureUrl = user.ProfilePictureUrl,
                 Email = user.Email,
-                
+
                 Appointments = await _dbContext.Appointments
                     .Include(c => c.Category)
                     .Include(s => s.Studio)
@@ -203,6 +201,15 @@ namespace TheBeautyForum.Services.Users
                     Description = a.Description,
                     CategoryName = a.Category!.Name,
                     StudioName = a.Studio!.Name,
+                    Rating = _dbContext.Ratings
+                         .Select(x => new RatingViewModel()
+                         {
+                             Id = x.Id,
+                             Value = x.Value,
+                             UserId = x.UserId,
+                             StudioId = x.StudioId
+                         })
+                        .FirstOrDefault(x => x.UserId == userId && x.StudioId == a.StudioId)
                 })
                 .ToListAsync(),
                 Post = new CreatePublicationViewModel()

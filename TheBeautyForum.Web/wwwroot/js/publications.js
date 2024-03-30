@@ -14,7 +14,6 @@
         data: data,
         headers: {
             "RequestVerificationToken": token
-
         },
         processData: false,
         contentType: false,

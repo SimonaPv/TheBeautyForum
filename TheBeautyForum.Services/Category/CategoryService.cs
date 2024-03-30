@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TheBeautyForum.Data.Models;
 using TheBeautyForum.Web.Data;
 using TheBeautyForum.Web.ViewModels.Category;
 

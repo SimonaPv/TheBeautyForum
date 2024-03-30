@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Claims;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Web.ViewModels.Studio;

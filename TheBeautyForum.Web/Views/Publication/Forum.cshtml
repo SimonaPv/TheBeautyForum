@@ -96,15 +96,30 @@
                         </p>
                         <img src="@p.ImageUrl" class="post-img">
                     }
-                    <div class="post-row">
-                        <div class="activity-icons">
-                            <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em" >
-                                <input type="hidden" id="@p.PublicationId-is-liked" name="@p.PublicationId" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
-                                <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" onclick="onLikeButtonPress('@p.PublicationId')" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
-                                <span id="likes-@p.PublicationId">@p.LikeCount</span>
-                            </p>
+                    @if (User.IsInRole("Administrator") || User.IsInRole("StudioCreator"))
+                    {
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
+                                    <input type="hidden" id="@p.PublicationId-is-liked" name="@p.PublicationId" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
+                                    <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
+                                    <span id="likes-@p.PublicationId">@p.LikeCount</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="post-row">
+                            <div class="activity-icons">
+                                <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
+                                    <input type="hidden" id="@p.PublicationId-is-liked" name="@p.PublicationId" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
+                                    <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" onclick="onLikeButtonPress('@p.PublicationId')" style="cursor:pointer" id="like-icon-@p.PublicationId"></i>
+                                    <span id="likes-@p.PublicationId">@p.LikeCount</span>
+                                </p>
+                            </div>
+                        </div>
+                    }
                 </div>
             }
         </div>
@@ -128,7 +143,7 @@
             }
         </div>
     </div>
- 
+
     <style>
         .imp-links a:hover {
             color: #F9A392;

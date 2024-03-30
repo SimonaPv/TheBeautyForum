@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheBeautyForum.Services.Like;
 
 namespace TheBeautyForum.Web.Controllers
 {
+    [Authorize]
     public class LikeController : Controller
     {
         private readonly ILikeService _likeService;
