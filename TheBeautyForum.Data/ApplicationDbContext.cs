@@ -127,6 +127,7 @@ namespace TheBeautyForum.Web.Data
             modelBuilder.ApplyConfiguration(new RatingConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new UserRolesConfiguration());
+            modelBuilder.ApplyConfiguration(new LikeConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

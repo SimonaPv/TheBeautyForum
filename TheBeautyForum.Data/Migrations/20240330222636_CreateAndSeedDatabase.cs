@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -29,6 +30,7 @@ namespace TheBeautyForum.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    UserRole = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -357,17 +359,17 @@ namespace TheBeautyForum.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName", "UserRole" },
                 values: new object[,]
                 {
-                    { new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647"), 0, "a54847ec-e18f-4edd-abff-b4907e20a1a1", "monailieva@mail.com", false, "Mona", "Ilieva", false, null, "MONAILIEVA@MAIL.COM", "MONA", "AQAAAAEAACcQAAAAEP0BzPmGWf65E34edraFtphql3SLNxf+6BIzHe8QjJz//F5q74MlD0pYNPQULfpgvA==", "0887777777", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg", "6b2c6443-b36d-4874-8f6d-b4c2561fcbda", false, "Mona" },
-                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "0e66db83-5928-4884-83c6-ea65358fdbcb", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISA", "AQAAAAEAACcQAAAAEBKlxkdpoiSkS8VVAxFr2+pOWX6eWWkT9ZbFugxs+E2MS+xwJXaLBEaiCZHFBAzRuw==", "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg", "e9c62266-7366-4bb9-b482-49159f75f419", false, "Lisa" },
-                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "ffa3cf68-cf2a-499e-82ee-3b58784ac5df", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLIN", "AQAAAAEAACcQAAAAEDTaohjyhmLWvARJjKq7a27zGeHB9A9+95gro9qDS3fbB8/fXXpGMscDd+7hBTTYWw==", "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg", "bb662a16-336f-405e-b358-a99619254b1b", false, "Aylin" },
-                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "ed695ddf-ac36-4edc-b06b-62ed863e4dc3", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYA", "AQAAAAEAACcQAAAAEGv9Wdd8f/kiQRlrWQ4QKHZNnN2g3bi/hI0QmZkTdJV/Qnb4ovFh4onghLWS4KpZUw==", "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", "2d6fd84c-d47f-48ef-b884-6121eca2a439", false, "Amaya" },
-                    { new Guid("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"), 0, "106871dc-153e-4736-8577-bd5845527503", "simonapalieva@mail.com", false, "Simona", "Palieva", false, null, "SIMONAPALIEVA@MAIL.COM", "SIMONA", "AQAAAAEAACcQAAAAEBPzQL8sVS9NYe2uzTXB+VxdqiX22H8hBEj7EiiPqyTSPrRsLGiokGeqcVvuS6XDHA==", "0884912724", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png", "8215f695-3eb2-4ff1-838b-91b0efda5a78", false, "Simona" },
-                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "d2feb09a-cb10-49cc-b792-3418f465fa5d", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORA", "AQAAAAEAACcQAAAAEH6dbNoFt+U4ce1Q0aGRaARJ9kvhADrTm4h43JOLrmvSIRB0w9TbH0ymyWj7jGe4sA==", "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", "ac599d1a-1e74-4293-a1b5-014315e1d3a7", false, "Debora" },
-                    { new Guid("b313e2e1-0270-4a86-924b-71256500be8b"), 0, "69bdbae7-b39a-4605-b8df-814ff1a1c1dc", "mirelametodieva@mail.com", false, "Mirela", "Metodieva", false, null, "MIRELAMETODIEVA@MAIL.COM", "MIRELA", "AQAAAAEAACcQAAAAEFaYVLlN2QJl8JwPeVJ1l7eEyFZ7u1YfL+2dbBG9Vd3XNZ9n/kL02PUNeZuVlumUGw==", "0886666666", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg", "ec7296d0-f436-4087-b918-29a10010f9f6", false, "Mirela" },
-                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "21150f80-bfdc-4f0e-851d-73e5d84fce4f", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIA", "AQAAAAEAACcQAAAAEGeSjiyIPUHHVCdvEq7trPl9aaTPPfDFgmty4E+8EomhLamBuGRBVnWwmrBl9flSjQ==", "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg", "ca20f5ba-335b-4a81-9bb0-d6553388f9de", false, "Maria" }
+                    { new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647"), 0, "2f89b0b5-5be3-4f4f-9531-191fe1425c61", "monailieva@mail.com", false, "Mona", "Ilieva", false, null, "MONAILIEVA@MAIL.COM", "MONAILIEVA@MAIL.COM", "AQAAAAEAACcQAAAAEFM+WRMtVk/A4HBqrxHodtbI0ClL3hIwCDWtadOPPpf6fRCP309ieZ1I7T9yJjCz9g==", "0887777777", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg", "42398eb8-1e65-4d17-b15d-cb86e5eed84a", false, "monailieva@mail.com", "Studio creator" },
+                    { new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"), 0, "29a3449f-a1a1-4e22-af7a-5ec9ac4faa7b", "lisaborisova@mail.com", false, "Lisa", "Borisova", false, null, "LISABORISOVA@MAIL.COM", "LISABORISOVA@MAIL.COM", "AQAAAAEAACcQAAAAEExB/onIu8CPVAMKgTbFqA/Xjfx5+wI0Ne7w2a/BY5JL5N4Ka5FXLp49OmL0Z0e1gg==", "0885555555", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg", "a431e867-7e79-4614-89cd-9276276c68fc", false, "lisaborisova@mail.com", "User" },
+                    { new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"), 0, "0cbb7bf6-43d9-4ab3-bd72-bda68b501334", "aylintodorova@mail.com", false, "Aylin", "Todorova", false, null, "AYLINTODOROVA@MAIL.COM", "AYLINTODOROVA@MAIL.COM", "AQAAAAEAACcQAAAAEM/GwUwSoOmnYLcxHxhGQhBbIA5L2Bzx8FXYWUwhnmrLTdjjIRYb4OXb54ousleI5g==", "0883333333", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg", "6442754b-f872-47d2-92ac-5f6e177d2c07", false, "aylintodorova@mail.com", "User" },
+                    { new Guid("3bea7392-a556-4a99-86c2-8cb244868283"), 0, "e1a93105-ca28-4d0d-8ef5-9d8076157893", "amayaivanova@mail.com", false, "Amaya", "Ivanova", false, null, "AMAYAIVANOVA@MAIL.COM", "AMAYAIVANOVA@MAIL.COM", "AQAAAAEAACcQAAAAEFEAIvP+Vvt07E7XkLI31mDZmr4r34cOp665GNR6wi+tGzsyhxINB2vMgFOqy5b+nw==", "0882222222", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg", "fc8a218e-4be3-4e8c-bc43-3802e02900b4", false, "amayaivanova@mail.com", "User" },
+                    { new Guid("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"), 0, "6ea3a824-1548-45ce-b044-65b38e1915bc", "simonapalieva@mail.com", false, "Simona", "Palieva", false, null, "SIMONAPALIEVA@MAIL.COM", "SIMONAPALIEVA@MAIL.COM", "AQAAAAEAACcQAAAAEKWWnqS//4YRR5svgWPEY2DX83HzVcXmYWiVkOuZyGIIIn1XydXmRnamqXU4U4/yrw==", "0884912724", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png", "188d8b77-4599-420d-8a93-a9a34baae0b8", false, "simonapalieva@mail.com", "Administrator" },
+                    { new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"), 0, "31674354-6aed-4bff-b1bf-889318af4ef5", "deboramileva@mail.com", false, "Debora", "Mileva", false, null, "DEBORAMILEVA@MAIL.COM", "DEBORAMILEVA@MAIL.COM", "AQAAAAEAACcQAAAAEOmqcUZLRWIlDS6BHmftfpnxVgT3KUEXvC/dUJJoWDHmd8NyWqkVKw23fAvnU0ZTYg==", "0884444444", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg", "c3e1c81e-ab08-4219-ab2b-c857f36e17fe", false, "deboramileva@mail.com", "User" },
+                    { new Guid("b313e2e1-0270-4a86-924b-71256500be8b"), 0, "7cdf825c-9b7d-4667-b71f-7e81b5c03ca1", "mirelametodieva@mail.com", false, "Mirela", "Metodieva", false, null, "MIRELAMETODIEVA@MAIL.COM", "MIRELAMETODIEVA@MAIL.COM", "AQAAAAEAACcQAAAAELiNwBKHVrjzf8Aaf9DoYaxq7wI8zv5eybnBelYjUR7yZIeOl9UfQwd2Gi95zPgOQA==", "0886666666", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg", "68316c8f-8a66-460e-9fa7-db7f8db3713a", false, "mirelametodieva@mail.com", "Studio creator" },
+                    { new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"), 0, "93ef475d-872d-47c3-8b69-45e62bc7eeab", "mariageorgieva@mail.com", false, "Maria", "Georgieva", false, null, "MARIAGEORGIEVA@MAIL.COM", "MARIAGEORGIEVA@MAIL.COM", "AQAAAAEAACcQAAAAEL8lLB2Q7M3xvBM1F17XEQdwfv4obYaqJyNz+y6ms4GqGx9jalZj/vSMhnouE84eyA==", "0881111111", false, "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg", "4b92b5bd-6b94-4162-a470-7eaa000f1b66", false, "mariageorgieva@mail.com", "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -502,6 +504,22 @@ namespace TheBeautyForum.Data.Migrations
                     { new Guid("5b637ca8-0eaf-41d7-ae31-6f506bbcd812"), new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685965/x2kx2oeyhz22ouwandcr.jpg" },
                     { new Guid("dd2c855b-e8cb-43c8-8437-c8fbd54444a8"), new Guid("3dff0a05-d97b-44f5-9118-80a276adad91"), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/oaxk2efd2zcewio2tciv.jpg" },
                     { new Guid("e121ce4c-f437-4696-99fa-1859d1de6780"), new Guid("09d4bfa2-1b65-4085-ad6c-010c20427409"), "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685965/bypcq7r5kqpgjbm8keka.jpg" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Likes",
+                columns: new[] { "Id", "PublicationId", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("0e6636fd-f06f-4277-b928-18e4e2df9e52"), new Guid("368c82c4-7046-44ee-8315-149e4527bd47"), new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f") },
+                    { new Guid("284a98fd-2559-43f5-9aea-854c747b2d66"), new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"), new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d") },
+                    { new Guid("31322844-7f44-437a-8545-222497d89720"), new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"), new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f") },
+                    { new Guid("4ca23634-c46b-470b-aa16-179763aad180"), new Guid("368c82c4-7046-44ee-8315-149e4527bd47"), new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b") },
+                    { new Guid("98d71ed7-2895-4f0f-b0ec-1a25752efb50"), new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"), new Guid("3bea7392-a556-4a99-86c2-8cb244868283") },
+                    { new Guid("d9274446-edf6-43d0-a892-16ea8e41b785"), new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"), new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b") },
+                    { new Guid("e132c310-99a1-4058-8781-11c28018e186"), new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"), new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d") },
+                    { new Guid("ece7c6e7-4835-4efb-b79c-929f0b1ce9f3"), new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"), new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b") },
+                    { new Guid("edac65d6-e0ef-44b4-b72b-734eb20ec9ff"), new Guid("368c82c4-7046-44ee-8315-149e4527bd47"), new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9") }
                 });
 
             migrationBuilder.CreateIndex(

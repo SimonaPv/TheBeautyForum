@@ -12,8 +12,8 @@ using TheBeautyForum.Web.Data;
 namespace TheBeautyForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240328082145_ModifyDatabase3")]
-    partial class ModifyDatabase3
+    [Migration("20240330222636_CreateAndSeedDatabase")]
+    partial class CreateAndSeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -456,6 +456,62 @@ namespace TheBeautyForum.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Likes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ece7c6e7-4835-4efb-b79c-929f0b1ce9f3"),
+                            PublicationId = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            UserId = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b")
+                        },
+                        new
+                        {
+                            Id = new Guid("31322844-7f44-437a-8545-222497d89720"),
+                            PublicationId = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            UserId = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f")
+                        },
+                        new
+                        {
+                            Id = new Guid("e132c310-99a1-4058-8781-11c28018e186"),
+                            PublicationId = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d")
+                        },
+                        new
+                        {
+                            Id = new Guid("98d71ed7-2895-4f0f-b0ec-1a25752efb50"),
+                            PublicationId = new Guid("765a831a-5e10-43a8-adf2-e7e8d62fc7e0"),
+                            UserId = new Guid("3bea7392-a556-4a99-86c2-8cb244868283")
+                        },
+                        new
+                        {
+                            Id = new Guid("4ca23634-c46b-470b-aa16-179763aad180"),
+                            PublicationId = new Guid("368c82c4-7046-44ee-8315-149e4527bd47"),
+                            UserId = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b")
+                        },
+                        new
+                        {
+                            Id = new Guid("0e6636fd-f06f-4277-b928-18e4e2df9e52"),
+                            PublicationId = new Guid("368c82c4-7046-44ee-8315-149e4527bd47"),
+                            UserId = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f")
+                        },
+                        new
+                        {
+                            Id = new Guid("edac65d6-e0ef-44b4-b72b-734eb20ec9ff"),
+                            PublicationId = new Guid("368c82c4-7046-44ee-8315-149e4527bd47"),
+                            UserId = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9")
+                        },
+                        new
+                        {
+                            Id = new Guid("d9274446-edf6-43d0-a892-16ea8e41b785"),
+                            PublicationId = new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"),
+                            UserId = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b")
+                        },
+                        new
+                        {
+                            Id = new Guid("284a98fd-2559-43f5-9aea-854c747b2d66"),
+                            PublicationId = new Guid("35b859db-5567-4336-bd2b-34aea67bf26a"),
+                            UserId = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d")
+                        });
                 });
 
             modelBuilder.Entity("TheBeautyForum.Data.Models.Publication", b =>
@@ -966,6 +1022,10 @@ namespace TheBeautyForum.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("UserRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -983,161 +1043,169 @@ namespace TheBeautyForum.Data.Migrations
                         {
                             Id = new Guid("6774a48a-7836-4ce6-9ef1-ea7be75b4ec5"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "445b77d9-c840-4abe-bd1a-172a50579a1a",
+                            ConcurrencyStamp = "6ea3a824-1548-45ce-b044-65b38e1915bc",
                             Email = "simonapalieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Simona",
                             LastName = "Palieva",
                             LockoutEnabled = false,
                             NormalizedEmail = "SIMONAPALIEVA@MAIL.COM",
-                            NormalizedUserName = "SIMONA",
-                            PasswordHash = "AQAAAAEAACcQAAAAECzwvJdSqGxuLTuAaVK6OKsH/MwWlUlvWm0NJ1wMLlblrMJCT0S+Sj6CMHfjx4cw0A==",
+                            NormalizedUserName = "SIMONAPALIEVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKWWnqS//4YRR5svgWPEY2DX83HzVcXmYWiVkOuZyGIIIn1XydXmRnamqXU4U4/yrw==",
                             PhoneNumber = "0884912724",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711218695/fngujmuenduudydw6g0m.png",
-                            SecurityStamp = "c7822040-f407-4e91-9e8f-c95a27ea31e1",
+                            SecurityStamp = "188d8b77-4599-420d-8a93-a9a34baae0b8",
                             TwoFactorEnabled = false,
-                            UserName = "Simona"
+                            UserName = "simonapalieva@mail.com",
+                            UserRole = "Administrator"
                         },
                         new
                         {
                             Id = new Guid("b313e2e1-0270-4a86-924b-71256500be8b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a0cfc35-bdeb-4384-b9fb-a61b6c7fb094",
+                            ConcurrencyStamp = "7cdf825c-9b7d-4667-b71f-7e81b5c03ca1",
                             Email = "mirelametodieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Mirela",
                             LastName = "Metodieva",
                             LockoutEnabled = false,
                             NormalizedEmail = "MIRELAMETODIEVA@MAIL.COM",
-                            NormalizedUserName = "MIRELA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPEBuiJjRmuTWHe2wTkNO4634O8A256czZLuyG6l7sgS5Fn8IOvXXeDqyFVjQN6jZw==",
+                            NormalizedUserName = "MIRELAMETODIEVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELiNwBKHVrjzf8Aaf9DoYaxq7wI8zv5eybnBelYjUR7yZIeOl9UfQwd2Gi95zPgOQA==",
                             PhoneNumber = "0886666666",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711219006/pqqa3hau5sceuvlbbvwk.jpg",
-                            SecurityStamp = "e5a51a69-e9b9-40e4-be3e-f9e9f44e74fb",
+                            SecurityStamp = "68316c8f-8a66-460e-9fa7-db7f8db3713a",
                             TwoFactorEnabled = false,
-                            UserName = "Mirela"
+                            UserName = "mirelametodieva@mail.com",
+                            UserRole = "Studio creator"
                         },
                         new
                         {
                             Id = new Guid("1674d538-3cf0-4a6e-bc27-aa070a230647"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c4f59c9-1c0d-44a3-b6bc-4bff26ed3c4f",
+                            ConcurrencyStamp = "2f89b0b5-5be3-4f4f-9531-191fe1425c61",
                             Email = "monailieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Mona",
                             LastName = "Ilieva",
                             LockoutEnabled = false,
                             NormalizedEmail = "MONAILIEVA@MAIL.COM",
-                            NormalizedUserName = "MONA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKoBeiGHVrcXiTA3QZaVi0Gc8dMzWxP4xIBbiBQlVgyOAR+0L0pH5ao8APepfYV0dw==",
+                            NormalizedUserName = "MONAILIEVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFM+WRMtVk/A4HBqrxHodtbI0ClL3hIwCDWtadOPPpf6fRCP309ieZ1I7T9yJjCz9g==",
                             PhoneNumber = "0887777777",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1711366246/c1ijia1awr51quznbqgu.jpg",
-                            SecurityStamp = "de5eca45-aeba-4488-a488-37e84752c7fc",
+                            SecurityStamp = "42398eb8-1e65-4d17-b15d-cb86e5eed84a",
                             TwoFactorEnabled = false,
-                            UserName = "Mona"
+                            UserName = "monailieva@mail.com",
+                            UserRole = "Studio creator"
                         },
                         new
                         {
                             Id = new Guid("e482292a-5399-4938-9788-6d76fcb1b4d9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "39aeff71-9c08-4a66-8919-2181be8e91b1",
+                            ConcurrencyStamp = "93ef475d-872d-47c3-8b69-45e62bc7eeab",
                             Email = "mariageorgieva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Maria",
                             LastName = "Georgieva",
                             LockoutEnabled = false,
                             NormalizedEmail = "MARIAGEORGIEVA@MAIL.COM",
-                            NormalizedUserName = "MARIA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA/QbehqS/fvIgKNgyTL92LUcjRZaUJ3ccOTvpFRRVw/YFboKGht7Rbho7WwUYQJKg==",
+                            NormalizedUserName = "MARIAGEORGIEVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL8lLB2Q7M3xvBM1F17XEQdwfv4obYaqJyNz+y6ms4GqGx9jalZj/vSMhnouE84eyA==",
                             PhoneNumber = "0881111111",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378748/einenpgospeodkzbw8a7.jpg",
-                            SecurityStamp = "f6dfd6a0-3868-4263-a5ac-f65fa098dde3",
+                            SecurityStamp = "4b92b5bd-6b94-4162-a470-7eaa000f1b66",
                             TwoFactorEnabled = false,
-                            UserName = "Maria"
+                            UserName = "mariageorgieva@mail.com",
+                            UserRole = "User"
                         },
                         new
                         {
                             Id = new Guid("3bea7392-a556-4a99-86c2-8cb244868283"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7f4898f-849d-44da-a35b-1690ac879443",
+                            ConcurrencyStamp = "e1a93105-ca28-4d0d-8ef5-9d8076157893",
                             Email = "amayaivanova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Amaya",
                             LastName = "Ivanova",
                             LockoutEnabled = false,
                             NormalizedEmail = "AMAYAIVANOVA@MAIL.COM",
-                            NormalizedUserName = "AMAYA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPt94NjOGEitPgdqU+Vi5of7ybh7XvKf+gkW+MMCIW+ZvcpkLyDTz77q38rgJQ+fhQ==",
+                            NormalizedUserName = "AMAYAIVANOVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFEAIvP+Vvt07E7XkLI31mDZmr4r34cOp665GNR6wi+tGzsyhxINB2vMgFOqy5b+nw==",
                             PhoneNumber = "0882222222",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/imzfycue1optdhfmwbuw.jpg",
-                            SecurityStamp = "50b4e9b2-bb39-4901-8bc4-70f31d1eed15",
+                            SecurityStamp = "fc8a218e-4be3-4e8c-bc43-3802e02900b4",
                             TwoFactorEnabled = false,
-                            UserName = "Amaya"
+                            UserName = "amayaivanova@mail.com",
+                            UserRole = "User"
                         },
                         new
                         {
                             Id = new Guid("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9117589b-e3a7-475e-85b7-6adf5697388c",
+                            ConcurrencyStamp = "0cbb7bf6-43d9-4ab3-bd72-bda68b501334",
                             Email = "aylintodorova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Aylin",
                             LastName = "Todorova",
                             LockoutEnabled = false,
                             NormalizedEmail = "AYLINTODOROVA@MAIL.COM",
-                            NormalizedUserName = "AYLIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGgf1uCRlI6htc3WPkYxT0JhoKU1ICuoirrC3MOp8vcMEuDs9Up0upNt/BRDWeR5Cw==",
+                            NormalizedUserName = "AYLINTODOROVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM/GwUwSoOmnYLcxHxhGQhBbIA5L2Bzx8FXYWUwhnmrLTdjjIRYb4OXb54ousleI5g==",
                             PhoneNumber = "0883333333",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1707378004/kgdkin0zow7lkpkc4hdy.jpg",
-                            SecurityStamp = "bff7f3d3-365f-44a7-b8ce-bc2d4aefd011",
+                            SecurityStamp = "6442754b-f872-47d2-92ac-5f6e177d2c07",
                             TwoFactorEnabled = false,
-                            UserName = "Aylin"
+                            UserName = "aylintodorova@mail.com",
+                            UserRole = "User"
                         },
                         new
                         {
                             Id = new Guid("9f9bfaa5-da01-49bf-a819-3b88acf7487f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "820c9505-8bc4-4b8d-8d08-fe0768c191df",
+                            ConcurrencyStamp = "31674354-6aed-4bff-b1bf-889318af4ef5",
                             Email = "deboramileva@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Debora",
                             LastName = "Mileva",
                             LockoutEnabled = false,
                             NormalizedEmail = "DEBORAMILEVA@MAIL.COM",
-                            NormalizedUserName = "DEBORA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHZyiGjiTKaqF4S61jIIb21dNGF1QMdTQt5bNSroRvy1uj2/cGoWFfhdQL6VrrXt1g==",
+                            NormalizedUserName = "DEBORAMILEVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOmqcUZLRWIlDS6BHmftfpnxVgT3KUEXvC/dUJJoWDHmd8NyWqkVKw23fAvnU0ZTYg==",
                             PhoneNumber = "0884444444",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1706685966/npkpvs3b2i1tldoc7dmi.jpg",
-                            SecurityStamp = "ea56f451-a0c7-4c1a-abc8-93864969e2cf",
+                            SecurityStamp = "c3e1c81e-ab08-4219-ab2b-c857f36e17fe",
                             TwoFactorEnabled = false,
-                            UserName = "Debora"
+                            UserName = "deboramileva@mail.com",
+                            UserRole = "User"
                         },
                         new
                         {
                             Id = new Guid("1eb3a2eb-2184-4f8e-8ddd-569ea1522f2b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2ff1907-6aa0-4fc4-89d8-f4d8ac7b7eee",
+                            ConcurrencyStamp = "29a3449f-a1a1-4e22-af7a-5ec9ac4faa7b",
                             Email = "lisaborisova@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Lisa",
                             LastName = "Borisova",
                             LockoutEnabled = false,
                             NormalizedEmail = "LISABORISOVA@MAIL.COM",
-                            NormalizedUserName = "LISA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKYu/s+xFIr5IyIVdk5fVW0usLftJcrcjiasiVFkYtey50aGYiAQSgSFHx+fLrOCwA==",
+                            NormalizedUserName = "LISABORISOVA@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEExB/onIu8CPVAMKgTbFqA/Xjfx5+wI0Ne7w2a/BY5JL5N4Ka5FXLp49OmL0Z0e1gg==",
                             PhoneNumber = "0885555555",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1709708446/am3nsitkxsxivfdoxey9.jpg",
-                            SecurityStamp = "91313f60-a007-493a-87f4-55a5347c6be4",
+                            SecurityStamp = "a431e867-7e79-4614-89cd-9276276c68fc",
                             TwoFactorEnabled = false,
-                            UserName = "Lisa"
+                            UserName = "lisaborisova@mail.com",
+                            UserRole = "User"
                         });
                 });
 

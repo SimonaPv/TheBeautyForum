@@ -27,9 +27,11 @@ namespace TheBeautyForum.Web.ViewModels.Studio
         [StringLength(LOCATION_MAX_LENGTH, MinimumLength = LOCATION_MIN_LENGTH)]
         public string Location { get; set; } = null!;
 
+        [Required]
         public List<Guid> CategoryIds { get; set; }
             = new List<Guid>();
 
+        [Required]
         public List<CategoryViewModel> Categories { get; set; }
             = new List<CategoryViewModel>();
     }

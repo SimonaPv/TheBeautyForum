@@ -7,7 +7,6 @@ using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
-using static TheBeautyForum.Data.DataConstants;
 
 namespace TheBeautyForum.Services.Studios
 {

@@ -41,6 +41,7 @@
                         <input asp-for="@Model.Description" class="form-control" placeholder="description" autocomplete="on" />
                     </div>
                     <div class="form-holder">
+                        <span asp-validation-for="@Model.OpenTime" class="text-danger"></span>
                         <select asp-for="@Model.OpenTime" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
                             <option value="" selected disabled hidden>CLICK TO CHOOSE OPENING TIME</option>
                             <option value="00:00">00:00</option>
@@ -49,9 +50,9 @@
                                 <option value="@i:00">@i:00</option>
                             }
                         </select>
-                        <span asp-validation-for="OpenTime" class="text-danger"></span>
                     </div>
                     <div class="form-holder">
+                        <span asp-validation-for="@Model.CloseTime" class="text-danger"></span>
                         <select asp-for="@Model.CloseTime" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
                             <option value="" selected disabled hidden>CLICK TO CHOOSE CLOSING TIME</option>
                             <option value="00:00">00:00</option>
@@ -60,12 +61,12 @@
                                 <option value="@i:00">@i:00</option>
                             }
                         </select>
-                        <span asp-validation-for="CloseTime" class="text-danger"></span>
                     </div>
 
                     <div class="form-holder">
+                        <span asp-validation-for="@Model.CategoryIds" class="text-danger"></span>
                         <div class="form-control" style="padding-left: 1em">
-                            <select asp-for="CategoryIds" multiple data-placeholder="Click to select procedures..." class="form-control chosen-select choices-multiple-remove-button">
+                            <select asp-for="@Model.CategoryIds" multiple data-placeholder="Click to select procedures..." class="form-control chosen-select choices-multiple-remove-button">
                                 @for (int i = 0; i < Model.Categories.Count; i++)
                                 {
                                     @if (Model.Categories[i].IsSelected)

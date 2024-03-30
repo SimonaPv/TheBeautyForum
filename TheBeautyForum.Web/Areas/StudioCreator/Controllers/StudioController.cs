@@ -25,6 +25,11 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateStudioViewModel model)
         {
+            if (!model.CategoryIds.Any())
+            {
+                ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -51,6 +56,11 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             [FromRoute]
             Guid id)
         {
+            if (!model.CategoryIds.Any())
+            {
+                ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
