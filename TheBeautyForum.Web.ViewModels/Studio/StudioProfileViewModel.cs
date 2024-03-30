@@ -29,8 +29,6 @@ namespace TheBeautyForum.Web.ViewModels.Studio
         [Required]
         public TimeOnly CloseTime { get; set; }
 
-        public CreatePublicationViewModel? Post { get; set; }
-
         public ICollection<string> Images { get; set; } 
             = new HashSet<string>();
 
@@ -40,7 +38,7 @@ namespace TheBeautyForum.Web.ViewModels.Studio
         public ICollection<AppointmentViewModel> Appointments { get; set; }
             = new HashSet<AppointmentViewModel>();
 
-        public ICollection<PostForumViewModel> Publications { get; set; }
-            = new HashSet<PostForumViewModel>();
+        public List<PostForumViewModel> Publications { get; set; }
+            = new List<PostForumViewModel>();
     }
 }

@@ -37,7 +37,7 @@ namespace TheBeautyForum.Web.Controllers
             else
             {
                 var model = await _userService
-                    .ShowUserProfileAsync(id);
+                    .ShowUserProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
                 return View(model);
             }

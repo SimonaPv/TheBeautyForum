@@ -72,6 +72,7 @@ namespace TheBeautyForum.Services.Publication
 
                     }
                 }).ToListAsync();
+
             var publicationIds = model.Select(f => f.PublicationId);
             var likes = _dbContext.Likes
                     .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));

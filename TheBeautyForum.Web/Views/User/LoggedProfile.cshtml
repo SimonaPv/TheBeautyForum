@@ -99,13 +99,30 @@
                                 </p>
                                 <img src="@p.ImageUrl" class="post-img">
                             }
-                            <div class="post-row">
-                                <div class="activity-icons">
-                                    <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
-                                        <i class="fa fa-regular fa-heart" onclick="likeButton()" style="cursor:pointer"></i> 0
-                                    </p>
+                            @if (User.IsInRole("Administrator") || User.IsInRole("StudioCreator"))
+                            {
+                                <div class="post-row">
+                                    <div class="activity-icons">
+                                        <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
+                                            <input type="hidden" id="@p.Id-is-liked" name="@p.Id" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
+                                            <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" style="cursor:pointer" id="like-icon-@p.Id"></i>
+                                            <span id="likes-@p.Id">@p.LikeCount</span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="post-row">
+                                    <div class="activity-icons">
+                                        <p style="font-size: 18px; margin: 0.5em 1em 0 0.5em">
+                                            <input type="hidden" id="@p.Id-is-liked" name="@p.Id" value="@p.PostLikedByCurrentUser.ToString().ToLower()">
+                                            <i class="fa fa-solid fa-heart @(p.PostLikedByCurrentUser ? "likedPost" : "notLikedPost")" onclick="onLikeButtonPress('@p.Id')" style="cursor:pointer" id="like-icon-@p.Id"></i>
+                                            <span id="likes-@p.Id">@p.LikeCount</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
@@ -202,19 +219,6 @@
         </div>
     </div>
 
-    <script>
-        function likeButton() {
-            let graylike = document.querySelector('.fa-heart');
-
-            if (graylike.style.color = "#626262") {
-                graylike.style.color = "#F9A392";
-            }
-            else {
-                graylike.style.color = "#626262";
-            }
-        }
-    </script>
-
     <style>
 
         .display .dropbtn {
@@ -259,6 +263,7 @@
     </style>
 
     <!-- JavaScript Libraries -->
+    <script asp-append-version="true" src="~/js/publications.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>

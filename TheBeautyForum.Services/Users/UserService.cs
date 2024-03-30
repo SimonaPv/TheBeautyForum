@@ -180,7 +180,8 @@ namespace TheBeautyForum.Services.Users
                             StudioName = p.Studio.Name,
                             Description = p.Description,
                             ImageUrl = _dbContext.Images.Where(x => x.PublicationId == p.Id).Select(x => x.UrlPath).First(),
-                            DatePosted = p.DatePosted
+                            DatePosted = p.DatePosted,
+                            LikeCount = p.Likes.Count
                         })
                         .ToListAsync(),
                 Images = await _dbContext.Images
@@ -227,6 +228,12 @@ namespace TheBeautyForum.Services.Users
                 }
             };
 
+            var publicationIds = profile.Publications.Select(f => f.Id);
+            var likes = _dbContext.Likes
+                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+
+            profile.Publications.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == userId && publication.PublicationId == f.Id) != null);
+
             return profile;
         }
 
@@ -265,7 +272,7 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
-        public async Task<ProfileViewModel> ShowUserProfileAsync(Guid userId)
+        public async Task<ProfileViewModel> ShowUserProfileAsync(Guid userId, Guid loggedUserId)
         {
             var user = await _dbContext.Users
                 .Include(a => a.Appointments)
@@ -329,7 +336,8 @@ namespace TheBeautyForum.Services.Users
                             StudioName = p.Studio.Name,
                             Description = p.Description,
                             ImageUrl = p.Image.UrlPath,
-                            DatePosted = p.DatePosted
+                            DatePosted = p.DatePosted,
+                            LikeCount = p.Likes.Count
                         })
                         .ToListAsync(),
                 Images = await _dbContext.Images
@@ -354,6 +362,12 @@ namespace TheBeautyForum.Services.Users
                     })
                     .ToListAsync(),
             };
+
+            var publicationIds = profile.Publications.Select(f => f.Id);
+            var likes = _dbContext.Likes
+                    .Where(like => like.UserId == loggedUserId && publicationIds.Contains(like.PublicationId));
+
+            profile.Publications.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == loggedUserId && publication.PublicationId == f.Id) != null);
 
             return profile;
         }

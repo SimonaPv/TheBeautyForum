@@ -4,7 +4,7 @@ namespace TheBeautyForum.Services.Studios
 {
     public interface IStudioService
     {
-        Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId);
+        Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId, Guid userId);
 
         Task<EditStudioProfileViewModel> GetStudioAsync(Guid studioId);
 

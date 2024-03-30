@@ -32,8 +32,8 @@ namespace TheBeautyForum.Web.ViewModels.User
         public ICollection<RatingViewModel> Ratings { get; set; }
             = new HashSet<RatingViewModel>();
 
-        public ICollection<PostForumViewModel> Publications { get; set; }
-            = new HashSet<PostForumViewModel>();
+        public List<PostForumViewModel> Publications { get; set; }
+            = new List<PostForumViewModel>();
 
         public ICollection<UserViewModel> Users { get; set; }
             = new HashSet<UserViewModel>();

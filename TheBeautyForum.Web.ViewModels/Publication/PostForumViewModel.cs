@@ -13,7 +13,11 @@
         public string? StudioName { get; set; }
 
         public string? UserName { get; set; }
-        
+
+        public bool PostLikedByCurrentUser { get; set; }
+
+        public int LikeCount { get; set; }
+
         public string? ProfilePicUrl { get; set; }
 
         public string? Description { get; set; }

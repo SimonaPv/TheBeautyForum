@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheBeautyForum.Services.Like
+﻿namespace TheBeautyForum.Services.Like
 {
     public interface ILikeService
     {

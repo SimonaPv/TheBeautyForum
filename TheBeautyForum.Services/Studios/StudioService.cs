@@ -7,6 +7,7 @@ using TheBeautyForum.Web.ViewModels.Appointment;
 using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
+using static TheBeautyForum.Data.DataConstants;
 
 namespace TheBeautyForum.Services.Studios
 {
@@ -40,7 +41,7 @@ namespace TheBeautyForum.Services.Studios
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var studio = new Studio()
+            var studio = new Data.Models.Studio()
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
@@ -251,7 +252,7 @@ namespace TheBeautyForum.Services.Studios
             return model;
         }
 
-        public async Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId)
+        public async Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId, Guid userId)
         {
             var model = await _dbContext.Studios
                 .Include(x => x.User)
@@ -289,7 +290,8 @@ namespace TheBeautyForum.Services.Studios
                             DatePosted = p.DatePosted,
                             UserName = $"{p.User.FirstName} {p.User.LastName}",
                             ProfilePicUrl = p.User.ProfilePictureUrl,
-                            StudioName = p.Studio.Name
+                            StudioName = p.Studio.Name,
+                            LikeCount = p.Likes.Count
                         })
                         .ToListAsync(),
                 CategoryNames = await _dbContext.StudiosCategories
@@ -318,6 +320,12 @@ namespace TheBeautyForum.Services.Studios
                     })
                     .ToListAsync(),
             };
+
+            var publicationIds = profile.Publications.Select(f => f.Id);
+            var likes = _dbContext.Likes
+                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+
+            profile.Publications.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == userId && publication.PublicationId == f.Id) != null);
 
             return profile;
         }

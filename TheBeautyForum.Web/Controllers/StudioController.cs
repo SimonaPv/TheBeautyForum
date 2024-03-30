@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Web.ViewModels.Studio;
 
@@ -26,7 +27,7 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
-            var model = await _studioService.ShowStudioProfileAsync(id);
+            var model = await _studioService.ShowStudioProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return View(model);
         }
