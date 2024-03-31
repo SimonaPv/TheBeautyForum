@@ -49,17 +49,19 @@ namespace TheBeautyForum.Services.Publication
                     PostUserProfilePic = p.User.ProfilePictureUrl,
                     ViewUrl = "",
                     StudioName = p.Studio.Name,
-                    Studios = _dbContext.Studios.Select(x => new StudioForumViewModel()
-                    {
-                        StudioId = x.Id,
-                        StudioName = x.Name,
-                        StudioRating = x.Ratings.Average(x => x.Value),
-                        StudioDescription = x.Description,
-                        StudioProfilePic = x.StudioPictureUrl
-                    }).ToList(),
+                    Studios = _dbContext.Studios.Where(x => x.IsApproved)
+                        .Select(x => new StudioForumViewModel()
+                        {
+                            StudioId = x.Id,
+                            StudioName = x.Name,
+                            StudioRating = x.Ratings.Average(x => x.Value),
+                            StudioDescription = x.Description,
+                            StudioProfilePic = x.StudioPictureUrl
+                        }).ToList(),
                     Post = new CreatePublicationViewModel()
                     {
                         Studios = _dbContext.Studios
+                            .Where(x => x.IsApproved)
                             .Select(s => new StudioPostViewModel()
                             {
                                 Id = s.Id,
@@ -107,32 +109,6 @@ namespace TheBeautyForum.Services.Publication
             }
         }
 
-        public async Task<CreatePublicationViewModel> LoadAllStudiosAsync(Guid userId)
-        {
-            var user = await _dbContext.Users.FindAsync(userId);
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user));
-            }
-
-            var model = new CreatePublicationViewModel()
-            {
-                Studios = await _dbContext.Studios
-                    .Select(s => new StudioPostViewModel()
-                    {
-                        Id = s.Id,
-                        StudioName = s.Name
-                    })
-                    .ToListAsync(),
-                UserFirstName = user.FirstName,
-                UserLastName = user.LastName,
-                UserProfilePic = user.ProfilePictureUrl
-            };
-
-            return model;
-        }
-
         public async Task DeletePublicationAsync(Guid postId)
         {
             var model = await _dbContext.Publications.FindAsync(postId);
@@ -144,32 +120,6 @@ namespace TheBeautyForum.Services.Publication
 
             _dbContext.Publications.Remove(model);
             await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<CreatePublicationViewModel> GetPostAsync(Guid postId)
-        {
-            var model = await _dbContext.Publications
-                .Include(x => x.User)
-                .Include(x => x.Studio)
-                .FirstOrDefaultAsync(x => x.Id == postId);
-
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var post = new CreatePublicationViewModel()
-            {
-                ViewUrl = "Forum",
-                Description = model.Description,
-                DatePosted = DateTime.Now,
-                StudioId = model.StudioId,
-                UserFirstName = model.User.FirstName,
-                UserLastName = model.User.LastName,
-                UserProfilePic = model.User.ProfilePictureUrl
-            };
-
-            return post;
         }
     }
 }

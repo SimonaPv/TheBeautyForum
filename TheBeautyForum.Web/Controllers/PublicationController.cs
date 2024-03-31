@@ -33,15 +33,12 @@ namespace TheBeautyForum.Web.Controllers
 
             if (model.Image != null && model.Image.Length > 10485760)
             {
-                ModelState.AddModelError(nameof(model.Image), "Your file size exceeds the maximum allowed file size");
+                ModelState.AddModelError(nameof(model.Image), "Your file is too big.");
+            }
 
-                //if (model.ViewUrl == "Forum")
-                //{
-                //    return RedirectToAction("Forum", "Publication", model);
-                //}
-                //else {
-                //    return RedirectToAction("LoggedProfile", "User", model);
-                //}
+            if (model.StudioId == Guid.Empty)
+            {
+                ModelState.AddModelError(nameof(model.StudioId), "This field is required");
             }
 
             if (!ModelState.IsValid)
