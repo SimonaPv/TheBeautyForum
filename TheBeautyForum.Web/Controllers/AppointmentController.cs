@@ -13,7 +13,9 @@ namespace TheBeautyForum.Web.Controllers
         private readonly IAppointmentService _appointmentService;
         private readonly ICategoryService _categoryService;
 
-        public AppointmentController(IAppointmentService appointmentService, ICategoryService categoryService)
+        public AppointmentController(
+            IAppointmentService appointmentService, 
+            ICategoryService categoryService)
         {
             this._appointmentService = appointmentService;
             this._categoryService = categoryService;
@@ -35,7 +37,8 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateAppointmentViewModel model,
+        public async Task<IActionResult> Create(
+            CreateAppointmentViewModel model,
             [FromRoute]
             Guid id)
         {
@@ -57,7 +60,8 @@ namespace TheBeautyForum.Web.Controllers
             return RedirectToAction("Profile", "Studio", new { id = id });
         }
 
-        public async Task<IActionResult> Delete(Guid appointmentId)
+        public async Task<IActionResult> Delete(
+            Guid appointmentId)
         {
             await _appointmentService.DeleteAppointmentAsync(appointmentId);
 
@@ -65,7 +69,8 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid appointmentId)
+        public async Task<IActionResult> Edit(
+            Guid appointmentId)
         {
             var model = await _appointmentService.GetAppointmentAsync(appointmentId);
 

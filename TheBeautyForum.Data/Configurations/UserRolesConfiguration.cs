@@ -6,7 +6,6 @@ namespace TheBeautyForum.Data.Configurations
 {
     public class UserRolesConfiguration : IEntityTypeConfiguration<IdentityUserRole<Guid>>
     {
-
         public void Configure(EntityTypeBuilder<IdentityUserRole<Guid>> builder)
         {
             builder.HasData(RolesData());

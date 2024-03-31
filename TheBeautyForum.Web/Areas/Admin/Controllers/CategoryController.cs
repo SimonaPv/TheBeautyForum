@@ -8,7 +8,8 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
     {
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(
+            ICategoryService categoryService)
         {
             this._categoryService = categoryService;
         }
@@ -20,7 +21,8 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryViewModel model)
+        public async Task<IActionResult> Create(
+            CategoryViewModel model)
         {
             await _categoryService.CreateCategoryAsync(model);
 

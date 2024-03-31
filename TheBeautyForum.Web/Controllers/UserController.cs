@@ -52,7 +52,8 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditProfileViewModel model)
+        public async Task<IActionResult> Edit(
+            EditProfileViewModel model)
         {
             await _userService.EditUserProfileAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 

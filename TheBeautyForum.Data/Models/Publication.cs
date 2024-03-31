@@ -18,10 +18,6 @@ namespace TheBeautyForum.Data.Models
         [ForeignKey(nameof(Studio))]
         public Guid StudioId { get; set; }
 
-        //[Required]
-        //[ForeignKey(nameof(Image))]
-        //public Guid ImageId { get; set; }
-
         [StringLength(DESCRIPTION_MAX_LENGTH)]
         public string? Description { get; set; }
 

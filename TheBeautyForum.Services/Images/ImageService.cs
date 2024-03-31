@@ -19,7 +19,10 @@ namespace TheBeautyForum.Services.Images
             this._cloudinary = cloudinary;
         }
 
-        public async Task<Image> UploadImage(IFormFile imageFile, string nameFolder, Guid postId)
+        public async Task<Image> UploadImage(
+            IFormFile imageFile, 
+            string nameFolder, 
+            Guid postId)
         {
             using var stream = imageFile.OpenReadStream();
             var image = new Image();
@@ -30,7 +33,8 @@ namespace TheBeautyForum.Services.Images
                 Folder = nameFolder,
             };
 
-            var result = await this._cloudinary.UploadAsync(uploadParams);
+            var result = await this._cloudinary
+                .UploadAsync(uploadParams);
 
             if (result.Error != null)
             {
@@ -46,7 +50,10 @@ namespace TheBeautyForum.Services.Images
             return image;
         }
 
-        public async Task<string> UploadImage(IFormFile imageFile, string nameFolder, User user)
+        public async Task<string> UploadImage(
+            IFormFile imageFile, 
+            string nameFolder, 
+            User user)
         {
             using var stream = imageFile.OpenReadStream();
 
@@ -56,7 +63,9 @@ namespace TheBeautyForum.Services.Images
                 Folder = nameFolder,
             };
 
-            var result = await this._cloudinary.UploadAsync(uploadParams);
+            var result = await this._cloudinary
+                .UploadAsync(uploadParams);
+
             if (result.Error != null)
             {
                 throw new InvalidOperationException(result.Error.Message);
@@ -70,7 +79,10 @@ namespace TheBeautyForum.Services.Images
             return user.ProfilePictureUrl;
         }
 
-        public async Task<string> UploadImage(IFormFile imageFile, string nameFolder, Studio studio)
+        public async Task<string> UploadImage(
+            IFormFile imageFile, 
+            string nameFolder, 
+            Studio studio)
         {
             using var stream = imageFile.OpenReadStream();
 
@@ -80,7 +92,9 @@ namespace TheBeautyForum.Services.Images
                 Folder = nameFolder,
             };
 
-            var result = await this._cloudinary.UploadAsync(uploadParams);
+            var result = await this._cloudinary
+                .UploadAsync(uploadParams);
+
             if (result.Error != null)
             {
                 throw new InvalidOperationException(result.Error.Message);

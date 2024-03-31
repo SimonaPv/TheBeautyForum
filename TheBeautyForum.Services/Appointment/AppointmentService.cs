@@ -9,14 +9,19 @@ namespace TheBeautyForum.Services.Appointment
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public AppointmentService(ApplicationDbContext dbContext)
+        public AppointmentService(
+            ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task CreateAppointmentAsync(CreateAppointmentViewModel model, Guid studioId, Guid userId)
+        public async Task CreateAppointmentAsync(
+            CreateAppointmentViewModel model, 
+            Guid studioId, 
+            Guid userId)
         {
-            var studio = await _dbContext.Studios.FindAsync(studioId);
+            var studio = await _dbContext.Studios
+                .FindAsync(studioId);
 
             if (studio == null)
             {
@@ -38,7 +43,8 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<EditAppointmentViewModel> GetAppointmentAsync(Guid appointmentId)
+        public async Task<EditAppointmentViewModel> GetAppointmentAsync(
+            Guid appointmentId)
         {
             var model = await this._dbContext.Appointments
                 .Include(s => s.Studio)
@@ -62,7 +68,8 @@ namespace TheBeautyForum.Services.Appointment
             return sth;
         }
 
-        public async Task DeleteAppointmentAsync(Guid appointmentId)
+        public async Task DeleteAppointmentAsync(
+            Guid appointmentId)
         {
             var model = await _dbContext.Appointments
                 .FirstOrDefaultAsync(x => x.Id == appointmentId);
@@ -76,7 +83,10 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditAppointmentAsync(Guid appointmentId, Guid userId, EditAppointmentViewModel model)
+        public async Task EditAppointmentAsync(
+            Guid appointmentId, 
+            Guid userId, 
+            EditAppointmentViewModel model)
         {
             if (model is null)
             {
@@ -99,7 +109,8 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<EditAppointmentViewModel> LoadCategoriesAsync(Guid studioId)
+        public async Task<EditAppointmentViewModel> LoadCategoriesAsync(
+            Guid studioId)
         {
             var studio = await _dbContext.Studios.FindAsync(studioId);
 

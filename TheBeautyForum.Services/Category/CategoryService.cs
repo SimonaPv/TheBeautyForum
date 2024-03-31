@@ -8,12 +8,14 @@ namespace TheBeautyForum.Services.Category
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public CategoryService(ApplicationDbContext dbContext)
+        public CategoryService(
+            ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task CreateCategoryAsync(CategoryViewModel model)
+        public async Task CreateCategoryAsync(
+            CategoryViewModel model)
         {
             var category = new Data.Models.Category()
             {
@@ -25,7 +27,8 @@ namespace TheBeautyForum.Services.Category
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteCategoryAsync(Guid categoryId)
+        public async Task DeleteCategoryAsync(
+            Guid categoryId)
         {
             var model = await _dbContext.Categories
                 .FirstOrDefaultAsync(x => x.Id == categoryId);
@@ -39,7 +42,8 @@ namespace TheBeautyForum.Services.Category
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<CategoryViewModel>> LoadCategoriesAsync(Guid? studioId = null)
+        public async Task<List<CategoryViewModel>> LoadCategoriesAsync(
+            Guid? studioId = null)
         {
             if (studioId != null)
             {

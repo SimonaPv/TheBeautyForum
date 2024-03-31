@@ -13,12 +13,14 @@ namespace TheBeautyForum.Services.Users
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public UserService(ApplicationDbContext dbContext)
+        public UserService(
+            ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task ApproveStudioAsync(Guid studioId)
+        public async Task ApproveStudioAsync(
+            Guid studioId)
         {
             var model = await _dbContext.Studios
                 .FirstOrDefaultAsync(x => x.Id == studioId);
@@ -32,7 +34,9 @@ namespace TheBeautyForum.Services.Users
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditUserProfileAsync(EditProfileViewModel model, Guid userId)
+        public async Task EditUserProfileAsync(
+            EditProfileViewModel model, 
+            Guid userId)
         {
             var user = await _dbContext.Users.FindAsync(userId);
 
@@ -51,7 +55,8 @@ namespace TheBeautyForum.Services.Users
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<EditProfileViewModel> GetUserAsync(Guid userId)
+        public async Task<EditProfileViewModel> GetUserAsync(
+            Guid userId)
         {
             var model = await _dbContext.Users.FindAsync(userId);
 
@@ -72,7 +77,8 @@ namespace TheBeautyForum.Services.Users
             return user;
         }
 
-        public async Task<ProfileViewModel> ShowAdminLoggedProfileAsync(Guid userId)
+        public async Task<ProfileViewModel> ShowAdminLoggedProfileAsync(
+            Guid userId)
         {
             var user = await _dbContext.Users
                .Include(a => a.Appointments)
@@ -139,7 +145,8 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
-        public async Task<ProfileViewModel> ShowLoggedProfileAsync(Guid userId)
+        public async Task<ProfileViewModel> ShowLoggedProfileAsync(
+            Guid userId)
         {
             var user = await _dbContext.Users
                 .Include(a => a.Appointments)
@@ -230,14 +237,16 @@ namespace TheBeautyForum.Services.Users
 
             var publicationIds = profile.Publications.Select(f => f.Id);
             var likes = _dbContext.Likes
-                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+                    .Where(l => l.UserId == userId && publicationIds.Contains(l.PublicationId));
 
-            profile.Publications.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == userId && publication.PublicationId == f.Id) != null);
+            profile.Publications
+                .ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(p => p.UserId == userId && p.PublicationId == f.Id) != null);
 
             return profile;
         }
 
-        public async Task<ProfileViewModel> ShowStudioCreatorLoggedProfileAsync(Guid userId)
+        public async Task<ProfileViewModel> ShowStudioCreatorLoggedProfileAsync(
+            Guid userId)
         {
             var user = await _dbContext.Users
                .Include(x => x.Studios)
@@ -272,7 +281,9 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
-        public async Task<ProfileViewModel> ShowUserProfileAsync(Guid userId, Guid loggedUserId)
+        public async Task<ProfileViewModel> ShowUserProfileAsync(
+            Guid userId, 
+            Guid loggedUserId)
         {
             var user = await _dbContext.Users
                 .Include(a => a.Appointments)

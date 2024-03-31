@@ -8,7 +8,8 @@ namespace TheBeautyForum.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }

@@ -8,7 +8,8 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(
+            IUserService userService)
         {
             this._userService = userService;
         }

@@ -16,7 +16,10 @@ namespace TheBeautyForum.Services.Studios
         private readonly IImageService _imageService;
         private readonly ICategoryService _categoryService;
 
-        public StudioService(ApplicationDbContext dbContext, IImageService imageService, ICategoryService categoryService)
+        public StudioService(
+            ApplicationDbContext dbContext, 
+            IImageService imageService, 
+            ICategoryService categoryService)
         {
             this._dbContext = dbContext;
             this._imageService = imageService;
@@ -33,7 +36,9 @@ namespace TheBeautyForum.Services.Studios
             return model;
         }
 
-        public async Task CreateStudioAsync(CreateStudioViewModel model, Guid userId)
+        public async Task CreateStudioAsync(
+            CreateStudioViewModel model, 
+            Guid userId)
         {
             if (model is null)
             {
@@ -72,7 +77,8 @@ namespace TheBeautyForum.Services.Studios
             }
         }
 
-        public async Task DeleteStudioAsync(Guid studioId)
+        public async Task DeleteStudioAsync(
+            Guid studioId)
         {
             var model = await _dbContext.Studios
                 .FirstOrDefaultAsync(x => x.Id == studioId);
@@ -86,7 +92,9 @@ namespace TheBeautyForum.Services.Studios
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditStudioProfileAsync(EditStudioProfileViewModel model, Guid studioId)
+        public async Task EditStudioProfileAsync(
+            EditStudioProfileViewModel model, 
+            Guid studioId)
         {
             if (model is null)
             {
@@ -130,7 +138,8 @@ namespace TheBeautyForum.Services.Studios
             await this._dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync(FilterViewModel? filter = null)
+        public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync(
+            FilterViewModel? filter = null)
         {
             var studios = await _dbContext.Studios.Include(x => x.StudioCategories)
                 .Include(x => x.Ratings)
@@ -206,7 +215,8 @@ namespace TheBeautyForum.Services.Studios
             return studios;
         }
 
-        public async Task<EditStudioProfileViewModel> GetStudioAsync(Guid studioId)
+        public async Task<EditStudioProfileViewModel> GetStudioAsync(
+            Guid studioId)
         {
             var studio = await _dbContext.Studios
                 .Include(sc => sc.StudioCategories)
@@ -251,7 +261,9 @@ namespace TheBeautyForum.Services.Studios
             return model;
         }
 
-        public async Task<StudioProfileViewModel> ShowStudioProfileAsync(Guid studioId, Guid userId)
+        public async Task<StudioProfileViewModel> ShowStudioProfileAsync(
+            Guid studioId, 
+            Guid userId)
         {
             var model = await _dbContext.Studios
                 .Include(x => x.User)
@@ -320,11 +332,13 @@ namespace TheBeautyForum.Services.Studios
                     .ToListAsync(),
             };
 
-            var publicationIds = profile.Publications.Select(f => f.Id);
+            var publicationIds = profile.Publications
+                .Select(f => f.Id);
             var likes = _dbContext.Likes
-                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+                    .Where(l => l.UserId == userId && publicationIds.Contains(l.PublicationId));
 
-            profile.Publications.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == userId && publication.PublicationId == f.Id) != null);
+            profile.Publications
+                .ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(p => p.UserId == userId && p.PublicationId == f.Id) != null);
 
             return profile;
         }

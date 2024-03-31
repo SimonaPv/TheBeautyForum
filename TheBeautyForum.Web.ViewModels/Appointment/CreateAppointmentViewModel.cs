@@ -6,8 +6,6 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 {
     public class CreateAppointmentViewModel
     {
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "This field is required.")]
         public Guid CategoryId { get; set; }
 

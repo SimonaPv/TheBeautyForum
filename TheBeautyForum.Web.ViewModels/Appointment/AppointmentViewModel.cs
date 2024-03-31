@@ -10,8 +10,6 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 
         public Guid StudioId { get; set; }
 
-        public RatingViewModel? Rating { get; set; }
-
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -23,5 +21,7 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
         public string? StudioName { get; set; }
 
         public string? UserName { get; set; }
+
+        public RatingViewModel? Rating { get; set; }
     }
 }

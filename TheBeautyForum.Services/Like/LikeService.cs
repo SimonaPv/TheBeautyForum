@@ -7,16 +7,21 @@ namespace TheBeautyForum.Services.Like
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public LikeService(ApplicationDbContext dbContext)
+        public LikeService(
+            ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task HandleLikePostAsync(Guid postId, Guid userId)
+        public async Task HandleLikePostAsync(
+            Guid postId,
+            Guid userId)
         {
-            var model = await _dbContext.Users.Include(x => x.Likes).FirstOrDefaultAsync(x => x.Id == userId);
+            var model = await _dbContext.Users
+                .Include(x => x.Likes)
+                .FirstOrDefaultAsync(x => x.Id == userId);
 
-            if (model!= null && !model.Likes.Select(x => x.PublicationId).Contains(postId))
+            if (model != null && !model.Likes.Select(x => x.PublicationId).Contains(postId))
             {
                 var like = new Data.Models.Like()
                 {
@@ -30,7 +35,8 @@ namespace TheBeautyForum.Services.Like
             }
             else
             {
-                var like = await _dbContext.Likes.FirstOrDefaultAsync(x => x.PublicationId == postId && x.UserId == userId);
+                var like = await _dbContext.Likes
+                    .FirstOrDefaultAsync(x => x.PublicationId == postId && x.UserId == userId);
 
                 if (like == null)
                 {

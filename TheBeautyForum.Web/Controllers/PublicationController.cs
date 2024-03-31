@@ -11,7 +11,8 @@ namespace TheBeautyForum.Web.Controllers
     {
         private readonly IPublicationService _publicationService;
 
-        public PublicationController(IPublicationService publicationService)
+        public PublicationController(
+            IPublicationService publicationService)
         {
             this._publicationService = publicationService;
         }
@@ -24,7 +25,8 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePublicationViewModel model)
+        public async Task<IActionResult> Create(
+            CreatePublicationViewModel model)
         {
             if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
             {
@@ -66,7 +68,9 @@ namespace TheBeautyForum.Web.Controllers
         }
 
         public async Task<IActionResult> Delete(
-            Guid publicationId, string viewUrl, Guid? studioId = null)
+            Guid publicationId, 
+            string viewUrl, 
+            Guid? studioId = null)
         {
             await _publicationService.DeletePublicationAsync(publicationId);
 

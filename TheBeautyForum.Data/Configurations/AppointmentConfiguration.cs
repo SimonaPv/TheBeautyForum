@@ -17,18 +17,6 @@ namespace TheBeautyForum.Data.Configurations
             var data = new HashSet<Appointment>();
 
             #region User1
-            //var app = new Appointment()
-            //{
-            //    Id = Guid.Parse("0b561660-608b-4e07-80bc-96c168ff11ac"),
-            //    UserId = Guid.Parse("e482292a-5399-4938-9788-6d76fcb1b4d9"),
-            //    StudioId = Guid.Parse("ad94f69c-b7e6-419b-bef0-fa50ab04f254"),
-            //    CategoryId = Guid.Parse("3be6b016-9b6a-4f68-b7ee-bf32293acca9"),
-            //    StartDate = DateTime.ParseExact("22-07-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-            //    EndDate = DateTime.ParseExact("22-07-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-            //    Description = "I want a hairstyle for my birthday."
-            //};
-            //data.Add(app);
-
             var app = new Appointment()
             {
                 Id = Guid.Parse("1790311d-5712-44a9-abbd-3bfc47802419"),

@@ -6,15 +6,15 @@ namespace TheBeautyForum.Web.ViewModels.Publication
     {
         public Guid PublicationId { get; set; }
 
+        public Guid PostUserId { get; set; }
+
+        public Guid StudioId { get; set; }
+
         public string? UserFirstName { get; set; }
 
         public string? UserLastName { get; set; }
 
         public string? UserProfilePic { get; set; }
-
-        public Guid PostUserId { get; set; }
-
-        public Guid StudioId { get; set; }
 
         public string? PostUserProfilePic { get; set; }
 
@@ -38,7 +38,5 @@ namespace TheBeautyForum.Web.ViewModels.Publication
 
         public ICollection<StudioForumViewModel> Studios { get; set; }
             = new List<StudioForumViewModel>();
-
-        public ICollection<Guid> likedPublicationIds { get; set; } = new List<Guid>(); 
     }
 }

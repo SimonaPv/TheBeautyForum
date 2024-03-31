@@ -11,7 +11,8 @@ namespace TheBeautyForum.Web.Controllers
     {
         private readonly IHomeService _homeService;
 
-        public HomeController(IHomeService homeService)
+        public HomeController(
+            IHomeService homeService)
         {
             this._homeService = homeService;
         }

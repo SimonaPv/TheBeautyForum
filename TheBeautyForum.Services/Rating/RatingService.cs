@@ -8,12 +8,15 @@ namespace TheBeautyForum.Services.Rating
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public RatingService(ApplicationDbContext dbContext)
+        public RatingService(
+            ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task UpdateStudioRatingAsync(RatingViewModel model, Guid userId)
+        public async Task UpdateStudioRatingAsync(
+            RatingViewModel model, 
+            Guid userId)
         {
             var ratings = await _dbContext.Ratings
                 .Where(x => x.UserId == userId && x.StudioId == model.Id)

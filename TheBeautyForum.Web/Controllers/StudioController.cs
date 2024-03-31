@@ -11,12 +11,14 @@ namespace TheBeautyForum.Web.Controllers
     {
         private readonly IStudioService _studioService;
 
-        public StudioController(IStudioService studioService)
+        public StudioController(
+            IStudioService studioService)
         {
             _studioService = studioService;
         }
 
-        public async Task<IActionResult> All(FilterViewModel model)
+        public async Task<IActionResult> All(
+            FilterViewModel model)
         {
             var studios  = await _studioService.GetAllStudiosAsync(model);
 

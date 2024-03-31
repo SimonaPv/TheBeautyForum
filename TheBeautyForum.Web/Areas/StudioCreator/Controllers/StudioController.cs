@@ -9,7 +9,8 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
     {
         private readonly IStudioService _studioService;
 
-        public StudioController(IStudioService studioService)
+        public StudioController(
+            IStudioService studioService)
         {
             this._studioService = studioService;
         }
@@ -23,7 +24,8 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateStudioViewModel model)
+        public async Task<IActionResult> Create(
+            CreateStudioViewModel model)
         {
             if (!model.CategoryIds.Any())
             {

@@ -7,7 +7,8 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
     {
         private readonly IStudioService _studioService;
 
-        public StudioController(IStudioService studioService)
+        public StudioController(
+            IStudioService studioService)
         {
             this._studioService = studioService;
         }

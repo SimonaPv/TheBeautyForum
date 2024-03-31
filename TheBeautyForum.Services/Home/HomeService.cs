@@ -20,7 +20,7 @@ namespace TheBeautyForum.Services.Home
             model.StudiosCount = await _dbContext.Studios
                 .CountAsync() + 100;
             model.UsersCount = await _dbContext.Users
-                .CountAsync()+200;
+                .CountAsync() + 200;
 
             return model;
         }

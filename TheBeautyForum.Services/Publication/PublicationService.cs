@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheBeautyForum.Services.Images;
 using TheBeautyForum.Web.Data;
-
 using TheBeautyForum.Web.ViewModels.Publication;
 using TheBeautyForum.Web.ViewModels.Studio;
 
@@ -20,7 +19,8 @@ namespace TheBeautyForum.Services.Publication
             this._imageService = imageService;
         }
 
-        public async Task<List<ForumViewModel>> ForumAsync(Guid userId)
+        public async Task<List<ForumViewModel>> ForumAsync(
+            Guid userId)
         {
             var user = await _dbContext.Users
                 .FindAsync(userId);
@@ -77,14 +77,16 @@ namespace TheBeautyForum.Services.Publication
 
             var publicationIds = model.Select(f => f.PublicationId);
             var likes = _dbContext.Likes
-                    .Where(like => like.UserId == userId && publicationIds.Contains(like.PublicationId));
+                    .Where(l => l.UserId == userId && publicationIds.Contains(l.PublicationId));
 
-            model.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(publication => publication.UserId == user.Id && publication.PublicationId == f.PublicationId) != null);
+            model.ForEach(f => f.PostLikedByCurrentUser = likes.FirstOrDefault(p => p.UserId == user.Id && p.PublicationId == f.PublicationId) != null);
 
             return model;
         }
 
-        public async Task CreatePublicationAsync(CreatePublicationViewModel model, Guid userId)
+        public async Task CreatePublicationAsync(
+            CreatePublicationViewModel model, 
+            Guid userId)
         {
             if (model == null)
             {
@@ -109,9 +111,11 @@ namespace TheBeautyForum.Services.Publication
             }
         }
 
-        public async Task DeletePublicationAsync(Guid postId)
+        public async Task DeletePublicationAsync(
+            Guid postId)
         {
-            var model = await _dbContext.Publications.FindAsync(postId);
+            var model = await _dbContext.Publications
+                .FindAsync(postId);
 
             if (model == null)
             {

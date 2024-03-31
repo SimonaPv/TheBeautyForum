@@ -11,13 +11,15 @@ namespace TheBeautyForum.Web.Controllers
     {
         private readonly IRatingService _ratingService;
 
-        public RatingController(IRatingService ratingService)
+        public RatingController(
+            IRatingService ratingService)
         {
             this._ratingService = ratingService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateRating(RatingViewModel model)
+        public async Task<IActionResult> UpdateRating(
+            RatingViewModel model)
         {
             if (User.IsInRole("Administrator") || User.IsInRole("StudioCreator"))
             {
