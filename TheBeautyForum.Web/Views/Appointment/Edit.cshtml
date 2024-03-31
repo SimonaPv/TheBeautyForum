@@ -1,5 +1,5 @@
 ﻿@using TheBeautyForum.Web.ViewModels.Appointment;
-@model CreateAppointmentViewModel
+@model EditAppointmentViewModel
 
 @{
     ViewData["Title"] = "Edit appointment";
@@ -28,6 +28,11 @@
             </div>
             <form id="formId" asp-route-returnUrl="" method="post" enctype="multipart/form-data">
                 <h3>Edit appointment</h3>
+                <input hidden asp-for="@Model.StudioPfp" value="@Model.StudioPfp" />
+                <input hidden asp-for="@Model.StudioId" value="@Model.StudioId" />
+                <input hidden asp-for="@Model.StudioOpenTime" value="@Model.StudioOpenTime" />
+                <input hidden asp-for="@Model.StudioCloseTime" value="@Model.StudioCloseTime" />
+                <input hidden asp-for="@Model.StartDateHour" value="@Model.StartDateHour" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-holder">
                     <span asp-validation-for="@Model.Description" class="text-danger"></span>
@@ -48,13 +53,13 @@
                 <div class="form-holder">
                     <select asp-for="@Model.StartDateHour" class="form-control" style="font-size: 13px; border: none; margin-left: -3px;">
                         <option value="" selected disabled hidden>hh:mm</option>
-                        @for (int i = Model.StudioOpenTime.Hour; i < Model.StudioCloseTime.Hour;)
+                        @for (int i = TimeOnly.Parse(Model.StudioOpenTime).Hour; i < TimeOnly.Parse(Model.StudioCloseTime).Hour;)
                         {
                             <option value="@i"> @i:00-@(++i):00</option>
                         }
                     </select>
-                    <span asp-validation-for="StartDate.Hour" class="text-danger"></span>
-                    <span asp-validation-for="EndDate.Hour" class="text-danger"></span>
+                    <span asp-validation-for="@Model.StartDate.Hour" class="text-danger"></span>
+                    <span asp-validation-for="@Model.EndDate.Hour" class="text-danger"></span>
                 </div>
                 <div class="form-login" style="margin-bottom: 2.5em;">
                     <button id="registerSubmit" class="button" type="submit" asp-controller="Appointment" asp-action="Edit" formmethod="post" asp-route-id="@Model.Id"><b>Save</b></button>

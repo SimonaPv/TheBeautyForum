@@ -8,10 +8,10 @@ namespace TheBeautyForum.Services.Appointment
 
         Task DeleteAppointmentAsync(Guid appointmentId);
 
-        Task EditAppointmentAsync(Guid appointmentId, Guid userId, CreateAppointmentViewModel model);
+        Task EditAppointmentAsync(Guid appointmentId, Guid userId, EditAppointmentViewModel model);
 
-        Task<CreateAppointmentViewModel> LoadCategoriesAsync(Guid studioId);
+        Task<EditAppointmentViewModel> LoadCategoriesAsync(Guid studioId);
 
-        Task<CreateAppointmentViewModel> GetAppointmentAsync(Guid appointmentId);
+        Task<EditAppointmentViewModel> GetAppointmentAsync(Guid appointmentId);
     }
 }

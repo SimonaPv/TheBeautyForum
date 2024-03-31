@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheBeautyForum.Services.Appointment;
+using TheBeautyForum.Services.Category;
 using TheBeautyForum.Web.ViewModels.Appointment;
 
 namespace TheBeautyForum.Web.Controllers
@@ -10,10 +11,12 @@ namespace TheBeautyForum.Web.Controllers
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly ICategoryService _categoryService;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService, ICategoryService categoryService)
         {
             this._appointmentService = appointmentService;
+            this._categoryService = categoryService;
         }
 
         [HttpGet]
@@ -37,6 +40,7 @@ namespace TheBeautyForum.Web.Controllers
             Guid id)
         {
             model.StartDate = model.StartDate.AddHours(model.StartDateHour);
+            model.Categories = await _categoryService.LoadCategoriesAsync(id);
 
             if (model.StartDate < DateTime.Now)
             {
@@ -72,9 +76,10 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Edit(
             [FromRoute]
             Guid id,
-            CreateAppointmentViewModel model)
+            EditAppointmentViewModel model)
         {
             model.StartDate = model.StartDate.AddHours(model.StartDateHour);
+            model.Categories = await _categoryService.LoadCategoriesAsync(model.StudioId);
 
             if (model.StartDate < DateTime.Now)
             {

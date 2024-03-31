@@ -39,17 +39,33 @@ namespace TheBeautyForum.Services.Category
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<CategoryViewModel>> LoadCategoriesAsync()
+        public async Task<List<CategoryViewModel>> LoadCategoriesAsync(Guid? studioId = null)
         {
-            var model = await _dbContext.Categories
-                .Select(x => new CategoryViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    IsSelected = false
-                }).ToListAsync();
+            if (studioId != null)
+            {
+                var model = await _dbContext.StudiosCategories
+                    .Where(x => x.StudioId == studioId)
+                    .Select(x => new CategoryViewModel()
+                    {
+                        Id = x.Category.Id,
+                        Name = x.Category.Name,
+                        IsSelected = false
+                    }).ToListAsync();
 
-            return model;
+                return model;
+            }
+            else
+            {
+                var model = await _dbContext.Categories
+                    .Select(x => new CategoryViewModel()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        IsSelected = false
+                    }).ToListAsync();
+
+                return model;
+            }
         }
     }
 }

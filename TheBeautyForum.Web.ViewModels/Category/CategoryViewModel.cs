@@ -7,7 +7,7 @@ namespace TheBeautyForum.Web.ViewModels.Category
     {
         public Guid Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(NAME_MAX_LENGTH, MinimumLength = NAME_MIN_LENGTH)]
         public string Name { get; set; } = null!;
 

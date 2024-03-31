@@ -7,17 +7,17 @@ namespace TheBeautyForum.Web.ViewModels.User
     {
         public Guid Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(FIRST_NAME_MAX_LENGTH, MinimumLength = FIRST_NAME_MIN_LENGTH)]
         public string FirstName { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(LAST_NAME_MAX_LENGTH, MinimumLength = LAST_NAME_MIN_LENGTH)]
         public string LastName { get; set; } = null!;
 
         public string? ProfilePictureUrl { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [EmailAddress]
         public string Email { get; set; } = null!;
     }

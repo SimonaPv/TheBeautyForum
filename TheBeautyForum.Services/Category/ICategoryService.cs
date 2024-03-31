@@ -8,6 +8,6 @@ namespace TheBeautyForum.Services.Category
 
         Task CreateCategoryAsync(CategoryViewModel model);
 
-        Task<List<CategoryViewModel>> LoadCategoriesAsync();
+        Task<List<CategoryViewModel>> LoadCategoriesAsync(Guid? studioId = null);
     }
 }

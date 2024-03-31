@@ -4,7 +4,7 @@ using static TheBeautyForum.Data.DataConstants.Appointment;
 
 namespace TheBeautyForum.Web.ViewModels.Appointment
 {
-    public class CreateAppointmentViewModel
+    public class EditAppointmentViewModel
     {
         public Guid Id { get; set; }
 
@@ -21,9 +21,9 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
 
         public int StartDateHour { get; set; }
 
-        public TimeOnly StudioOpenTime { get; set; }
+        public string? StudioOpenTime { get; set; }
 
-        public TimeOnly StudioCloseTime { get; set; }
+        public string? StudioCloseTime { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
         public DateTime StartDate { get; set; }
@@ -31,7 +31,7 @@ namespace TheBeautyForum.Web.ViewModels.Appointment
         [Required(ErrorMessage = "This field is required.")]
         public DateTime EndDate { get; set; }
 
-        public ICollection<CategoryViewModel> Categories{ get; set; }
+        public ICollection<CategoryViewModel> Categories { get; set; }
             = new HashSet<CategoryViewModel>();
     }
 }

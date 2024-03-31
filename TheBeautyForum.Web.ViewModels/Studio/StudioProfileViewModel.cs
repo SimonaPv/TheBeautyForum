@@ -10,23 +10,23 @@ namespace TheBeautyForum.Web.ViewModels.Studio
 
         public Guid UserId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public string Name { get; set; } = null!;
 
         public string? ProfilePictureUrl { get; set; }
 
         public int? RatingSum { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public string Location { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public string Description { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public TimeOnly OpenTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         public TimeOnly CloseTime { get; set; }
 
         public ICollection<string> Images { get; set; } 
