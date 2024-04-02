@@ -38,7 +38,7 @@ namespace TheBeautyForum.Web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            EditAppointmentViewModel model,
+            CreateAppointmentViewModel model,
             [FromRoute]
             Guid id)
         {
@@ -81,7 +81,7 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Edit(
             [FromRoute]
             Guid id,
-            EditAppointmentViewModel model)
+            CreateAppointmentViewModel model)
         {
             model.StartDate = model.StartDate.AddHours(model.StartDateHour);
             model.Categories = await _categoryService.LoadCategoriesAsync(model.StudioId);

@@ -16,7 +16,7 @@ namespace TheBeautyForum.Services.Appointment
         }
 
         public async Task CreateAppointmentAsync(
-            EditAppointmentViewModel model, 
+            CreateAppointmentViewModel model, 
             Guid studioId, 
             Guid userId)
         {
@@ -43,7 +43,7 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<EditAppointmentViewModel> GetAppointmentAsync(
+        public async Task<CreateAppointmentViewModel> GetAppointmentAsync(
             Guid appointmentId)
         {
             var model = await this._dbContext.Appointments
@@ -86,7 +86,7 @@ namespace TheBeautyForum.Services.Appointment
         public async Task EditAppointmentAsync(
             Guid appointmentId, 
             Guid userId, 
-            EditAppointmentViewModel model)
+            CreateAppointmentViewModel model)
         {
             if (model is null)
             {
@@ -109,7 +109,7 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<EditAppointmentViewModel> LoadCategoriesAsync(
+        public async Task<CreateAppointmentViewModel> LoadCategoriesAsync(
             Guid studioId)
         {
             var studio = await _dbContext.Studios.FindAsync(studioId);
@@ -127,7 +127,7 @@ namespace TheBeautyForum.Services.Appointment
                     Name = x.Category!.Name
                 }).ToListAsync();
 
-            var appointment = new EditAppointmentViewModel()
+            var appointment = new CreateAppointmentViewModel()
             {
                 StudioId = studio.Id,
                 StudioOpenTime = studio.OpenTime.ToString(),

@@ -4,7 +4,7 @@ using static TheBeautyForum.Data.DataConstants.Appointment;
 
 namespace TheBeautyForum.Web.ViewModels.Appointment
 {
-    public class EditAppointmentViewModel
+    public class CreateAppointmentViewModel
     {
         public Guid Id { get; set; }
 
