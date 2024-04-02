@@ -1,8 +1,6 @@
 ﻿using TheBeautyForum.Data.Models;
-using TheBeautyForum.Services.Category;
 using TheBeautyForum.Services.Home;
 using TheBeautyForum.Tests.Mocks;
-using TheBeautyForum.Web.ViewModels.Category;
 using TheBeautyForum.Web.ViewModels.Home;
 
 namespace TheBeautyForum.Tests.Services

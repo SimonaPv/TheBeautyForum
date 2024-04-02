@@ -1,13 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBeautyForum.Services.Category;
-using TheBeautyForum.Services.Images;
 using TheBeautyForum.Services.Rating;
-using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Tests.Mocks;
 using TheBeautyForum.Web.ViewModels.Rating;
 
