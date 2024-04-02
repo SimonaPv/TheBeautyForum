@@ -16,7 +16,7 @@ namespace TheBeautyForum.Services.Appointment
         }
 
         public async Task CreateAppointmentAsync(
-            CreateAppointmentViewModel model, 
+            EditAppointmentViewModel model, 
             Guid studioId, 
             Guid userId)
         {

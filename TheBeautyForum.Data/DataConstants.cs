@@ -4,7 +4,7 @@
     {
         public static class Appointment
         {
-            public const int DESCRIPTION_MAX_LENGTH = 300;
+            public const int DESCRIPTION_MAX_LENGTH = 50;
 
             public const int DESCRIPTION_MIN_LENGTH = 10;
         }
@@ -29,7 +29,7 @@
 
             public const int NAME_MIN_LENGTH = 2;
 
-            public const int DESCRIPTION_MAX_LENGTH = 300;
+            public const int DESCRIPTION_MAX_LENGTH = 50;
 
             public const int DESCRIPTION_MIN_LENGTH = 10;
 
@@ -58,13 +58,6 @@
             public const int DESCRIPTION_MIN_LENGTH = 0;
 
             public const int IMAGE_MAX_LENGTH = 2048;
-        }
-
-        public static class Comment
-        {
-            public const int DESCRIPTION_MAX_LENGTH = 300;
-
-            public const int DESCRIPTION_MIN_LENGTH = 3;
         }
     }
 }

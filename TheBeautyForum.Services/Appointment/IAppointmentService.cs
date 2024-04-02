@@ -4,7 +4,7 @@ namespace TheBeautyForum.Services.Appointment
 {
     public interface IAppointmentService
     {
-        Task CreateAppointmentAsync(CreateAppointmentViewModel model, Guid studioId, Guid userId);
+        Task CreateAppointmentAsync(EditAppointmentViewModel model, Guid studioId, Guid userId);
 
         Task DeleteAppointmentAsync(Guid appointmentId);
 

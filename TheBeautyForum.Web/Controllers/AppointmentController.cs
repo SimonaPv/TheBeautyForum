@@ -38,7 +38,7 @@ namespace TheBeautyForum.Web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            CreateAppointmentViewModel model,
+            EditAppointmentViewModel model,
             [FromRoute]
             Guid id)
         {
