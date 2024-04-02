@@ -1,8 +1,4 @@
-﻿using TheBeautyForum.Web.ViewModels.Appointment;
-using TheBeautyForum.Web.ViewModels.Publication;
-using TheBeautyForum.Web.ViewModels.Rating;
-
-namespace TheBeautyForum.Web.ViewModels.User
+﻿namespace TheBeautyForum.Web.ViewModels.User
 {
     public class UserViewModel
     {

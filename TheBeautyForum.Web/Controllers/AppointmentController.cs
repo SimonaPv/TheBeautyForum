@@ -96,7 +96,7 @@ namespace TheBeautyForum.Web.Controllers
                 return View(model);
             }
 
-            await _appointmentService.EditAppointmentAsync(id, (Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))), model);
+            await _appointmentService.EditAppointmentAsync(id, model);
 
             return RedirectToAction("LoggedProfile", "User");
         }

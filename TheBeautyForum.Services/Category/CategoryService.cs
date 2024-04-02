@@ -17,6 +17,11 @@ namespace TheBeautyForum.Services.Category
         public async Task CreateCategoryAsync(
             CategoryViewModel model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             var category = new Data.Models.Category()
             {
                 Id = Guid.NewGuid(),

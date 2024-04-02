@@ -16,10 +16,15 @@ namespace TheBeautyForum.Services.Appointment
         }
 
         public async Task CreateAppointmentAsync(
-            CreateAppointmentViewModel model, 
-            Guid studioId, 
+            CreateAppointmentViewModel model,
+            Guid studioId,
             Guid userId)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             var studio = await _dbContext.Studios
                 .FindAsync(studioId);
 
@@ -56,7 +61,7 @@ namespace TheBeautyForum.Services.Appointment
             {
                 throw new ArgumentNullException(nameof(model));
             }
-            
+
             var sth = await LoadCategoriesAsync(model.StudioId);
             sth.Id = appointmentId;
             sth.Description = model.Description;
@@ -84,8 +89,7 @@ namespace TheBeautyForum.Services.Appointment
         }
 
         public async Task EditAppointmentAsync(
-            Guid appointmentId, 
-            Guid userId, 
+            Guid appointmentId,
             CreateAppointmentViewModel model)
         {
             if (model is null)
