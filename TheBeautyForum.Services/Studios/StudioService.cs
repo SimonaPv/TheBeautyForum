@@ -141,7 +141,8 @@ namespace TheBeautyForum.Services.Studios
         public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync(
             FilterViewModel? filter = null)
         {
-            var studios = await _dbContext.Studios.Include(x => x.StudioCategories)
+            var studios = await _dbContext.Studios
+                .Include(x => x.StudioCategories)
                 .Include(x => x.Ratings)
                 .Where(x => x.IsApproved == true)
                 .Select(s => new ViewStudioViewModel()

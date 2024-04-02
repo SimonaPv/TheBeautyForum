@@ -25,6 +25,7 @@ namespace TheBeautyForum.Web.ViewModels.Studio
         public string Description { get; set; } = null!;
 
         [Required(ErrorMessage = "This field is required.")]
+        [RegularExpression(@"^[^\s,""]+\s*,\s*[^\s,""]+\s*,\s*(?:(?![\d,""]).)+(?:\s+\d+)?$", ErrorMessage = "Invalid location format.")]
         [StringLength(LOCATION_MAX_LENGTH, MinimumLength = LOCATION_MIN_LENGTH)]
         public string Location { get; set; } = null!;
 

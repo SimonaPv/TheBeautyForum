@@ -18,8 +18,13 @@ namespace TheBeautyForum.Services.Rating
             RatingViewModel model, 
             Guid userId)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+            
             var ratings = await _dbContext.Ratings
-                .Where(x => x.UserId == userId && x.StudioId == model.Id)
+                .Where(x => x.UserId == userId && x.StudioId == model.StudioId)
                 .ToListAsync();
 
             _dbContext.Ratings.RemoveRange(ratings);
@@ -27,7 +32,7 @@ namespace TheBeautyForum.Services.Rating
             var rating = new Data.Models.Rating()
             {
                 Id = Guid.NewGuid(),
-                StudioId = model.Id,
+                StudioId = model.StudioId,
                 UserId = userId,
                 Value = model.Value
             };

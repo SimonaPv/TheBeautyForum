@@ -13,7 +13,7 @@
                 <option value="5" style="color: orange">★★★★★</option>
             </select>
 
-            <input class="btn" style="font-size: 12px; margin-left: 0.5em; border-radius: 9px; background-color: #E7E6E6; color: #626262; padding: 0.2em 1em 0.2em 1em ; font-weight: 400" asp-controller="Rating" asp-action="UpdateRating" asp-route-id="@Model.StudioId" type="submit" value="Rate" />
+            <input class="btn" style="font-size: 12px; margin-left: 0.5em; border-radius: 9px; background-color: #E7E6E6; color: #626262; padding: 0.2em 1em 0.2em 1em ; font-weight: 400" asp-controller="Rating" asp-action="UpdateRating" asp-route-studioId="@Model.StudioId" type="submit" value="Rate" />
         </div>
     </form>
 </body>
