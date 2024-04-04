@@ -6,30 +6,62 @@ using TheBeautyForum.Data.Models;
 
 namespace TheBeautyForum.Web.Data
 {
+    /// <summary>
+    /// Represents the database context.
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+        /// </summary>
+        /// <param name="options"></param>
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Gets or sets the appointments.
+        /// </summary>
         public DbSet<Appointment> Appointments { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the categories.
+        /// </summary>
         public DbSet<Category> Categories { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the likes.
+        /// </summary>
         public DbSet<Like> Likes { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the publications.
+        /// </summary>
         public DbSet<Publication> Publications { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the ratings.
+        /// </summary>
         public DbSet<Rating> Ratings { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the studios.
+        /// </summary>
         public DbSet<Studio> Studios { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the studios categories.
+        /// </summary>
         public DbSet<StudioCategory> StudiosCategories { get; set; } = null!;
 
+        /// <summary>
+        /// Gets or sets the images.
+        /// </summary>
         public DbSet<Image> Images { get; set; } = null!;
 
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var timeOnlyToTimeSpanConverter = new TimeOnlyToTimeSpanConverter();
