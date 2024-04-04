@@ -6,17 +6,28 @@ using TheBeautyForum.Web.ViewModels.Publication;
 
 namespace TheBeautyForum.Web.Controllers
 {
+    /// <summary>
+    /// Represents the publication controller.
+    /// </summary>
     [Authorize]
     public class PublicationController : Controller
     {
         private readonly IPublicationService _publicationService;
 
+        /// <summary>
+        /// Initialize new instance of <see cref="PublicationController"/> class.
+        /// </summary>
+        /// <param name="publicationService"></param>
         public PublicationController(
             IPublicationService publicationService)
         {
             this._publicationService = publicationService;
         }
 
+        /// <summary>
+        /// Gets the forum.
+        /// </summary>
+        /// <returns>The view "Forum".</returns>
         public async Task<IActionResult> Forum()
         {
             var model = await _publicationService.ForumAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
@@ -24,6 +35,11 @@ namespace TheBeautyForum.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Creates publication.
+        /// </summary>
+        /// <param name="model">the model for the creating the publication</param>
+        /// <returns>Based on the user's role.</returns>
         [HttpPost]
         public async Task<IActionResult> Create(
             CreatePublicationViewModel model)
@@ -67,6 +83,13 @@ namespace TheBeautyForum.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes publication.
+        /// </summary>
+        /// <param name="publicationId">the ID of the publication</param>
+        /// <param name="viewUrl">the view to return to</param>
+        /// <param name="studioId">the ID of the studio</param>
+        /// <returns>Based on the user's role.</returns>
         public async Task<IActionResult> Delete(
             Guid publicationId, 
             string viewUrl, 

@@ -2,6 +2,9 @@
 
 namespace TheBeautyForum.Web.ViewModels.Publication
 {
+    /// <summary>
+    /// Represents a forum view model.
+    /// </summary>
     public class ForumViewModel
     {
         public Guid PublicationId { get; set; }

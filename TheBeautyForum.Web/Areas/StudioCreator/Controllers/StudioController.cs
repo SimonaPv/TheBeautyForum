@@ -5,16 +5,27 @@ using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
 {
+    /// <summary>
+    /// Represents the studio controller.
+    /// </summary>
     public class StudioController : BaseController
     {
         private readonly IStudioService _studioService;
 
+        /// <summary>
+        /// Initialize new instance of <see cref="StudioController"/> class.
+        /// </summary>
+        /// <param name="studioService"></param>
         public StudioController(
             IStudioService studioService)
         {
             this._studioService = studioService;
         }
 
+        /// <summary>
+        /// Creates studio.
+        /// </summary>
+        /// <returns>The view "Create"</returns>
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -23,6 +34,11 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Creates studio.
+        /// </summary>
+        /// <param name="model">the model for creating the studio</param>
+        /// <returns>The view "LoggedProfile"</returns>
         [HttpPost]
         public async Task<IActionResult> Create(
             CreateStudioViewModel model)
@@ -42,6 +58,11 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             return RedirectToAction("LoggedProfile", "User");
         }
 
+        /// <summary>
+        /// Edits studio.
+        /// </summary>
+        /// <param name="id">the ID of the studio that has to be edited</param>
+        /// <returns>The view "Edit"</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(
             [FromRoute]
@@ -52,6 +73,12 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Edits studio.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="id">the ID of the studio that has to be edited</param>
+        /// <returns>The view "Profile"</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(
             EditStudioProfileViewModel model,

@@ -1,5 +1,8 @@
 ﻿namespace TheBeautyForum.Web.ViewModels.Publication
 {
+    /// <summary>
+    /// Represents a post view model.
+    /// </summary>
     public class PostForumViewModel
     {
         public Guid Id { get; set; }

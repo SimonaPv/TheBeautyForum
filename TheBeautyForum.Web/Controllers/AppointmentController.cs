@@ -7,12 +7,20 @@ using TheBeautyForum.Web.ViewModels.Appointment;
 
 namespace TheBeautyForum.Web.Controllers
 {
+    /// <summary>
+    /// Represents the appointment controller.
+    /// </summary>
     [Authorize]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;
         private readonly ICategoryService _categoryService;
 
+        /// <summary>
+        /// Initialize new instance of <see cref="AppointmentController"/> class.
+        /// </summary>
+        /// <param name="appointmentService"></param>
+        /// <param name="categoryService"></param>
         public AppointmentController(
             IAppointmentService appointmentService, 
             ICategoryService categoryService)
@@ -21,6 +29,11 @@ namespace TheBeautyForum.Web.Controllers
             this._categoryService = categoryService;
         }
 
+        /// <summary>
+        /// Creates appointment.
+        /// </summary>
+        /// <param name="id">the ID of the studio for which the appointment is created</param>
+        /// <returns>The view "Create".</returns>
         [HttpGet]
         public async Task<IActionResult> Create(
             [FromRoute]
@@ -36,6 +49,12 @@ namespace TheBeautyForum.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Creates appointment.
+        /// </summary>
+        /// <param name="model">the model for creating the studio</param>
+        /// <param name="id">the ID for the studio</param>
+        /// <returns>The view "Profile"</returns>
         [HttpPost]
         public async Task<IActionResult> Create(
             CreateAppointmentViewModel model,
@@ -60,6 +79,11 @@ namespace TheBeautyForum.Web.Controllers
             return RedirectToAction("Profile", "Studio", new { id = id });
         }
 
+        /// <summary>
+        /// Deletes appointment.
+        /// </summary>
+        /// <param name="appointmentId">the ID of the appointment</param>
+        /// <returns>The view "LoggedProfile".</returns>
         public async Task<IActionResult> Delete(
             Guid appointmentId)
         {
@@ -68,6 +92,11 @@ namespace TheBeautyForum.Web.Controllers
             return RedirectToAction("LoggedProfile", "User");
         }
 
+        /// <summary>
+        /// Edits appointment.
+        /// </summary>
+        /// <param name="appointmentId">the ID of the appointment</param>
+        /// <returns>The view "Edit".</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(
             Guid appointmentId)
@@ -77,6 +106,12 @@ namespace TheBeautyForum.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Edits appointment.
+        /// </summary>
+        /// <param name="id">the ID of the studio</param>
+        /// <param name="model">the model for creating the appointment</param>
+        /// <returns>The view "LoggedProfile"</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(
             [FromRoute]
