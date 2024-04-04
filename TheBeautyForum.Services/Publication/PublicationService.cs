@@ -6,11 +6,19 @@ using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Publication
 {
+    /// <summary>
+    /// Represents an publication service.
+    /// </summary>
     public class PublicationService : IPublicationService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IImageService _imageService;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="PublicationService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <param name="imageService"></param>
         public PublicationService(
             ApplicationDbContext dbContext,
             IImageService imageService)
@@ -19,6 +27,7 @@ namespace TheBeautyForum.Services.Publication
             this._imageService = imageService;
         }
 
+        /// <inheritdoc/>
         public async Task<List<ForumViewModel>> ForumAsync(
             Guid userId)
         {
@@ -84,6 +93,7 @@ namespace TheBeautyForum.Services.Publication
             return model;
         }
 
+        /// <inheritdoc/>
         public async Task CreatePublicationAsync(
             CreatePublicationViewModel model, 
             Guid userId)
@@ -111,6 +121,7 @@ namespace TheBeautyForum.Services.Publication
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeletePublicationAsync(
             Guid postId)
         {

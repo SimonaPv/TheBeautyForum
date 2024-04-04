@@ -6,11 +6,19 @@ using TheBeautyForum.Web.Data;
 
 namespace TheBeautyForum.Services.Images
 {
+    /// <summary>
+    /// Represents an image service.
+    /// </summary>
     public class ImageService : IImageService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly Cloudinary _cloudinary;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="ImageService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <param name="cloudinary"></param>
         public ImageService(
             ApplicationDbContext dbContext,
             Cloudinary cloudinary)
@@ -19,6 +27,7 @@ namespace TheBeautyForum.Services.Images
             this._cloudinary = cloudinary;
         }
 
+        /// <inheritdoc/>
         public async Task<Image> UploadImage(
             IFormFile imageFile, 
             string nameFolder, 
@@ -50,6 +59,7 @@ namespace TheBeautyForum.Services.Images
             return image;
         }
 
+        /// <inheritdoc/>
         public async Task<string> UploadImage(
             IFormFile imageFile, 
             string nameFolder, 
@@ -79,6 +89,7 @@ namespace TheBeautyForum.Services.Images
             return user.ProfilePictureUrl;
         }
 
+        /// <inheritdoc/>
         public async Task<string> UploadImage(
             IFormFile imageFile, 
             string nameFolder, 

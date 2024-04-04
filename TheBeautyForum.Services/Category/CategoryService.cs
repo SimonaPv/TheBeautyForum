@@ -4,16 +4,24 @@ using TheBeautyForum.Web.ViewModels.Category;
 
 namespace TheBeautyForum.Services.Category
 {
+    /// <summary>
+    /// Represents an category service.
+    /// </summary>
     public class CategoryService : ICategoryService
     {
         private readonly ApplicationDbContext _dbContext;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="CategoryService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
         public CategoryService(
             ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task CreateCategoryAsync(
             CategoryViewModel model)
         {
@@ -32,6 +40,7 @@ namespace TheBeautyForum.Services.Category
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task DeleteCategoryAsync(
             Guid categoryId)
         {
@@ -47,6 +56,7 @@ namespace TheBeautyForum.Services.Category
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<List<CategoryViewModel>> LoadCategoriesAsync(
             Guid? studioId = null)
         {

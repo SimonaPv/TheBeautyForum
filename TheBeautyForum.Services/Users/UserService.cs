@@ -9,16 +9,24 @@ using TheBeautyForum.Web.ViewModels.User;
 
 namespace TheBeautyForum.Services.Users
 {
+    /// <summary>
+    /// Represents an user service.
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _dbContext;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="UserService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
         public UserService(
             ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task ApproveStudioAsync(
             Guid studioId)
         {
@@ -34,6 +42,7 @@ namespace TheBeautyForum.Services.Users
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task EditUserProfileAsync(
             EditProfileViewModel model, 
             Guid userId)
@@ -55,6 +64,7 @@ namespace TheBeautyForum.Services.Users
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<EditProfileViewModel> GetUserAsync(
             Guid userId)
         {
@@ -77,7 +87,8 @@ namespace TheBeautyForum.Services.Users
             return user;
         }
 
-        public async Task<ProfileViewModel> ShowAdminLoggedProfileAsync(
+        /// <inheritdoc/>
+        public async Task<ProfileViewModel> ShowAdminProfileAsync(
             Guid userId)
         {
             var user = await _dbContext.Users
@@ -145,6 +156,7 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
+        /// <inheritdoc/>
         public async Task<ProfileViewModel> ShowLoggedProfileAsync(
             Guid userId)
         {
@@ -245,6 +257,7 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
+        /// <inheritdoc/>
         public async Task<ProfileViewModel> ShowStudioCreatorLoggedProfileAsync(
             Guid userId)
         {
@@ -281,6 +294,7 @@ namespace TheBeautyForum.Services.Users
             return profile;
         }
 
+        /// <inheritdoc/>
         public async Task<ProfileViewModel> ShowUserProfileAsync(
             Guid userId, 
             Guid loggedUserId)

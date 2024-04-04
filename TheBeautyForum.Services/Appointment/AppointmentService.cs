@@ -5,16 +5,24 @@ using TheBeautyForum.Web.ViewModels.Category;
 
 namespace TheBeautyForum.Services.Appointment
 {
+    /// <summary>
+    /// Represents an appointment service.
+    /// </summary>
     public class AppointmentService : IAppointmentService
     {
         private readonly ApplicationDbContext _dbContext;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="AppointmentService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
         public AppointmentService(
             ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task CreateAppointmentAsync(
             CreateAppointmentViewModel model,
             Guid studioId,
@@ -48,6 +56,7 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<CreateAppointmentViewModel> GetAppointmentAsync(
             Guid appointmentId)
         {
@@ -73,6 +82,7 @@ namespace TheBeautyForum.Services.Appointment
             return sth;
         }
 
+        /// <inheritdoc/>
         public async Task DeleteAppointmentAsync(
             Guid appointmentId)
         {
@@ -88,6 +98,7 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task EditAppointmentAsync(
             Guid appointmentId,
             CreateAppointmentViewModel model)
@@ -113,6 +124,7 @@ namespace TheBeautyForum.Services.Appointment
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<CreateAppointmentViewModel> LoadCategoriesAsync(
             Guid studioId)
         {

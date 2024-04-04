@@ -10,12 +10,21 @@ using TheBeautyForum.Web.ViewModels.Studio;
 
 namespace TheBeautyForum.Services.Studios
 {
+    /// <summary>
+    /// Represents an studio service.
+    /// </summary>
     public class StudioService : IStudioService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IImageService _imageService;
         private readonly ICategoryService _categoryService;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="StudioService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <param name="imageService"></param>
+        /// <param name="categoryService"></param>
         public StudioService(
             ApplicationDbContext dbContext, 
             IImageService imageService, 
@@ -26,6 +35,7 @@ namespace TheBeautyForum.Services.Studios
             this._categoryService = categoryService;
         }
 
+        /// <inheritdoc/>
         public async Task<CreateStudioViewModel> CreateStudioCategoriesAsync()
         {
             var model = new CreateStudioViewModel()
@@ -36,6 +46,7 @@ namespace TheBeautyForum.Services.Studios
             return model;
         }
 
+        /// <inheritdoc/>
         public async Task CreateStudioAsync(
             CreateStudioViewModel model, 
             Guid userId)
@@ -77,6 +88,7 @@ namespace TheBeautyForum.Services.Studios
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeleteStudioAsync(
             Guid studioId)
         {
@@ -92,6 +104,7 @@ namespace TheBeautyForum.Services.Studios
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task EditStudioProfileAsync(
             EditStudioProfileViewModel model, 
             Guid studioId)
@@ -138,6 +151,7 @@ namespace TheBeautyForum.Services.Studios
             await this._dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<List<ViewStudioViewModel>> GetAllStudiosAsync(
             FilterViewModel? filter = null)
         {
@@ -216,6 +230,7 @@ namespace TheBeautyForum.Services.Studios
             return studios;
         }
 
+        /// <inheritdoc/>
         public async Task<EditStudioProfileViewModel> GetStudioAsync(
             Guid studioId)
         {

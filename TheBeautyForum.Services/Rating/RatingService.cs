@@ -4,16 +4,24 @@ using TheBeautyForum.Web.ViewModels.Rating;
 
 namespace TheBeautyForum.Services.Rating
 {
+    /// <summary>
+    /// Represents rating service.
+    /// </summary>
     public class RatingService : IRatingService
     {
         private readonly ApplicationDbContext _dbContext;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="RatingService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
         public RatingService(
             ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task UpdateStudioRatingAsync(
             RatingViewModel model, 
             Guid userId)

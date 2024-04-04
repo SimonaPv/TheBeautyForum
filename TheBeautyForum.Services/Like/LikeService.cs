@@ -3,16 +3,24 @@ using TheBeautyForum.Web.Data;
 
 namespace TheBeautyForum.Services.Like
 {
+    /// <summary>
+    /// Represents an like service.
+    /// </summary>
     public class LikeService : ILikeService
     {
         private readonly ApplicationDbContext _dbContext;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="LikeService"/> class.
+        /// </summary>
+        /// <param name="dbContext"></param>
         public LikeService(
             ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task HandleLikePostAsync(
             Guid postId,
             Guid userId)

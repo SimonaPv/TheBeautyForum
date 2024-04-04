@@ -17,7 +17,7 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         public async Task<IActionResult> LoggedProfile()
         {
             var model = await _userService
-                .ShowAdminLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                .ShowAdminProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return View(model);
         }
