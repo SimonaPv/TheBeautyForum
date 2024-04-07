@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/058aede230.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/post.css">
+    <script asp-append-version="true" src="~/js/publications.js"></script>
+</head>
+
+<body style="background-color:lightgray;">
+    <h1 class="text-danger" style="padding-top: 1em;">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    <h2 class="text-danger" style="padding-bottom: 0.5em">For further notice, please contact us!</h2>
+    <h4 class="text-left" style="padding-bottom: 7em"> Go back to <a asp-controller="Home" asp-action="Index">Home</a> page.</h4>
+</body>
