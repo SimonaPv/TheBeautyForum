@@ -29,9 +29,16 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
             [FromRoute]
             Guid id)
         {
-            await _studioService.DeleteStudioAsync(id);
+            try
+            {
+                await _studioService.DeleteStudioAsync(id);
 
-            return RedirectToAction("All", "Studio");
+                return RedirectToAction("All", "Studio");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

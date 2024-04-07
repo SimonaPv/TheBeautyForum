@@ -33,14 +33,21 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> UpdateRating(
             RatingViewModel model)
         {
-            if (User.IsInRole("Administrator") || User.IsInRole("StudioCreator"))
+            try
             {
+                if (User.IsInRole("Administrator") || User.IsInRole("StudioCreator"))
+                {
+                    return RedirectToAction("LoggedProfile", "User");
+                }
+
+                await _ratingService.UpdateStudioRatingAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
                 return RedirectToAction("LoggedProfile", "User");
             }
-
-            await _ratingService.UpdateStudioRatingAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-            return RedirectToAction("LoggedProfile", "User");
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

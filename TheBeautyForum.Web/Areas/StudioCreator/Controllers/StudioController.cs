@@ -29,9 +29,16 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var model = await _studioService.CreateStudioCategoriesAsync();
+            try
+            {
+                var model = await _studioService.CreateStudioCategoriesAsync();
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -43,19 +50,26 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
         public async Task<IActionResult> Create(
             CreateStudioViewModel model)
         {
-            if (!model.CategoryIds.Any())
+            try
             {
-                ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
-            }
+                if (!model.CategoryIds.Any())
+                {
+                    ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
+                }
 
-            if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                await _studioService.CreateStudioAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
             {
-                return View(model);
+                throw;
             }
-
-            await _studioService.CreateStudioAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-            return RedirectToAction("LoggedProfile", "User");
         }
 
         /// <summary>
@@ -68,9 +82,16 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             [FromRoute]
             Guid id)
         {
-            var model = await _studioService.GetStudioAsync(id);
+            try
+            {
+                var model = await _studioService.GetStudioAsync(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -85,19 +106,26 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
             [FromRoute]
             Guid id)
         {
-            if (!model.CategoryIds.Any())
+            try
             {
-                ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
-            }
+                if (!model.CategoryIds.Any())
+                {
+                    ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
+                }
 
-            if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                await _studioService.EditStudioProfileAsync(model, id);
+
+                return RedirectToAction("Profile", "Studio", new { id = id });
+            }
+            catch (Exception)
             {
-                return View(model);
+                throw;
             }
-
-            await _studioService.EditStudioProfileAsync(model, id);
-
-            return RedirectToAction("Profile", "Studio", new { id = id });
         }
     }
 }

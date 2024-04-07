@@ -31,7 +31,14 @@ namespace TheBeautyForum.Web.Controllers
         public async Task HandleLike(
             string postId)
         {
-            await _likeService.HandleLikePostAsync(Guid.Parse(postId), Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                await _likeService.HandleLikePostAsync(Guid.Parse(postId), Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

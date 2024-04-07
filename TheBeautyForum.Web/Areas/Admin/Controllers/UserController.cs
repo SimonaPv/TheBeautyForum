@@ -27,10 +27,17 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         /// <returns>The view "LoggedProfile"</returns>
         public async Task<IActionResult> LoggedProfile()
         {
-            var model = await _userService
-                .ShowAdminProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                var model = await _userService
+               .ShowAdminProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -40,9 +47,16 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         /// <returns>The view "LoggedProfile"</returns>
         public async Task<IActionResult> Approval(Guid id)
         {
-            await _userService.ApproveStudioAsync(id);
+            try
+            {
+                await _userService.ApproveStudioAsync(id);
 
-            return RedirectToAction("LoggedProfile", "User");
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

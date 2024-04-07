@@ -31,14 +31,21 @@ namespace TheBeautyForum.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (User?.Identity?.IsAuthenticated ?? false)
+            try
             {
-                return RedirectToAction("Forum", "Publication");
+                if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    return RedirectToAction("Forum", "Publication");
+                }
+
+                var model = await _homeService.HomeAsync();
+
+                return View(model);
             }
-
-            var model = await _homeService.HomeAsync();
-
-            return View(model);
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

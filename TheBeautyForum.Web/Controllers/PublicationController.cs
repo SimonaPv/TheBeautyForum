@@ -30,9 +30,16 @@ namespace TheBeautyForum.Web.Controllers
         /// <returns>The view "Forum".</returns>
         public async Task<IActionResult> Forum()
         {
-            var model = await _publicationService.ForumAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                var model = await _publicationService.ForumAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -44,23 +51,37 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Create(
             CreatePublicationViewModel model)
         {
-            if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
+            try
             {
-                return RedirectToAction("Forum", "Publication");
-            }
+                if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
+                {
+                    return RedirectToAction("Forum", "Publication");
+                }
 
-            if (model.Image != null && model.Image.Length > 10485760)
-            {
-                ModelState.AddModelError(nameof(model.Image), "Your file is too big.");
-            }
+                if (model.Image != null && model.Image.Length > 10485760)
+                {
+                    ModelState.AddModelError(nameof(model.Image), "Your file is too big.");
+                }
 
-            if (model.StudioId == Guid.Empty)
-            {
-                ModelState.AddModelError(nameof(model.StudioId), "This field is required");
-            }
+                if (model.StudioId == Guid.Empty)
+                {
+                    ModelState.AddModelError(nameof(model.StudioId), "This field is required");
+                }
 
-            if (!ModelState.IsValid)
-            {
+                if (!ModelState.IsValid)
+                {
+                    if (model.ViewUrl == "Forum")
+                    {
+                        return RedirectToAction("Forum", "Publication", model);
+                    }
+                    else
+                    {
+                        return RedirectToAction("LoggedProfile", "User", model);
+                    }
+                }
+
+                await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
                 if (model.ViewUrl == "Forum")
                 {
                     return RedirectToAction("Forum", "Publication", model);
@@ -70,16 +91,9 @@ namespace TheBeautyForum.Web.Controllers
                     return RedirectToAction("LoggedProfile", "User", model);
                 }
             }
-
-            await _publicationService.CreatePublicationAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-            if (model.ViewUrl == "Forum")
+            catch (Exception)
             {
-                return RedirectToAction("Forum", "Publication", model);
-            }
-            else
-            {
-                return RedirectToAction("LoggedProfile", "User", model);
+                throw;
             }
         }
 
@@ -91,23 +105,30 @@ namespace TheBeautyForum.Web.Controllers
         /// <param name="studioId">the ID of the studio</param>
         /// <returns>Based on the user's role.</returns>
         public async Task<IActionResult> Delete(
-            Guid publicationId, 
-            string viewUrl, 
+            Guid publicationId,
+            string viewUrl,
             Guid? studioId = null)
         {
-            await _publicationService.DeletePublicationAsync(publicationId);
+            try
+            {
+                await _publicationService.DeletePublicationAsync(publicationId);
 
-            if (viewUrl == "Forum")
-            {
-                return RedirectToAction("Forum", "Publication");
+                if (viewUrl == "Forum")
+                {
+                    return RedirectToAction("Forum", "Publication");
+                }
+                else if (viewUrl == "StudioProfile")
+                {
+                    return RedirectToAction("Profile", "Studio", new { id = studioId });
+                }
+                else
+                {
+                    return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+                }
             }
-            else if (viewUrl == "StudioProfile")
+            catch (Exception)
             {
-                return RedirectToAction("Profile", "Studio", new { id = studioId });
-            }
-            else
-            {
-                return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+                throw;
             }
         }
     }

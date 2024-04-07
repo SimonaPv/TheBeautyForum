@@ -32,9 +32,16 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> All(
             FilterViewModel model)
         {
-            var studios  = await _studioService.GetAllStudiosAsync(model);
+            try
+            {
+                var studios = await _studioService.GetAllStudiosAsync(model);
 
-            return View(studios);
+                return View(studios);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -46,9 +53,16 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
-            var model = await _studioService.ShowStudioProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                var model = await _studioService.ShowStudioProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

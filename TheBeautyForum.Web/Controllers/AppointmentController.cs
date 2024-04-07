@@ -22,7 +22,7 @@ namespace TheBeautyForum.Web.Controllers
         /// <param name="appointmentService"></param>
         /// <param name="categoryService"></param>
         public AppointmentController(
-            IAppointmentService appointmentService, 
+            IAppointmentService appointmentService,
             ICategoryService categoryService)
         {
             this._appointmentService = appointmentService;
@@ -39,14 +39,21 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
-            if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
+            try
             {
-                return RedirectToAction("Profile", "Studio", new { id = id });
+                if (this.User.IsInRole("Administrator") || this.User.IsInRole("StudioCreator"))
+                {
+                    return RedirectToAction("Profile", "Studio", new { id = id });
+                }
+
+                var model = await _appointmentService.LoadCategoriesAsync(id);
+
+                return View(model);
             }
-
-            var model = await _appointmentService.LoadCategoriesAsync(id);
-
-            return View(model);
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -61,22 +68,29 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
-            model.StartDate = model.StartDate.AddHours(model.StartDateHour);
-            model.Categories = await _categoryService.LoadCategoriesAsync(id);
-
-            if (model.StartDate < DateTime.Now)
+            try
             {
-                ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");
-            }
+                model.StartDate = model.StartDate.AddHours(model.StartDateHour);
+                model.Categories = await _categoryService.LoadCategoriesAsync(id);
 
-            if (!ModelState.IsValid)
+                if (model.StartDate < DateTime.Now)
+                {
+                    ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                await _appointmentService.CreateAppointmentAsync(model, id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                return RedirectToAction("Profile", "Studio", new { id = id });
+            }
+            catch (Exception)
             {
-                return View(model);
+                throw;
             }
-
-            await _appointmentService.CreateAppointmentAsync(model, id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-            return RedirectToAction("Profile", "Studio", new { id = id });
         }
 
         /// <summary>
@@ -87,9 +101,16 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Delete(
             Guid appointmentId)
         {
-            await _appointmentService.DeleteAppointmentAsync(appointmentId);
+            try
+            {
+                await _appointmentService.DeleteAppointmentAsync(appointmentId);
 
-            return RedirectToAction("LoggedProfile", "User");
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -101,9 +122,16 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Edit(
             Guid appointmentId)
         {
-            var model = await _appointmentService.GetAppointmentAsync(appointmentId);
+            try
+            {
+                var model = await _appointmentService.GetAppointmentAsync(appointmentId);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -118,22 +146,29 @@ namespace TheBeautyForum.Web.Controllers
             Guid id,
             CreateAppointmentViewModel model)
         {
-            model.StartDate = model.StartDate.AddHours(model.StartDateHour);
-            model.Categories = await _categoryService.LoadCategoriesAsync(model.StudioId);
-
-            if (model.StartDate < DateTime.Now)
+            try
             {
-                ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");
-            }
+                model.StartDate = model.StartDate.AddHours(model.StartDateHour);
+                model.Categories = await _categoryService.LoadCategoriesAsync(model.StudioId);
 
-            if (!ModelState.IsValid)
+                if (model.StartDate < DateTime.Now)
+                {
+                    ModelState.AddModelError(nameof(model.StartDate), "Invalid date.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                await _appointmentService.EditAppointmentAsync(id, model);
+
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
             {
-                return View(model);
+                throw;
             }
-
-            await _appointmentService.EditAppointmentAsync(id, model);
-
-            return RedirectToAction("LoggedProfile", "User");
         }
     }
 }

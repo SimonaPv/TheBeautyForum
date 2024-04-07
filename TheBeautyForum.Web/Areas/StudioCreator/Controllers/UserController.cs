@@ -27,9 +27,16 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
         /// <returns>The view "LoggedProfile".</returns>
         public async Task<IActionResult> LoggedProfile()
         {
-            var model = await _userService.ShowStudioCreatorLoggedProfileAsync((Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))));
+            try
+            {
+                var model = await _userService.ShowStudioCreatorLoggedProfileAsync((Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

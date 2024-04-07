@@ -28,10 +28,17 @@ namespace TheBeautyForum.Web.Controllers
         /// <returns>The view "LoggedProfile"</returns>
         public async Task<IActionResult> LoggedProfile()
         {
-            var model = await _userService
+            try
+            {
+                var model = await _userService
                 .ShowLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -43,19 +50,26 @@ namespace TheBeautyForum.Web.Controllers
             [FromRoute]
             Guid id)
         {
-            if (id == Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            try
             {
-                var model = await _userService
-                    .ShowLoggedProfileAsync(id);
+                if (id == Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+                {
+                    var model = await _userService
+                        .ShowLoggedProfileAsync(id);
 
-                return RedirectToAction("LoggedProfile", model);
+                    return RedirectToAction("LoggedProfile", model);
+                }
+                else
+                {
+                    var model = await _userService
+                        .ShowUserProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                    return View(model);
+                }
             }
-            else
+            catch (Exception)
             {
-                var model = await _userService
-                    .ShowUserProfileAsync(id, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-                return View(model);
+                throw;
             }
         }
 
@@ -66,9 +80,16 @@ namespace TheBeautyForum.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit()
         {
-            var model = await _userService.GetUserAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                var model = await _userService.GetUserAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -80,9 +101,16 @@ namespace TheBeautyForum.Web.Controllers
         public async Task<IActionResult> Edit(
             EditProfileViewModel model)
         {
-            await _userService.EditUserProfileAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            try
+            {
+                await _userService.EditUserProfileAsync(model, Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+                return RedirectToAction("LoggedProfile", "User", new { id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -28,7 +28,14 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -40,9 +47,16 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Create(
             CategoryViewModel model)
         {
-            await _categoryService.CreateCategoryAsync(model);
+            try
+            {
+                await _categoryService.CreateCategoryAsync(model);
 
-            return RedirectToAction("LoggedProfile", "User");
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -54,9 +68,16 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
             [FromRoute]
             Guid id)
         {
-            await _categoryService.DeleteCategoryAsync(id);
+            try
+            {
+                await _categoryService.DeleteCategoryAsync(id);
 
-            return RedirectToAction("LoggedProfile", "User");
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
