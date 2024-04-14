@@ -29,7 +29,7 @@
                     <span asp-validation-for="@Model.Name" class="text-danger"></span>
                     <input asp-for="@Model.Name" class="form-control" placeholder="procedure name" autocomplete="on" aria-required="true" />
                 </div>
-                <div class="form-login" style="margin-bottom: 2.5em;">
+                <div class="form-login" style="margin-bottom: 2.5em; justify-content: center">
                     <button id="registerSubmit" class="button" type="submit" asp-controller="Category" asp-action="Create" formmethod="post"><b>Save</b></button>
                     <a class="button" asp-area="Admin" asp-controller="User" asp-action="LoggedProfile"><b>Cancel</b></a>
                 </div>
@@ -51,27 +51,7 @@
             padding-top: 40px;
             padding-right: 60px;
             padding-left: 15px;
-        }
-
-        input[type="file"]::file-selector-button {
-            width: 142px;
-            color: transparent;
-            border-radius: 4px;
-            margin-right: 1px;
-        }
-
-        input[type="file"]::before {
-            position: absolute;
-            padding-left: 0em;
-            pointer-events: none;
-            content: "Upload profile pic: ";
-        }
-
-        input[type="file"]::file-selector-button {
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #f7f7f7;
-        }
+        }   
     </style>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
