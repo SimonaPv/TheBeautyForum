@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 using System.Security.Claims;
 using TheBeautyForum.Services.Users;
 using TheBeautyForum.Web.ViewModels.User;
@@ -26,12 +28,13 @@ namespace TheBeautyForum.Web.Controllers
         /// Gets the profile of the logged user.
         /// </summary>
         /// <returns>The view "LoggedProfile"</returns>
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> LoggedProfile()
         {
             try
             {
                 var model = await _userService
-                .ShowLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                    .ShowLoggedProfileAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
                 return View(model);
             }
