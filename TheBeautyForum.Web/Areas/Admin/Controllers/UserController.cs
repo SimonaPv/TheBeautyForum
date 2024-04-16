@@ -45,11 +45,30 @@ namespace TheBeautyForum.Web.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id">the ID of the studio that has to be approved</param>
         /// <returns>The view "LoggedProfile"</returns>
-        public async Task<IActionResult> Approval(Guid id)
+        public async Task<IActionResult> Approve(Guid id)
         {
             try
             {
                 await _userService.ApproveStudioAsync(id);
+
+                return RedirectToAction("LoggedProfile", "User");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Declines studio.
+        /// </summary>
+        /// <param name="id">the ID of the studio that has to be declined</param>
+        /// <returns>The view "LoggedProfile"</returns>
+        public async Task<IActionResult> Decline(Guid id)
+        {
+            try
+            {
+                await _userService.DeclineStudioAsync(id);
 
                 return RedirectToAction("LoggedProfile", "User");
             }

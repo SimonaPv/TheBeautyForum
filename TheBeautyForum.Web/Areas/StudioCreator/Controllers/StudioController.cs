@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using TheBeautyForum.Services.Category;
 using TheBeautyForum.Services.Studios;
 using TheBeautyForum.Web.ViewModels.Studio;
 
@@ -11,15 +12,18 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
     public class StudioController : BaseController
     {
         private readonly IStudioService _studioService;
+        private readonly ICategoryService _categoryService;
 
         /// <summary>
         /// Initialize new instance of <see cref="StudioController"/> class.
         /// </summary>
         /// <param name="studioService"></param>
         public StudioController(
-            IStudioService studioService)
+            IStudioService studioService,
+            ICategoryService categoryService)
         {
             this._studioService = studioService;
+            this._categoryService = categoryService;
         }
 
         /// <summary>
@@ -115,6 +119,7 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
 
                 if (!ModelState.IsValid)
                 {
+                    model.Categories = await _categoryService.LoadCategoriesAsync();
                     return View(model);
                 }
 

@@ -57,14 +57,13 @@
                                             </div>
                                             <div class="service-content rounded-bottom light-ligth p-4">
                                                 <div class="service-content-inner">
-                                                    <div style="height: 80px">
-                                                        <div style="display: flex; flex-direction: row">
-                                                            <h5 class="mb-1" style="padding-right: 0.1em">@s.StudioName</h5>
-                                                            <a style="font-size: 12px; font-weight: 200; margin-left: 0.5em; margin-top: 0.3em; color: #F9A392">Pending...</a>
-                                                        </div>
+                                                    <div style="height: 90px">
+                                                        <h5 class="mb-1" style="padding-right: 0.1em">@s.StudioName</h5>
                                                         <p style="margin-bottom: 0.5em; font-size: 12px; font-weight: 400; color: #626262">@s.StudioDescription</p>
                                                     </div>
+
                                                     <a class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" asp-controller="Studio" asp-action="Profile" asp-route-id="@s.StudioId">View profile</a>
+                                                    <a style="font-size: 12px; font-weight: 200; color: #F9A392; padding-left: 0.5em;">Pending...</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +89,7 @@
                                             </div>
                                             <div class="service-content rounded-bottom light-ligth p-4">
                                                 <div class="service-content-inner">
-                                                    <div style="height: 80px">
+                                                    <div style="height: 90px">
                                                         <div style="display: flex; flex-direction: row">
                                                             <h5 class="mb-1" style="padding-right: 0.1em">@s.StudioName</h5>
                                                             @for (int i = 0; i < s.RatingSum; i++)

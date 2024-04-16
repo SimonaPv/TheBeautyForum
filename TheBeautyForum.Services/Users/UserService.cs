@@ -43,6 +43,21 @@ namespace TheBeautyForum.Services.Users
         }
 
         /// <inheritdoc/>
+        public async Task DeclineStudioAsync(Guid studioId)
+        {
+            var model = await _dbContext.Studios
+                .FirstOrDefaultAsync(x => x.Id == studioId);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            _dbContext.Studios.Remove(model);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        /// <inheritdoc/>
         public async Task EditUserProfileAsync(
             EditProfileViewModel model, 
             Guid userId)

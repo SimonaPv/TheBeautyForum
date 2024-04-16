@@ -26,8 +26,8 @@ namespace TheBeautyForum.Services.Studios
         /// <param name="imageService"></param>
         /// <param name="categoryService"></param>
         public StudioService(
-            ApplicationDbContext dbContext, 
-            IImageService imageService, 
+            ApplicationDbContext dbContext,
+            IImageService imageService,
             ICategoryService categoryService)
         {
             this._dbContext = dbContext;
@@ -48,7 +48,7 @@ namespace TheBeautyForum.Services.Studios
 
         /// <inheritdoc/>
         public async Task CreateStudioAsync(
-            CreateStudioViewModel model, 
+            CreateStudioViewModel model,
             Guid userId)
         {
             if (model is null)
@@ -106,7 +106,7 @@ namespace TheBeautyForum.Services.Studios
 
         /// <inheritdoc/>
         public async Task EditStudioProfileAsync(
-            EditStudioProfileViewModel model, 
+            EditStudioProfileViewModel model,
             Guid studioId)
         {
             if (model is null)
@@ -132,7 +132,7 @@ namespace TheBeautyForum.Services.Studios
             {
                 var categories = await this._dbContext.StudiosCategories
                     .Where(s => s.StudioId == studio.Id)
-                    .ToListAsync(); 
+                    .ToListAsync();
 
                 this._dbContext.StudiosCategories.RemoveRange(categories);
 
@@ -271,14 +271,15 @@ namespace TheBeautyForum.Services.Studios
                 Location = studio.Location,
                 OpenTime = studio.OpenTime.ToString(),
                 CloseTime = studio.CloseTime.ToString(),
-                Categories = categories
+                Categories = categories,
+                CategoryIds = categories.Where(x => x.IsSelected == true).Select(x => x.Id).ToList(),
             };
 
             return model;
         }
 
         public async Task<StudioProfileViewModel> ShowStudioProfileAsync(
-            Guid studioId, 
+            Guid studioId,
             Guid userId)
         {
             var model = await _dbContext.Studios

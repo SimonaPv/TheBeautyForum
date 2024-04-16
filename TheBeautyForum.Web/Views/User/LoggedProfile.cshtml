@@ -142,44 +142,22 @@
                                     <span>@CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(a.StartDate.Month)</span>
                                 </div>
                                 <div class="right-event" style="height: 90px">
-                                    @if (a.Description!.Length > 30)
-                                    {
-                                        <div class="display" style="display: flex; flex-direction: row; justify-content: space-between;">
-                                            <div>
-                                                <h4>@a.Description.Substring(0, 27)...</h4>
-                                            </div>
-                                            <div class="dropdown" style="float:right;">
-                                                <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                                <div class="dropdown-content">
-                                                    <div onclick="return confirm('Are you sure you want to delete this appointment?')">
-                                                        @Html.ActionLink("Delete", "Delete", "Appointment", new { AppointmentId = a.Id }, null)
-                                                    </div>
-                                                    <div>
-                                                        <a asp-controller="Appointment" asp-action="Edit" asp-route-id="@a.Id">Edit</a>
-                                                    </div>
+                                    <div class="display" style="display: flex; flex-direction: row; justify-content: space-between">
+                                        <div>
+                                            <h4>@a.Description</h4>
+                                        </div>
+                                        <div class="dropdown" style="float:right; ">
+                                            <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                            <div class="dropdown-content">
+                                                <div onclick="return confirm('Are you sure you want to cancel this appointment?')">
+                                                    @Html.ActionLink("Cancel", "Delete", "Appointment", new { AppointmentId = a.Id }, null)
+                                                </div>
+                                                <div>
+                                                    @Html.ActionLink("Edit", "Edit", "Appointment", new { AppointmentId = a.Id }, null)
                                                 </div>
                                             </div>
                                         </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="display" style="display: flex; flex-direction: row; justify-content: space-between">
-                                            <div>
-                                                <h4>@a.Description</h4>
-                                            </div>
-                                            <div class="dropdown" style="float:right; ">
-                                                <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                                <div class="dropdown-content">
-                                                    <div onclick="return confirm('Are you sure you want to cancel this appointment?')">
-                                                        @Html.ActionLink("Cancel", "Delete", "Appointment", new { AppointmentId = a.Id }, null)
-                                                    </div>
-                                                    <div>
-                                                        @Html.ActionLink("Edit", "Edit", "Appointment", new { AppointmentId = a.Id }, null)
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+                                    </div>
                                     <p>
                                         <i class="fas fa-map-marker-alt"></i> <a asp-controller="Studio" asp-action="Profile" asp-route-id="@a.StudioId" style="color: #626262; font-size: 14px">
                                             @a.StudioName

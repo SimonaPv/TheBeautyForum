@@ -55,5 +55,11 @@ namespace TheBeautyForum.Services.Users
         /// </summary>
         /// <param name="studioId">the ID of the studio</param>
         Task ApproveStudioAsync(Guid studioId);
+
+        /// <summary>
+        /// Declines studio by admin.
+        /// </summary>
+        /// <param name="studioId">the ID of the studio</param>
+        Task DeclineStudioAsync(Guid studioId);
     }
 }

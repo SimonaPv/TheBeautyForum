@@ -13,12 +13,12 @@
             /// <summary>
             /// Appointment's description maximum value.
             /// </summary>
-            public const int DESCRIPTION_MAX_LENGTH = 50;
+            public const int DESCRIPTION_MAX_LENGTH = 25;
 
             /// <summary>
             /// Appointment's description minimum value.
             /// </summary>
-            public const int DESCRIPTION_MIN_LENGTH = 10;
+            public const int DESCRIPTION_MIN_LENGTH = 5;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
             /// <summary>
             /// Category's name maximum value.
             /// </summary>
-            public const int NAME_MAX_LENGTH = 50;
+            public const int NAME_MAX_LENGTH = 30;
 
             /// <summary>
             /// Category's name minimum value.
@@ -61,7 +61,7 @@
             /// <summary>
             /// Studio's name maximum value.
             /// </summary>
-            public const int NAME_MAX_LENGTH = 50;
+            public const int NAME_MAX_LENGTH = 25;
 
             /// <summary>
             /// Studio's name minimum value.
