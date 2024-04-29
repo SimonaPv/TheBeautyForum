@@ -25,7 +25,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("4ebb7e23-2a49-4451-8c96-b5c6de99900e"),
                 StartDate = DateTime.ParseExact("22-07-2024 14:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("22-07-2024 15:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "Monthly manicure appointment."
+                Description = "Monthly manicure."
             };
             data.Add(app);
             #endregion
@@ -39,7 +39,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("db7effe2-16bb-4539-9dec-0bda384b859f"),
                 StartDate = DateTime.ParseExact("20-06-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("20-06-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "I want slight balayage."
+                Description = "Slight balayage."
             };
             data.Add(app);
 
@@ -51,7 +51,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("569a4a94-57b0-48d3-930c-0d3ca92f7eb8"),
                 StartDate = DateTime.ParseExact("04-06-2024 16:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("04-06-2024 17:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "I need a relaxing massage."
+                Description = "Relaxing massage."
             };
             data.Add(app);
             #endregion
@@ -65,7 +65,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("db7effe2-16bb-4539-9dec-0bda384b859f"),
                 StartDate = DateTime.ParseExact("18-06-2024 12:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("18-06-2024 13:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "I want platinum blond."
+                Description = "Platinum blond."
             };
             data.Add(app);
 
@@ -77,19 +77,7 @@ namespace TheBeautyForum.Data.Configurations
                 CategoryId = Guid.Parse("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"),
                 StartDate = DateTime.ParseExact("20-06-2024 15:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                 EndDate = DateTime.ParseExact("20-06-2024 16:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "I need care for bleached hair."
-            };
-            data.Add(app);
-
-            app = new Appointment()
-            {
-                Id = Guid.Parse("2220ba4e-0941-4b06-abfa-e36a25ddb881"),
-                UserId = Guid.Parse("2fceb9b7-fdd1-4062-b6d4-b81b3d7fd62d"),
-                StudioId = Guid.Parse("c7998d5b-0017-4924-8544-49b4a276afe1"),
-                CategoryId = Guid.Parse("1125ebe4-4f81-4bb8-90ee-aceaf509c4f3"),
-                StartDate = DateTime.ParseExact("20-03-2024 15:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                EndDate = DateTime.ParseExact("20-03-2024 16:00", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                Description = "I need care for bleached hair."
+                Description = "Care for bleached hair."
             };
             data.Add(app);
             #endregion

@@ -81,7 +81,7 @@
             /// <summary>
             /// Studio's location maximum value.
             /// </summary>
-            public const int LOCATION_MAX_LENGTH = 80;
+            public const int LOCATION_MAX_LENGTH = 50;
 
             /// <summary>
             /// Studio's location maximum value.
@@ -91,7 +91,7 @@
             /// <summary>
             /// Studio's image maximum value.
             /// </summary>
-            public const int IMAGE_MAX_LENGTH = 2048;
+            public const int IMAGE_MAX_LENGTH = 10485760;
         }
 
         /// <summary>

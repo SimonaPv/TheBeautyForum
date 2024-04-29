@@ -60,9 +60,17 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
                 {
                     ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
                 }
-
+                if (model.ProfilePicture != null && model.ProfilePicture.Length > 10485760)
+                {
+                    ModelState.AddModelError(nameof(model.ProfilePicture), "Your file is too big.");
+                }
+                if (TimeOnly.Parse(model.OpenTime) >= TimeOnly.Parse(model.CloseTime))
+                {
+                    ModelState.AddModelError(nameof(model.OpenTime), "Incorrect time.");
+                }
                 if (!ModelState.IsValid)
                 {
+                    model.Categories = await _categoryService.LoadCategoriesAsync();
                     return View(model);
                 }
 
@@ -116,7 +124,10 @@ namespace TheBeautyForum.Web.Areas.StudioCreator.Controllers
                 {
                     ModelState.AddModelError(nameof(model.CategoryIds), "Please, select procedures.");
                 }
-
+                if (TimeOnly.Parse(model.OpenTime) >= TimeOnly.Parse(model.CloseTime))
+                {
+                    ModelState.AddModelError(nameof(model.OpenTime), "Incorrect time.");
+                }
                 if (!ModelState.IsValid)
                 {
                     model.Categories = await _categoryService.LoadCategoriesAsync();

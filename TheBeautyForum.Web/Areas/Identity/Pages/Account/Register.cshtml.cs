@@ -46,21 +46,21 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        /// directly from your code. This API may change or be removed in future releases.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        /// directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        /// directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -72,14 +72,14 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
                };
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        /// directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            /// directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
             [EmailAddress]
@@ -87,8 +87,8 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            /// directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -97,8 +97,8 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            /// directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
@@ -158,6 +158,12 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
                     user.UserRole = "Administrator";
                 }
 
+                if (Input.ProfilePicture != null && Input.ProfilePicture.Length >= 10485760)
+                {
+                    ModelState.AddModelError(string.Empty, "File too big.");
+                    return Page();
+                }
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
@@ -166,6 +172,10 @@ namespace TheBeautyForum.Web.Areas.Identity.Pages.Account
                 if (Input.ProfilePicture != null)
                 {
                     user.ProfilePictureUrl = await this._imageService.UploadImage(Input.ProfilePicture, "images", user);
+                }
+                else
+                {
+                    user.ProfilePictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1714415339/m3orrb8dvntztn2irp4d.jpg";
                 }
 
                 if (result.Succeeded)

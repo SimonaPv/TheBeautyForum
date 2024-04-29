@@ -67,6 +67,11 @@ namespace TheBeautyForum.Services.Studios
                 CloseTime = TimeOnly.Parse(model.CloseTime),
             };
 
+            if (model.ProfilePicture == null)
+            {
+                studio.StudioPictureUrl = "https://res.cloudinary.com/di1lcwb4r/image/upload/v1714415949/hw1ae4bawkxxafpphzxk.jpg";
+            }
+
             await _dbContext.Studios.AddAsync(studio);
 
             foreach (var categoryId in model.CategoryIds)

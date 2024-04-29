@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Configuration;
 using System.Security.Claims;
 using TheBeautyForum.Services.Users;
 using TheBeautyForum.Web.ViewModels.User;
